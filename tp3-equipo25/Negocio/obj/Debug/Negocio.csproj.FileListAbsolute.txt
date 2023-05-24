@@ -7,3 +7,12 @@ C:\Users\Diego\Desktop\TP3\webApp\Negocio\obj\Debug\Negocio.csproj.CoreCompileIn
 C:\Users\Diego\Desktop\TP3\webApp\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\Diego\Desktop\TP3\webApp\Negocio\obj\Debug\Negocio.dll
 C:\Users\Diego\Desktop\TP3\webApp\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\bin\Debug\Negocio.dll
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\bin\Debug\Dominio.dll
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\bin\Debug\Dominio.pdb
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\obj\Debug\Negocio.dll
+C:\Users\Diego\source\repos\tp3-equipo25\tp3-equipo25\Negocio\obj\Debug\Negocio.pdb
