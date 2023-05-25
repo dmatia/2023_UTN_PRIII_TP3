@@ -367,4 +367,5 @@ FodyWeavers.xsd
 /.vs/
 /Presentacion/img_articulos
 
-/tp3-equipo25/.vs/tp3-equipo25/config/applicationhost.config
+/tp3-equipo25/.vs/
+/tp3-equipo25/tp3-equipo25
