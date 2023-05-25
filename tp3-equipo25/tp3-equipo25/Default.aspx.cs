@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,10 @@ namespace tp3_equipo25
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+          
+                ArticuloNegocio articulosNegocio = new ArticuloNegocio();
+          
+            
         }
     }
 }
