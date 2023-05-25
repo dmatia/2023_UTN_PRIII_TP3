@@ -19,5 +19,10 @@ namespace tp3_equipo25
             RepCards.DataBind();
 
         }
+
+        protected void BtnDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

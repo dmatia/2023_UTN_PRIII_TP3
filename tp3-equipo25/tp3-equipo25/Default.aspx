@@ -15,7 +15,8 @@
                         <p class="card-text">Descripcion:<%#Eval("Descripcion")%></p>
                             </div>
                        <div class="card-body">
-     <a href="#" class="card-link">Another link</a>
+            <asp:Button Text="Detalle" Cssclass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId"/>
+
      </div>
                     </div>
               </div>
