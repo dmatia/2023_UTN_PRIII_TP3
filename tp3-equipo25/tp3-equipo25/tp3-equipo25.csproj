@@ -67,24 +67,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CarritoWeb.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Layouts\Footer.ascx" />
+    <Content Include="Layouts\Nav.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarritoWeb.aspx.cs">
-      <DependentUpon>CarritoWeb.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CarritoWeb.aspx.designer.cs">
-      <DependentUpon>CarritoWeb.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Nav.ascx.cs">
+      <DependentUpon>Nav.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\Nav.ascx.designer.cs">
+      <DependentUpon>Nav.ascx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
