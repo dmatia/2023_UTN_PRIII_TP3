@@ -22,18 +22,19 @@
 <body>
 
     <form id="form1" runat="server">
+        <div class="d-flex flex-column min-vh-100 vh-100 container">
+            <%--Nav--%>
+            <uc:Nav runat="server" ID="Nav" />
 
-        <%--Nav--%>
-        <uc:Nav runat="server" ID="Nav" />
+            <%--Main--%>
+            <main class="container flex-grow-1 container p-2">
+                <asp:ContentPlaceHolder ID="Main" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
 
-        <%--Main--%>
-        <div class="container">
-            <asp:ContentPlaceHolder ID="Main" runat="server">
-            </asp:ContentPlaceHolder>
+            <%--Footer--%>
+            <uc:Footer runat="server" ID="Footer" />
         </div>
-
-        <%--Footer--%>
-        <uc:Footer runat="server" ID="Footer" />
     </form>
 
     <%--Boostrap JS--%>

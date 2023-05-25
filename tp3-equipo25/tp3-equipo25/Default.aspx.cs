@@ -1,10 +1,11 @@
-﻿using Negocio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
+using Dominio;
 
 namespace tp3_equipo25
 {
@@ -12,19 +13,23 @@ namespace tp3_equipo25
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          
-                ArticuloNegocio articulosNegocio = new ArticuloNegocio();
-             Session.Add("ListaArticulos", articulosNegocio.listar());
-             RepCards.DataSource = Session["ListaArticulos"];
-            RepCards.DataBind();
-
-        }
+			if(!IsPostBack)
+			{
+				ArticuloNegocio articulosNegocio = new ArticuloNegocio();
+				Session.Add("ListaArticulos", articulosNegocio.listar());
+				RepCards.DataSource = Session["ListaArticulos"];
+				RepCards.DataBind();
+			}
+		}
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
         {
-            int ArticuloId = int.Parse(((Button)sender).CommandArgument);
-            Session.Add("DetalleArticuloId", ArticuloId);
-           /// Response.Redirect("Detalle.aspx", false);
-        }
+			//Guardamos Articulo en Session
+			int ArticuloId = int.Parse(((Button)sender).CommandArgument);
+			Articulo articulo = ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Id == ArticuloId);
+
+			Session.Add("DetalleArticulo", articulo);
+			Response.Redirect("Detalle.aspx", false);
+		}
     }
 }
