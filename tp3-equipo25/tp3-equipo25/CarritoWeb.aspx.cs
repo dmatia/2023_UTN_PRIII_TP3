@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.WebRequestMethods;
 
 
 namespace tp3_equipo25
@@ -57,13 +58,24 @@ namespace tp3_equipo25
 
         protected void dgvCarrito_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
+            Image2.ImageUrl = "https://enelring.com.mx/u/fotografias/m/2023/1/6/f768x1-13009_13136_5050.jpg";
         }
 
         protected void dgvCarrito_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvCarrito.PageIndex = e.NewPageIndex;
             dgvCarrito.DataBind();
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnQuitar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
