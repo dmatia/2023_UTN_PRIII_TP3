@@ -13,7 +13,7 @@
                 <%-- Detalle --%>
                 <div class="row row-cols-2 w-50">
                     <div>
-                        <h2><%= articulo.Nombre%></h2>
+                       <h2><%= articulo.Nombre%></h2>
                         <p><%= articulo.Descripcion%></p>
                         <p><%= articulo.Categoria%></p>
                         <p><%= articulo.Marca%></p>
