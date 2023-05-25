@@ -67,14 +67,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CarritoWeb.aspx" />
     <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Detalle.aspx" />
     <Content Include="Layouts\Footer.ascx" />
     <Content Include="Layouts\Nav.ascx" />
-    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarritoWeb.aspx.cs">
+      <DependentUpon>CarritoWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarritoWeb.aspx.designer.cs">
+      <DependentUpon>CarritoWeb.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,13 +122,6 @@
   <ItemGroup>
     <Content Include="Master.Master" />
     <Content Include="libman.json" />
-    <None Include="packages.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
@@ -132,6 +132,15 @@
       <Project>{e5ee73f4-2975-4f50-b594-1a4adf81d6ec}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
