@@ -22,7 +22,9 @@ namespace tp3_equipo25
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
         {
-
+            int ArticuloId = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("DetalleArticuloId", ArticuloId);
+           /// Response.Redirect("Detalle.aspx", false);
         }
     }
 }
