@@ -1,3 +1,37 @@
 ﻿body {
     margin: 0;
 }
+
+.sinCarrito {
+    width: 100%;
+    height: 100%;
+    background-image: url(https://previews.123rf.com/images/avdeev3000/avdeev30001510/avdeev3000151000077/46610237-carro-de-compras-en-un-estacionamiento-de-la-tienda.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.sinCarritoTitulo, .sinCarritoBoton{
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sinCarritoTitulo{
+    font-size: 5rem;
+    align-self: end;
+}
+
+.sinCarrito div{
+    text-align: center;
+}
+
+.sinCarritoBoton{
+    font-size: 2.5rem;
+    padding: 0 .5em .2em .5em;
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 15px;
+}

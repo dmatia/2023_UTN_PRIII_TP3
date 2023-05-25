@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-
-    <div class="container-sm">
-
+        <% if (ListaCarrito != null)
+           {%>
+        <div class="container-sm">
         <h2>Tu carrito:</h2>
         <div class="row">
             <div class="col-6">
@@ -33,8 +33,8 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
+                       <%-- PRECIO /// VER CONFIGURACION carrito.cantidad * articulo.precio--%>
                         <asp:BoundField HeaderText="Total" DataField="Articulo.Precio" />
-
 
                     </Columns>
                 </asp:GridView>
@@ -61,6 +61,20 @@
         <a class="btn btn-primary">CHECK OUT</a>
 
     </div>
+
+
+        <%}
+     else
+        {%>
+
+            <div class="sinCarrito">
+                <a class="sinCarritoTitulo"> Tu carrito está vacio... </a>
+                <div>
+                    <a href="Default.aspx" class="sinCarritoBoton">ver catalogo</a>
+                </div>
+            </div>
+
+        <%}%>
 
 
 
