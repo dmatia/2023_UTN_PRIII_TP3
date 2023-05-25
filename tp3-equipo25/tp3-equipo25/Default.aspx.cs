@@ -14,8 +14,10 @@ namespace tp3_equipo25
         {
           
                 ArticuloNegocio articulosNegocio = new ArticuloNegocio();
-          
-            
+             Session.Add("ListaArticulos", articulosNegocio.listar());
+             RepCards.DataSource = Session["ListaArticulos"];
+            RepCards.DataBind();
+
         }
     }
 }
