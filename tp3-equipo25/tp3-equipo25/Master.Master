@@ -22,7 +22,7 @@
 <body>
 
     <form id="form1" runat="server">
-        <div class="d-flex flex-column min-vh-100 vh-100 container">
+        <div class="d-flex flex-column min-vh-100 vh-100 ">
             <%--Nav--%>
             <uc:Nav runat="server" ID="Nav" />
 
