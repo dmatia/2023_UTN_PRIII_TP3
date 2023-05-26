@@ -12,7 +12,7 @@
                 <div class="-col">
                     <%--Card--%>
                     <div class="card" style="width: 18rem;">
-                     <img src="<%#Eval("Imagenes[0].UrlImagen")%>" class="card-img-top" style="height: 150px" alt="...">
+                     <img src="<%#Eval("Imagenes[0].UrlImagen")%>" class="card-img-top" style="height: 150px" alt="imagen"onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
                        <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
                             <p class="card-text">Descripcion:<%#Eval("Descripcion")%></p>
