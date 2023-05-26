@@ -33,10 +33,17 @@ namespace tp3_equipo25
 			articulo = (Articulo)Session["DetalleArticulo"];
 		}
 
-		protected void AgregarCarrito(object sender, EventArgs e)
+		private void CargarCarrito()
 		{
 			//Cargamos session de carrito si existe. Si no se crea un nuevo objeto.
 			carrito = (List<Carrito>)Session["carrito"] != null ? (List<Carrito>)Session["carrito"] : new List<Carrito>();
+		}
+
+		protected void AgregarCarrito(object sender, EventArgs e)
+		{
+
+			CargarCarrito();
+			CargarArticulo();
 
 			if (carrito.Count > 0)
 			{
@@ -50,7 +57,7 @@ namespace tp3_equipo25
 
 					//Guardamos carrito en session
 					Session["carrito"] = carrito;
-					//Response.Redirect("Carrito.aspx", false); <-- DESCOMENTAR CUANDO EL ARCHIVO ESTE CREADO
+					Response.Redirect("CarritoWeb.aspx", false);
 
 					return;
 				}
@@ -65,7 +72,7 @@ namespace tp3_equipo25
 
 			//Guardamos carrito en session
 			Session["carrito"] = carrito;
-			//Response.Redirect("Carrito.aspx", false); <-- DESCOMENTAR CUANDO EL ARCHIVO ESTE CREADO
+			Response.Redirect("CarritoWeb.aspx", false);
 		}
 
 		private void CargarArticulosRelacionados()
