@@ -52,3 +52,11 @@ footer{
     /*transform: scale(1.05);*/
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
 }
+
+.card-text {
+    display: none; /* Ocultar la descripción por defecto */
+}
+
+.card:hover .card-text {
+    display: block; /* Mostrar la descripción al hacer hover en la tarjeta */
+}
