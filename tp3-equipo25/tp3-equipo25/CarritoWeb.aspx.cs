@@ -42,9 +42,9 @@ namespace tp3_equipo25
             Carrito car4 = new Carrito();
 
             car1.Articulo = art1; car1.Cantidad = 1;
-            car2.Articulo = art2; car2.Cantidad = 1;
-            car3.Articulo = art3; car3.Cantidad = 1;
-            car4.Articulo = art4; car4.Cantidad = 1;
+            car2.Articulo = art2; car2.Cantidad = 2;
+            car3.Articulo = art3; car3.Cantidad = 3;
+            car4.Articulo = art4; car4.Cantidad = 2;
 
 
 
@@ -57,7 +57,10 @@ namespace tp3_equipo25
             dgvCarrito.DataSource = ListaCarrito;
             dgvCarrito.DataBind();
 
-            Image2.ImageUrl = ListaCarrito[0].Articulo.Imagenes[0].UrlImagen;  
+            Image2.ImageUrl = ListaCarrito[0].Articulo.Imagenes[0].UrlImagen;
+
+            cargarTotal();
+            cargarTotalItems();
             
         }
 
@@ -80,19 +83,35 @@ namespace tp3_equipo25
         protected void btnQuitar_Click(object sender, EventArgs e)
         {
         }
-        protected void grd_Pre(object sender, EventArgs e)
+        protected void cargarTotal()
         {
             GridViewRow gv = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Normal);
             TableCell totalCarrito = new TableCell();
-            totalCarrito.ColumnSpan = 5;
+            totalCarrito.ColumnSpan = dgvCarrito.Columns.Count+1;
             Decimal total = 0;
             foreach(Carrito carrito in ListaCarrito) {
                 total += (carrito.Articulo.Precio * carrito.Cantidad); 
             }
             totalCarrito.Text = "Total: $" + total;
-            totalCarrito.Attributes.Add("style", "text-align:center");
+            totalCarrito.Attributes.Add("style", "text-align:right; background-color:#ccc");
             gv.Cells.Add(totalCarrito);
             this.dgvCarrito.Controls[0].Controls.AddAt(6, gv);
+        }
+
+        protected void cargarTotalItems()
+        {
+            GridViewRow gv = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Normal);
+            TableCell totalCarrito = new TableCell();
+            totalCarrito.ColumnSpan = dgvCarrito.Columns.Count + 1;
+            Decimal total = 0;
+            foreach (Carrito carrito in ListaCarrito)
+            {
+                total += (carrito.Cantidad);
+            }
+            totalCarrito.Text = "Tenés " + total + " items en tu carrito";
+            totalCarrito.Attributes.Add("style", "background-color:#ccc");
+            gv.Cells.Add(totalCarrito);
+            this.dgvCarrito.Controls[0].Controls.AddAt(0, gv);
         }
     }
 }

@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-6">
                 <asp:GridView ID="dgvCarrito" runat="server" CssClass="table mb-3" DataKeyNames=""
-                    AutoGenerateColumns="true" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged"
-                    OnPageIndexChanging="dgvCarrito_PageIndexChanging" AllowPaging="true" PageSize="3">
+                    AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged"
+                    OnPageIndexChanging="dgvCarrito_PageIndexChanging" AllowPaging="true">
                     <Columns>
 
                         <%--Imagen en columna--%>
@@ -22,8 +22,12 @@
                         </asp:TemplateField>
 
                         <%-- <asp:BoundField HeaderText="" DataField="Articulo.Imagenes[0].UrlImagen"/>--%>
-                        <asp:BoundField DataField="Articulo.Nombre" />
-             <%--           <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />--%>
+                        <asp:BoundField HeaderText="Artículo" DataField="Articulo.Nombre" />
+                        
+                        <%-- PRECIO --%>
+                        <asp:BoundField HeaderText="Precio" DataField="Articulo.Precio" />
+
+                       
 
                         <%--CONTROLES--%>
                         <asp:TemplateField HeaderText="Agregar/Quitar">
@@ -33,7 +37,10 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <%-- PRECIO /// VER CONFIGURACION carrito.cantidad * articulo.precio--%>
+                       <%-- CANTIDAD--%>
+                         <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+
+                        <%-- TOTAL /// VER CONFIGURACION carrito.cantidad * articulo.precio--%>
                         <asp:BoundField HeaderText="Total" DataField="Articulo.Precio" />
 
                    
@@ -42,8 +49,6 @@
                     </Columns>
                    
                 </asp:GridView>
-
-                <asp:GridView OnPreRender="grd_Pre" CssClass="table" ID="GridView1" runat="server" AutoGenerateColumns="False" ></asp:GridView>
 
             </div>
 
