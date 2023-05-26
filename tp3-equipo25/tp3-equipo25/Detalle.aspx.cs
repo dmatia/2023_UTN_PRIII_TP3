@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
+using Negocio;
 
 namespace tp3_equipo25
 {
@@ -12,15 +13,18 @@ namespace tp3_equipo25
 	{
 		public Articulo articulo { get; set; }
 
+		public List<Articulo> articulosRelacionados { get; set; }
+
 		public DateTime dia { get; set; }
 
 		private List<Carrito> carrito;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			if(!IsPostBack)
+			if (!IsPostBack)
 			{
 				dia = DateTime.Today.AddDays(1);
 				CargarArticulo();
+				CargarArticulosRelacionados();
 			}
 		}
 
@@ -62,6 +66,28 @@ namespace tp3_equipo25
 			//Guardamos carrito en session
 			Session["carrito"] = carrito;
 			//Response.Redirect("Carrito.aspx", false); <-- DESCOMENTAR CUANDO EL ARCHIVO ESTE CREADO
+		}
+
+		private void CargarArticulosRelacionados()
+		{
+			if (articulo != null)
+			{
+				List<Articulo> articulosLista = ((List<Articulo>)Session["ListaArticulos"]);
+				articulosRelacionados = articulosLista.FindAll(X => X.Categoria.Descripcion == articulo.Categoria.Descripcion && X.Id != articulo.Id);
+
+				repeaterArticulosRelacionados.DataSource = articulosRelacionados;
+				repeaterArticulosRelacionados.DataBind();
+			}
+		}
+
+		protected void BtnDetalle_Click(object sender, EventArgs e)
+		{
+			//Guardamos Articulo en Session
+			int ArticuloId = int.Parse(((Button)sender).CommandArgument);
+			Articulo articulo = ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Id == ArticuloId);
+
+			Session.Add("DetalleArticulo", articulo);
+			Response.Redirect("Detalle.aspx", false);
 		}
 	}
 }

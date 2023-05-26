@@ -5,7 +5,7 @@
 
 <%--Main--%>
 <asp:Content ID="Detalle" ContentPlaceHolderID="Main" runat="server">
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center bg-body shadow-sm rounded p-3">
 
         <% if (articulo != null)
             {%>
@@ -42,7 +42,7 @@
 
 
             <%-- Detalle --%>
-            <div>
+            <div class="">
                 <div class="d-flex text-secondary fw-light flex-wrap">
                     <p class="me-1">Nuevo | </p>
                     <p class="me-1"><%= articulo.Categoria%></p>
@@ -51,7 +51,7 @@
                 </div>
                 <h2 class="fs-4"><%= articulo.Nombre%></h2>
                 <p class="fs-2 fw-light"><%= articulo.Precio.ToString("c")%></p>
-                <p class="badge text-bg-primary fw-normal text-uppercase"> <small>oferta del día</small></p>
+                <p class="badge text-bg-primary fw-normal text-uppercase"><small>oferta del día</small></p>
                 <p class="fs-6 text-muted"><%= articulo.Descripcion%></p>
             </div>
             <%-- Detalle --%>
@@ -83,5 +83,29 @@
 
         <%}%>
     </div>
+    <div class="my-3">
+        <h5 class="text-muted">También te puede interesar</h5>
+    </div>
+    <div class="bg-body shadow-sm hover-shadow p-3 rounded ">
+        <div class="d-flex flex-row gap-3">
+            <asp:Repeater ID="repeaterArticulosRelacionados" runat="server">
+                <ItemTemplate>
+                    <%-- Cards --%>
+                    <div class="card rounded shadow-sm" style="width: 15rem; height:contain">
+                        <div class="w-100 h-50">
+                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover w-100 h-100">
+                        </div>
+                        <div class="card-body" style="height:100px">
+                            <p class="fs-4 fw-light"><%# String.Format("{0:C}", Eval("Precio"))%></p>
+                            <h5 class="card-title"><%# Eval("Nombre") %></h5>
+                            <p class="card-text"><%#  Eval("Descripcion") %></p>
+                            <asp:Button Text="Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                        </div>
+                    </div>
+                <%-- Cards --%>
+                </ItemTemplate>
+            </asp:Repeater>
+            </div>
+        </div>
 </asp:Content>
 <%--Fin Main--%>
