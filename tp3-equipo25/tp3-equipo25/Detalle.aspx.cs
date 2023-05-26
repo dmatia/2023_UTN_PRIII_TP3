@@ -12,11 +12,14 @@ namespace tp3_equipo25
 	{
 		public Articulo articulo { get; set; }
 
+		public DateTime dia { get; set; }
+
 		private List<Carrito> carrito;
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			if(!IsPostBack)
 			{
+				dia = DateTime.Today.AddDays(1);
 				CargarArticulo();
 			}
 		}
