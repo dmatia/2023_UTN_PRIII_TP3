@@ -5,7 +5,7 @@
 
 <%--Main--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-    <div class="row row-cols-1 row-cols-md-3 g-4" style="flex-direction: row; justify-content: flex-start; align-content: space-evenly;">
+     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
         <%--Repeater--%>
         <asp:Repeater ID="RepCards" runat="server">
             <ItemTemplate>
