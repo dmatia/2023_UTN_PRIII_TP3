@@ -40,3 +40,8 @@
 .sinCarritoBoton:hover{
     background: #b06f6f;
 }
+
+footer{
+    text-align: center;
+    background: #ccc;
+   }

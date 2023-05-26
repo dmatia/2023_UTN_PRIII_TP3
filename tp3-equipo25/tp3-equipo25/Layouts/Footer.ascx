@@ -2,6 +2,6 @@
 
 <%--Footer--%>
 <footer class="container-sm">
-    <a>soy el footer</a>
+    <a>PR3 | GRUPO 25 | 2023</a>
 </footer>
 <%--Fin Footer--%>
