@@ -9,14 +9,13 @@
 
         <div class="row align-items-center">
             <div class="col-6">
-                        <h2>Tu carrito</h2>
+                <h2>Tu carrito</h2>
                 <asp:GridView ID="dgvCarrito" runat="server" CssClass="table mb-3" DataKeyNames=""
-                    AutoGenerateColumns="false" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged"
-                    OnPageIndexChanging="dgvCarrito_PageIndexChanging" AllowPaging="true">
-                    <RowStyle  HorizontalAlign="Center" VerticalAlign="Middle" BackColor="WHITE"/>
+                    AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound">
+                    <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" BackColor="WHITE" />
                     <HeaderStyle HorizontalAlign="Center" BackColor="WHITE" />
                     <Columns>
-                         
+
                         <%--Imagen en columna--%>
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -26,39 +25,45 @@
 
                         <%-- <asp:BoundField HeaderText="" DataField="Articulo.Imagenes[0].UrlImagen"/>--%>
                         <asp:BoundField HeaderText="Artículo" DataField="Articulo.Nombre" />
-                        
+
                         <%-- PRECIO --%>
                         <asp:BoundField HeaderText="Precio" DataFormatString="{0:C}" DataField="Articulo.Precio" />
 
-                       
+
 
                         <%--CONTROLES--%>
                         <asp:TemplateField HeaderText="Agregar/Quitar">
                             <ItemTemplate>
-                                <asp:Button ID="btnAgregar" runat="server" Text="+" OnClick="btnAgregar_Click" CssClass="btn"/>
+                                <asp:Button ID="btnAgregar" runat="server" Text="+" OnClick="btnAgregar_Click" CssClass="btn" />
                                 <asp:Button ID="btnQuitar" runat="server" Text="-" OnClick="btnQuitar_Click" CssClass="btn" />
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                       <%-- CANTIDAD--%>
-                         <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                        <%-- CANTIDAD--%>
+                        <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
 
                         <%-- TOTAL /// VER CONFIGURACION carrito.cantidad * articulo.precio--%>
-                        <asp:BoundField HeaderText="Total"  DataFormatString="{0:C}" DataField="Articulo.Precio" />
+                        <asp:TemplateField HeaderText="Subtotal">
+                            <ItemTemplate>
+                                <asp:Label ID="lblSubtotal" runat="server"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
-                   
-                        
+
+
+
+
 
                     </Columns>
-                   
+
                 </asp:GridView>
 
-                        <a href="OrdenCompra.aspx" class="btn btn-primary">CHECK OUT</a>
+                <a href="OrdenCompra.aspx" class="btn btn-primary">CHECK OUT</a>
 
 
             </div>
 
-        <%--   PANTALLA DERECHA --%>
+            <%--   PANTALLA DERECHA --%>
 
             <asp:ScriptManager ID="ScripManager1" runat="server"></asp:ScriptManager>
 
