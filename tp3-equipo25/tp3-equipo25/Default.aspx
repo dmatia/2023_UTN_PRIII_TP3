@@ -6,7 +6,7 @@
 <%--Main--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
      
-    <asp:Label Text="Filtrar" runat="server"> </asp:Label>
+    <asp:Label Text="Busqueda" runat="server"> </asp:Label>
     <asp:Textbox Id="TxtBusqueda" runat="server"></asp:Textbox>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
         <%--Repeater--%>
@@ -18,11 +18,11 @@
                      <img src="<%#Eval("Imagenes[0].UrlImagen")%>" Cssclass="card-img-top img-fluid" style="max-height: 130px" alt="imagen"onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
                        <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
-                            <h5 class="card-title"><%#Eval("Precio")%></h5>
+                            <h5 class="card-title">$<%#Eval("Precio")%></h5>
                            </div>
                         <div class="card-body">
                             <div class="d-grid gap-2">
-                            <asp:Button Text="Ver Detalle" CssClass="btn btn-success" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                            <asp:Button Text="Ver Detalle" runat="server" class="btndetalle" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
                             </div>
                         </div>
                     </div>
