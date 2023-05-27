@@ -13,7 +13,7 @@
         <div class="row row-cols-md-3 row-cols-1 w-75">
 
             <%--Carousel--%>
-            <div id="carouselExampleIndicators" class="carousel slide">
+            <div id="carouselExampleIndicators row row-cols-3" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -42,7 +42,7 @@
 
 
             <%-- Detalle --%>
-            <div class="">
+            <div class=" ">
                 <div class="d-flex text-secondary fw-light flex-wrap">
                     <p class="me-1">Nuevo | </p>
                     <p class="me-1"><%= articulo.Categoria%></p>
@@ -50,26 +50,59 @@
                     <p><%= articulo.Marca%></p>
                 </div>
                 <h2 class="fs-4"><%= articulo.Nombre%></h2>
-                <p class="fs-2 fw-light"><%= articulo.Precio.ToString("c")%></p>
+                <p class="small fw-light lh-1"><s><%= (articulo.Precio * 2).ToString("c")%></s></p>
+                <div class="d-flex">
+                <p class="fs-2 fw-light lh-1"><%= articulo.Precio.ToString("c")%></p>
+                <small class="text-green text-success ms-1">50% OFF</small>
+                </div>
                 <p class="badge text-bg-primary fw-normal text-uppercase"><small>oferta del día</small></p>
+                <p class="fw-semibold small mt-3">Lo que tenés que saber de este producto</p>
                 <p class="fs-6 text-muted"><%= articulo.Descripcion%></p>
             </div>
             <%-- Detalle --%>
 
             <%-- Button --%>
-            <div class="border border-muted rounded p-3">
-                <div class=" fs-6">
-                    <p class="small text text-success"><i class="fa-solid fa-truck me-2"></i>Llega gratis <span class="fw-semibold">el <%= dia.ToString("dddd") %></span></p>
-                    <p class="fs-6 fw-semibold">Stock disponible</p>
-                    <p class="small fw-light">Tienda oficial <a href="Nosotros.aspx" class="text-decoration-none">Grupo 25</a></p>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="fs-6 d-flex align-items-center me-2">Cantidad:</span>
-                        <asp:TextBox runat="server" Type="number" ID="tb_cantidad" min="0" name="quantity" value="1"
-                            CssClass="form-control fw-semibold border-0  w-50" />
+            <div>
+
+                <div class="border border-muted rounded p-3 row">
+
+                    <div class="row fs-6">
+                        <p class="small text text-success"><i class="fa-solid fa-truck me-2"></i>Llega gratis <span class="fw-semibold">el <%= dia.ToString("dddd") %></span></p>
+                        <p class="fs-6 fw-semibold">Stock disponible</p>
+                        <p class="small fw-light">Tienda oficial <a href="Nosotros.aspx" class="text-decoration-none">Grupo 25</a></p>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="fs-6 d-flex align-items-center me-2">Cantidad:</span>
+                            <asp:TextBox runat="server" Type="number" ID="tb_cantidad" min="0" name="quantity" value="1"
+                                CssClass="form-control fw-semibold border-0  w-50" />
+                        </div>
                     </div>
+                    <div class="d-grid">
+                        <asp:Button runat="server" CssClass="btn btn-primary btn-block fs-6 text-uppercase" OnClick="AgregarCarrito" Text="Agregar al carrito" />
+                    </div>
+
                 </div>
-                <div class="d-grid">
-                    <asp:Button runat="server" CssClass="btn btn-primary btn-block fs-6 text-uppercase" OnClick="AgregarCarrito" Text="Agregar al carrito" />
+
+                <div class="border border-muted rounded p-3 mt-3 row gap-2">
+
+                    <p class="fs-5 fw-semibold">Medios de Pago</p>
+
+                    <h6´class="fw-light">Pago Electrónico</h6´class="fw-light">
+                    <div class="d-flex gap-1 fs-2 text-muted">
+                        <i class="fa-brands fa-cc-stripe"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                        <i class="fa-brands fa-cc-apple-pay"></i>
+                        <i class="fa-brands fa-cc-amazon-pay"></i>
+                    </div>
+
+                    <h6´class="fw-light">Tarjetas de Crédito</h6´class="fw-light">
+                    <div class ="d-flex gap-1 fs-2 text-muted">
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-jcb"></i>
+                        <i class="fa-brands fa-cc-amex"></i>
+                        <i class="fa-brands fa-cc-diners-club"></i>
+                    </div>
+
                 </div>
             </div>
             <%-- Button --%>
