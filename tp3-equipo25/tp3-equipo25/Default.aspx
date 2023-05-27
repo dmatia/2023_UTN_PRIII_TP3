@@ -22,7 +22,9 @@
                             <p class="card-text">Descripcion:<%#Eval("Descripcion")%></p>
                         </div>
                         <div class="card-body">
-                            <asp:Button Text="Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                            <div class="d-grid gap-2">
+                            <asp:Button Text="Ver Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                            </div>
                         </div>
                     </div>
                     <%--Card--%>
