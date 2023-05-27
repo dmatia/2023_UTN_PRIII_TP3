@@ -70,19 +70,39 @@ namespace tp3_equipo25
 
 
         }
-
-        protected void TxtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-			List<Articulo> Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())); 
-			RepCards.DataSource = Listafiltrada;
-			RepCards.DataBind();
-           
-        }
-
+          
         protected void DdlCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
      
             
+        }
+
+        protected void BtnBusqueda_Click(object sender, EventArgs e)
+        {
+            List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+
+            if(DdlCategoria.SelectedIndex > 0 )
+            {
+                Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
+
+            }
+            /*
+
+
+            if (TxtBusqueda.Text.Length > 0)
+            {
+                Listafiltrada.FindAll(x => x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
+                               
+            }
+            if (ChkCheckDescripcion.Checked)
+            {
+                Listafiltrada.Find
+                }
+
+            */
+            RepCards.DataSource = Listafiltrada;
+            RepCards.DataBind();
+
         }
     }
 }

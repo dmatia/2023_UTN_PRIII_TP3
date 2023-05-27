@@ -14,11 +14,11 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <asp:TextBox CssClass="form-control TxtBusqueda" OnTextChanged="TxtBusqueda_TextChanged" ID="TxtBusqueda" runat="server" AutoPostBack="true"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server" AutoPostBack="false"></asp:TextBox>
                 </div>
                 <div class="col-4">
-                    <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" />
-                    <asp:CheckBox CssClass="form-check" Text="Incluir descripcion" runat="server"/>
+                    <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" />
+                    <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripcion" runat="server"/>
             </div>
             <div class="d-inline-flex align-items-center">
                 <asp:Label Text="Precio" runat="server"></asp:Label>
