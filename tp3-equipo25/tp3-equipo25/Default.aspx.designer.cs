@@ -24,22 +24,31 @@ namespace tp3_equipo25
         protected global::System.Web.UI.WebControls.TextBox TxtBusqueda;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control BtnBusqueda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Button BtnBusqueda;
 
         /// <summary>
-        /// Control DdlCategoria.
+        /// Control TxtPreciomin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlCategoria;
+        protected global::System.Web.UI.WebControls.TextBox TxtPreciomin;
+
+        /// <summary>
+        /// Control TextBox2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
         /// Control DdlMarca.
@@ -49,6 +58,15 @@ namespace tp3_equipo25
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DdlMarca;
+
+        /// <summary>
+        /// Control DdlCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DdlCategoria;
 
         /// <summary>
         /// Control RepCards.

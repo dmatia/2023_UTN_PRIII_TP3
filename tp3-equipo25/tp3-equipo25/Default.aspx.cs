@@ -57,7 +57,7 @@ namespace tp3_equipo25
                 {
                 DdlMarca.Items.Add(aux.Descripcion);
                 }
-              
+
 
             /*
             CbxFiltroprimario.Items.Add("Codigo");
@@ -86,3 +86,4 @@ namespace tp3_equipo25
         }
     }
 }
+   
