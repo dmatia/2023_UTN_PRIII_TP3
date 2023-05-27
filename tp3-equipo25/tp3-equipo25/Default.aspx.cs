@@ -35,8 +35,10 @@ namespace tp3_equipo25
 
         protected void TxtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            ArticuloNegocio Listafiltrada = new ArticuloNegocio();
-            ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Nombre == );
+			List<Articulo> Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())); 
+			RepCards.DataSource = Listafiltrada;
+			RepCards.DataBind();
+           
         }
     }
 }

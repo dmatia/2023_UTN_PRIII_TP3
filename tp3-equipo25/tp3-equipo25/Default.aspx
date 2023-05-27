@@ -5,9 +5,22 @@
 
 <%--Main--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
-     
-    <asp:Label Text="Busqueda" runat="server"> </asp:Label>
-    <asp:Textbox CssClass="form-control TxtBusqueda" OnTextChanged="TxtBusqueda_TextChanged" Id="TxtBusqueda" runat="server"></asp:Textbox>
+
+<div class="row">
+        <div class="d-inline-flex">
+        <asp:Label Text="Busqueda" runat="server"></asp:Label>
+    </div>
+    <div class="col">
+        <asp:Textbox CssClass="form-control TxtBusqueda" OnTextChanged="TxtBusqueda_TextChanged" Id="TxtBusqueda" runat="server" AutoPostBack="true"></asp:Textbox>
+    </div>
+    <div class="col">
+        <asp:DropDownList Id="DropCategoria" CssClass="form-control" runat="server"></asp:DropDownList>
+    </div>
+    <div class="col">
+        <asp:DropDownList Id="DropMarca" CssClass="form-control" runat="server"></asp:DropDownList>
+    </div>
+</div>
+
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
         <%--Repeater--%>
         <asp:Repeater ID="RepCards" runat="server">
