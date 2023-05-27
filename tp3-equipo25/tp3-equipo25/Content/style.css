@@ -5,11 +5,11 @@
 }
 
 .sinCarrito {
-    width: 100%;
-    height: 100%;
+    height: 100vh;
     background-image: url(https://media.istockphoto.com/id/91763106/photo/fallen-shopping-cart.jpg?s=612x612&w=0&k=20&c=GGjDZz5EKcGWBhgOAM8E8mSHJCuDJ5oYoquMvtSrv3I=);
     background-size: contain;
-    background-position: right;
+    background-position: center;
+    background-color: #fff;
     background-repeat: no-repeat;
     display: grid;
     grid-template-rows: 1fr 1fr;
