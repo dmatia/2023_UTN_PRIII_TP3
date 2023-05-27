@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Dominio;
+using System.Diagnostics.Eventing.Reader;
 
 namespace tp3_equipo25
 {
@@ -67,10 +68,12 @@ namespace tp3_equipo25
 
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
-
+           // bool Yafiltro;
             List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
-
-            
+          /*  if (!IsPostBack) {
+                bool Yafiltro = true;
+            }
+          */
             if(DdlCategoria.SelectedIndex > 0 )
             {
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
@@ -81,7 +84,6 @@ namespace tp3_equipo25
                 Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
 
             }
-            
             if (TxtBusqueda.Text.Length > 0)
             {
                 if (ChkCheckDescripcion.Checked)
@@ -99,23 +101,26 @@ namespace tp3_equipo25
                 decimal precioMinimo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
                 {
-                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo && x.Precio > precioMaximo);
+                    Listafiltrada.RemoveAll(x => x.Precio > precioMinimo && x.Precio < precioMaximo);
                 }
                 
             }
-            else if (TxtPreciomax.Text != string.Empty)
+            if (TxtPreciomax.Text != string.Empty)
             {
                 decimal precioMaximo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMaximo))
                     Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
             }
-            else
+            if (TxtPreciomin.Text != string.Empty)
             {
                 decimal precioMinimo;
+
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
                 Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
-
             }
+            
+           
+
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
         }

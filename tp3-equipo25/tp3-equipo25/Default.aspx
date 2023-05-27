@@ -5,9 +5,16 @@
 
 <%--Main--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+    <div class="flex-column">
+        <div class="row">
+            <asp:Checkbox runat="server" Text="Busqueda avanzada" ID="ChkBusquedaavanzada" AutoPostBack="true"/>
 
-    <div class="row">
-        <div class="col-3">
+        </div>
+
+<div class="row">
+    <%if (ChkBusquedaavanzada.Checked)
+        {   %>
+    <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="d-flex flex-column">
                 <div class="d-inline-flex align-items-center">
                     <asp:Label Text="Búsqueda" runat="server"></asp:Label>
@@ -38,12 +45,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-9">
-            <div class="row">
-                Ordenar por. Vista
-            </div>
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+    <%} %>
+      <div class="col-lg-<% if (ChkBusquedaavanzada.Checked) { %>9<% } else { %>12<% } %> col-md-6 col-sm-12">
+        <div class="row row-cols-1 row-cols-md-<% if (ChkBusquedaavanzada.Checked) { %>3<% } else { %>4<% } %>">
                 <%--Repeater--%>
                 <asp:Repeater ID="RepCards" runat="server">
                     <ItemTemplate>
@@ -74,6 +78,6 @@
         </div>
 
     </div>
-
+        </div>
 </asp:Content>
 <%--Fin Main--%>
