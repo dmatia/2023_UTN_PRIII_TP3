@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
      
     <asp:Label Text="Busqueda" runat="server"> </asp:Label>
-    <asp:Textbox Id="TxtBusqueda" runat="server"></asp:Textbox>
+    <asp:Textbox CssClass="form-control TxtBusqueda" OnTextChanged="TxtBusqueda_TextChanged" Id="TxtBusqueda" runat="server"></asp:Textbox>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
         <%--Repeater--%>
         <asp:Repeater ID="RepCards" runat="server">

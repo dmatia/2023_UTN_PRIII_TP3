@@ -20,7 +20,8 @@ namespace tp3_equipo25
 				RepCards.DataSource = Session["ListaArticulos"];
 				RepCards.DataBind();
 			}
-		}
+
+					}
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
         {
@@ -31,5 +32,11 @@ namespace tp3_equipo25
 			Session.Add("DetalleArticulo", articulo);
 			Response.Redirect("Detalle.aspx", false);
 		}
+
+        protected void TxtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            ArticuloNegocio Listafiltrada = new ArticuloNegocio();
+            ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Nombre == );
+        }
     }
 }
