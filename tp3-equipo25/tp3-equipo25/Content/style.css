@@ -54,9 +54,9 @@ footer{
 }
 
 .card-text {
-    display: none; /* Ocultar la descripción por defecto */
+    display: none;
 }
 
 .card:hover .card-text {
-    display: block; /* Mostrar la descripción al hacer hover en la tarjeta */
+    display: block; 
 }
