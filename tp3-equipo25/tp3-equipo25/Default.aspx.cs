@@ -46,18 +46,18 @@ namespace tp3_equipo25
 
                     DdlCategoria.Items.Add(aux.Descripcion);
 
+                }   
+
+                MarcaNegocio MarcaNegocio = new MarcaNegocio();
+                List<IAtributo> Listamarcas = new List<IAtributo>();
+                 Listamarcas = MarcaNegocio.listar();
+
+                   DdlMarca.Items.Add("Marca");
+                foreach (Marca aux in Listamarcas)
+                {
+                DdlMarca.Items.Add(aux.Descripcion);
                 }
               
-                MarcaNegocio MarcaNegocio = new MarcaNegocio();
-            List<IAtributo> Listamarcas = new List<IAtributo>();
-            Listamarcas = MarcaNegocio.listar();
-
-            DdlMarca.Items.Add("Marca");
-            foreach (Marca aux in Listamarcas)
-            {
-                DdlMarca.Items.Add(aux.Descripcion);
-            }
-            
 
             /*
             CbxFiltroprimario.Items.Add("Codigo");
@@ -77,6 +77,12 @@ namespace tp3_equipo25
 			RepCards.DataSource = Listafiltrada;
 			RepCards.DataBind();
            
+        }
+
+        protected void DdlCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+     
+            
         }
     }
 }

@@ -13,16 +13,21 @@
     <div class="col">
         <asp:Textbox CssClass="form-control TxtBusqueda" OnTextChanged="TxtBusqueda_TextChanged" Id="TxtBusqueda" runat="server" AutoPostBack="true"></asp:Textbox>
     </div>
+    <div class="col">
+        <asp:DropDownList Id="DropDownList1" CssClass="form-control" runat="server"></asp:DropDownList>
+    </div>
        <div class="col">
            
-             <asp:DropDownList Id="DdlCategoria" CssClass="form-control" runat="server"></asp:DropDownList>
+             <asp:DropDownList Id="DdlCategoria" CssClass="form-control" runat="server" OnSelectedIndexChanged="DdlCategoria_SelectedIndexChanged" ></asp:DropDownList>
     </div>
       <div class="col">
         <asp:DropDownList Id="DdlMarca" CssClass="form-control" runat="server"></asp:DropDownList>
     </div>
-   
+    
 </div>
-
+    <div class="row">
+        Ordenar por. Vista
+        </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
         <%--Repeater--%>
         <asp:Repeater ID="RepCards" runat="server">
