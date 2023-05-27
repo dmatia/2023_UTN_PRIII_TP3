@@ -53,11 +53,8 @@ footer{
     box-shadow: 0 0 40px -10px #fff;
 }
 
-.card-text {
-    display: none;
-}
 
-.card:hover .card-text {
-    display: block;
-    transition: 0.6s;
+#BtnDetalle{
+
+    color:lightgray;
 }
