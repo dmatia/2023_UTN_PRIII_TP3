@@ -51,13 +51,13 @@ namespace tp3_equipo25
         protected global::System.Web.UI.WebControls.TextBox TxtPreciomin;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control TxtPreciomax.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox TxtPreciomax;
 
         /// <summary>
         /// Control DdlMarca.

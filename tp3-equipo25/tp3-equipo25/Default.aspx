@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-6">
                             <asp:Label Text="Maximo" runat="server"></asp:Label>
-                            <asp:TextBox CssClass="form-control" type="number" ID="TextBox2" runat="server"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" OnTextChanged="TxtPreciomax_TextChanged"></asp:TextBox>
                         </div>
                         <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server"></asp:DropDownList>
                         <asp:DropDownList ID="DdlCategoria" CssClass="form-control" runat="server"></asp:DropDownList>

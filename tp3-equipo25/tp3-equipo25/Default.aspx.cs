@@ -19,8 +19,8 @@ namespace tp3_equipo25
 				Session.Add("ListaArticulos", articulosNegocio.listar());
 				RepCards.DataSource = Session["ListaArticulos"];
 				RepCards.DataBind();
-
                 CargarDropdowns();
+         
 			}
 
 			}
@@ -58,13 +58,19 @@ namespace tp3_equipo25
                 }
 
         }
+
+        protected void TxtPreciomax_TextChanged(object sender, EventArgs e)
+        {
           
-       
+        }
+
+
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
 
             List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
 
+            
             if(DdlCategoria.SelectedIndex > 0 )
             {
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
@@ -86,13 +92,37 @@ namespace tp3_equipo25
                     Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
                 }
             }
-            
-            //if(TxtPreciomin)
-            
+
+            if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
+            {
+                decimal precioMaximo;
+                decimal precioMinimo;
+                if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
+                {
+                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo && x.Precio > precioMaximo);
+                }
+                
+            }
+            else if (TxtPreciomax.Text != string.Empty)
+            {
+                decimal precioMaximo;
+                if (decimal.TryParse(TxtPreciomin.Text, out precioMaximo))
+                    Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
+            }
+            else
+            {
+                decimal precioMinimo;
+                if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
+                Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
+
+            }
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
-
         }
+        
+        
+
+       
     }
 }
    
