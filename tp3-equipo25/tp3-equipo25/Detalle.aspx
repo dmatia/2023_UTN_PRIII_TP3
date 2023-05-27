@@ -52,8 +52,8 @@
                 <h2 class="fs-4"><%= articulo.Nombre%></h2>
                 <p class="small fw-light lh-1"><s><%= (articulo.Precio * 2).ToString("c")%></s></p>
                 <div class="d-flex">
-                <p class="fs-2 fw-light lh-1"><%= articulo.Precio.ToString("c")%></p>
-                <small class="text-green text-success ms-1">50% OFF</small>
+                    <p class="fs-2 fw-light lh-1"><%= articulo.Precio.ToString("c")%></p>
+                    <small class="text-green text-success ms-1">50% OFF</small>
                 </div>
                 <p class="badge text-bg-primary fw-normal text-uppercase"><small>oferta del día</small></p>
                 <p class="fw-semibold small mt-3">Lo que tenés que saber de este producto</p>
@@ -94,7 +94,7 @@
                         <i class="fa-brands fa-cc-amazon-pay"></i>
                     </div>
 
-                    <h6´class="fw-light">Tarjetas de Crédito</h6´class="fw-light">
+                    <h6 class="fw-light">Tarjetas de Crédito</h6>
                     <div class ="d-flex gap-1 fs-2 text-muted">
                         <i class="fa-brands fa-cc-mastercard"></i>
                         <i class="fa-brands fa-cc-visa"></i>
@@ -116,9 +116,11 @@
 
         <%}%>
     </div>
+
     <div class="my-3">
         <h5 class="text-muted">También te puede interesar</h5>
     </div>
+
     <div class="bg-body shadow-sm hover-shadow p-3 rounded ">
         <div class="d-flex flex-row gap-3">
             <asp:Repeater ID="repeaterArticulosRelacionados" runat="server">

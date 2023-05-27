@@ -71,7 +71,7 @@
         </div>
 
         <a class="btn btn-primary"></a>
-        <a class="btn btn-primary">CHECK OUT</a>
+        <a href="OrdenCompra.aspx" class="btn btn-primary">CHECK OUT</a>
 
     </div>
 
