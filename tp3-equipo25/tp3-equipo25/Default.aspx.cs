@@ -23,7 +23,7 @@ namespace tp3_equipo25
                 CargarDropdowns();
 			}
 
-					}
+			}
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
         {
@@ -43,8 +43,7 @@ namespace tp3_equipo25
                  DdlCategoria.Items.Add("Elige una Categoria");
                 foreach (Categoria aux in Listacategorias)
                 {
-
-                    DdlCategoria.Items.Add(aux.Descripcion);
+                                    DdlCategoria.Items.Add(aux.Descripcion);
 
                 }   
 
@@ -58,27 +57,12 @@ namespace tp3_equipo25
                 DdlMarca.Items.Add(aux.Descripcion);
                 }
 
-
-            /*
-            CbxFiltroprimario.Items.Add("Codigo");
-            CbxFiltroprimario.Items.Add("Nombre");
-            CbxFiltroprimario.Items.Add("Descripcion");
-            CbxFiltroprimario.Items.Add("Precio mayor a");
-            CbxFiltroprimario.Items.Add("Precio menor a");
-            CbxFiltroprimario.Text = "Filtros disponibles";
-                */
-
-
         }
           
-        protected void DdlCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-     
-            
-        }
-
+       
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
+
             List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
 
             if(DdlCategoria.SelectedIndex > 0 )
@@ -86,23 +70,24 @@ namespace tp3_equipo25
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
 
             }
-            if (DdlCategoria.SelectedIndex > 0)
+            if (DdlMarca.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
 
             }
-
+            
             if (TxtBusqueda.Text.Length > 0)
             {
                 if (ChkCheckDescripcion.Checked)
                 {
-                    Listafiltrada.FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
+                    Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
                 }
                 else {
-                    Listafiltrada.FindAll(x => x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
+                    Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
                 }
             }
-
+            
+            //if(TxtPreciomin)
             
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
