@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-4">
                     <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" />
-                    <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripcion" runat="server"/>
+                    <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripcion" runat="server" AutoPostBack="true"/>
             </div>
             <div class="d-inline-flex align-items-center">
                 <asp:Label Text="Precio" runat="server"></asp:Label>
@@ -54,6 +54,11 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Nombre")%></h5>
                                 <h5 class="card-title">$<%#Eval("Precio")%></h5>
+                                <%if (ChkCheckDescripcion.Checked)
+                                    { %> 
+                                
+                                <p class="card-text">Descripcion:<%#Eval("Descripcion")%></p>
+                                <%} %>
                             </div>
                             <div class="card-body">
                                 <div class="d-grid gap-2">
