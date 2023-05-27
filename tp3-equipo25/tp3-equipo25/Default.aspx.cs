@@ -19,6 +19,8 @@ namespace tp3_equipo25
 				Session.Add("ListaArticulos", articulosNegocio.listar());
 				RepCards.DataSource = Session["ListaArticulos"];
 				RepCards.DataBind();
+
+                CargarDropdowns();
 			}
 
 					}
@@ -32,6 +34,42 @@ namespace tp3_equipo25
 			Session.Add("DetalleArticulo", articulo);
 			Response.Redirect("Detalle.aspx", false);
 		}
+
+		public void CargarDropdowns()
+		{
+                CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
+                List<IAtributo> Listacategorias = new List<IAtributo>();
+                Listacategorias = CategoriaNegocio.listar();
+                 DdlCategoria.Items.Add("Elige una Categoria");
+                foreach (Categoria aux in Listacategorias)
+                {
+
+                    DdlCategoria.Items.Add(aux.Descripcion);
+
+                }
+              
+                MarcaNegocio MarcaNegocio = new MarcaNegocio();
+            List<IAtributo> Listamarcas = new List<IAtributo>();
+            Listamarcas = MarcaNegocio.listar();
+
+            DdlMarca.Items.Add("Marca");
+            foreach (Marca aux in Listamarcas)
+            {
+                DdlMarca.Items.Add(aux.Descripcion);
+            }
+            
+
+            /*
+            CbxFiltroprimario.Items.Add("Codigo");
+            CbxFiltroprimario.Items.Add("Nombre");
+            CbxFiltroprimario.Items.Add("Descripcion");
+            CbxFiltroprimario.Items.Add("Precio mayor a");
+            CbxFiltroprimario.Items.Add("Precio menor a");
+            CbxFiltroprimario.Text = "Filtros disponibles";
+                */
+
+
+        }
 
         protected void TxtBusqueda_TextChanged(object sender, EventArgs e)
         {

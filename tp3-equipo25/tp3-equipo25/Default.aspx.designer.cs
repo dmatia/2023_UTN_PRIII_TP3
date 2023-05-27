@@ -24,22 +24,22 @@ namespace tp3_equipo25
         protected global::System.Web.UI.WebControls.TextBox TxtBusqueda;
 
         /// <summary>
-        /// Control DropCategoria.
+        /// Control DdlCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropCategoria;
+        protected global::System.Web.UI.WebControls.DropDownList DdlCategoria;
 
         /// <summary>
-        /// Control DropMarca.
+        /// Control DdlMarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropMarca;
+        protected global::System.Web.UI.WebControls.DropDownList DdlMarca;
 
         /// <summary>
         /// Control RepCards.
