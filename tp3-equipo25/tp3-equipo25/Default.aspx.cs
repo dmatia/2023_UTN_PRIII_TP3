@@ -153,6 +153,24 @@ namespace tp3_equipo25
             RepCards.DataBind();
         }
 
+        protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
+        {
+            List<Articulo> Listafiltrada = new List<Articulo>();
+
+            if (TxtBusquedaRapida.Text.Count() > 0)
+            {
+                Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+            }
+            else
+            {
+
+                Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+
+            }
+
+            RepCards.DataSource = Listafiltrada;
+            RepCards.DataBind();
+        }
     }
 }
    

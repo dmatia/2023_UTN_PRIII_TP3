@@ -24,7 +24,14 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida y presiona enter" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
+                    <div class="row">
+                    <div class="col-9">
+                    <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
+                        </div>
+                        <div class="col-3">
+                    <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Busqueda Rapida" OnClick="BtnBusquedaRapida_Click"/>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
