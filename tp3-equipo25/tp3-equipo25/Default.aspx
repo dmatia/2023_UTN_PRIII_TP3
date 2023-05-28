@@ -24,7 +24,7 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <input type="text" class="form-control" placeholder="Ingresa una búsqueda rápida">
+                    <asp:Textbox ID="TxtBusque" type="text" class="form-control" placeholder="Ingresa una búsqueda rápida" ont>
                 </div>
             </div>
         </div>
