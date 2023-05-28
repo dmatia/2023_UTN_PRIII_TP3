@@ -33,10 +33,10 @@
   <% if (ChkBusquedaAvanzada.Checked) { %>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="d-flex flex-column" style="height: 100%;">>
+            <div class="d-flex flex-column" style="height: 100%;">
                 <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;">
                     <!-- Resto del código -->
-                    <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+                    <div class="row" style="margin-bottom: 20px;">
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
                         <div class="col">
                             <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server"></asp:TextBox>
@@ -98,11 +98,11 @@
                 <ItemTemplate>
                     <div class="col-6 mt-4">
                         <%--Card--%>
-                        <div class="card" style="width: 18rem;">
-                            <img src="<%#Eval("Imagenes[0].UrlImagen")%>" cssclass="card-img-top img-fluid content-object-cover" style="width: 200px; align-self: center" alt="imagen" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
+                        <div class="card" style="width: 18rem;padding:10px">
+                            <img src="<%#Eval("Imagenes[0].UrlImagen")%>" cssclass="card-img-top img-fluid content-object-cover" style="width: 200px; align-self:center; border-radius: 10px;" alt="imagen" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Nombre")%></h5>
-                                <h5 class="card-title">$<%#Eval("Precio")%></h5>
+                                <h5 class="card-title"><%# String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:C}", Eval("Precio")) %></h5>
                                 <% if (ChkCheckDescripcion.Checked)
                                     { %>
                                 <p class="card-text">Descripción: <%#Eval("Descripcion")%></p>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-grid gap-2">
-                                    <asp:Button Text="Ver Detalle" runat="server" class="btndetalle" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                                    <asp:Button Text="Ver Detalle" runat="server" Cssclass="btn btn-primary btm-lg" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
                                 </div>
                             </div>
                         </div>

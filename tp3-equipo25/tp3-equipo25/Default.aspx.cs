@@ -76,7 +76,7 @@ namespace tp3_equipo25
             List<IAtributo> Listamarcas = new List<IAtributo>();
             Listamarcas = MarcaNegocio.listar();
 
-            DdlMarca.Items.Add("Marca");
+            DdlMarca.Items.Add("Elige una Marca");
             foreach (Marca aux in Listamarcas)
             {
                 DdlMarca.Items.Add(aux.Descripcion);
