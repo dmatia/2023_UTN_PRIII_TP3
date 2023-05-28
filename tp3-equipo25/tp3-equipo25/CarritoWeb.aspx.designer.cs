@@ -24,6 +24,15 @@ namespace tp3_equipo25
         protected global::System.Web.UI.WebControls.GridView dgvCarrito;
 
         /// <summary>
+        /// btnBorrarCarrito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBorrarCarrito;
+
+        /// <summary>
         /// ScripManager1 control.
         /// </summary>
         /// <remarks>

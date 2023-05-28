@@ -4,6 +4,16 @@
     background-color: #ddd
 }
 
+
+@font-face {
+    font-family: 'Bebas-Neue', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+}
+
+.Carrito {
+    font-family: 'Bebas-Neue', sans-serif;
+}
+
 .sinCarrito {
     height: 100vh;
     background-image: url(https://media.istockphoto.com/id/91763106/photo/fallen-shopping-cart.jpg?s=612x612&w=0&k=20&c=GGjDZz5EKcGWBhgOAM8E8mSHJCuDJ5oYoquMvtSrv3I=);
@@ -47,6 +57,7 @@ footer{
     text-align: center;
     background: #ccc;
    }
+
 
 .card:hover {
 

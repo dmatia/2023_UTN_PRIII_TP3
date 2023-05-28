@@ -22,7 +22,12 @@ namespace tp3_equipo25
             {
                 cargarGridView();
             }
-         }
+            if (!IsPostBack)
+            {
+                Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
+
+            }
+        }
 
 
 
@@ -67,8 +72,8 @@ namespace tp3_equipo25
                 total += (carrito.Articulo.Precio * carrito.Cantidad);
             }
 
-            totalCarrito.Text = "Total " + string.Format("{0:C}", Convert.ToDecimal(total));
-            totalCarrito.Attributes.Add("style", "text-align: right; background-color:#7FB3D5; fonte-weight: bold");
+            totalCarrito.Text = "TOTAL: " + string.Format("{0:C}", Convert.ToDecimal(total));
+            totalCarrito.Attributes.Add("style", "font-family: 'Bebas-Neue', sans-serif; text-align: right; background-color:#7FB3D5; font-weight: bold; font-size: 1.2rem");
             gv.Cells.Add(totalCarrito);
             this.dgvCarrito.Controls[0].Controls.AddAt(dgvCarrito.Rows.Count + 1, gv);
         }
@@ -125,13 +130,48 @@ namespace tp3_equipo25
             // Obtener el carrito correspondiente en la lista
             Carrito carrito = ListaCarrito[rowIndex];
 
-            // Aumentar la cantidad del carrito
-            if(carrito.Cantidad > 0)
-            carrito.Cantidad--;
+            // disminuir la cantidad del carrito
+            if (carrito.Cantidad > 0) {
+                carrito.Cantidad--;
+                Session["carrito"] = ListaCarrito;
+                dgvCarrito.DataBind();
+                cargarGridView();
+            }
             else
             {
-                // borrar carrito de la lista
+                borrarCarrito(carrito);
             }
+            
+            // Actualizar el GridView
+            
+        }
+
+        public void cargarGridView()
+        {
+
+
+            ListaCarrito = (List<Carrito>)Session["carrito"];
+            dgvCarrito.DataSource = ListaCarrito;                  
+            dgvCarrito.DataBind();
+            if (ListaCarrito != null)
+            {
+                cargarTotal();
+                cargarTotalItems();
+              
+            }
+
+        }
+
+        protected void bntBorrar_Click(object sender, EventArgs e)
+        {
+            Button btnAgregar = (Button)sender;
+            GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
+            int rowIndex = row.RowIndex;
+
+            // Obtener el carrito correspondiente en la lista
+            Carrito carrito = ListaCarrito[rowIndex];
+
+            borrarCarrito(carrito);
 
             // Actualizar el GridView
             Session["carrito"] = ListaCarrito;
@@ -139,18 +179,43 @@ namespace tp3_equipo25
             cargarGridView();
         }
 
-        public void cargarGridView()
+        protected void borrarCarrito(Carrito carrito)
         {
-                ListaCarrito = (List<Carrito>)Session["carrito"];
-                dgvCarrito.DataSource = ListaCarrito;
-                dgvCarrito.DataBind();
-                cargarTotal();
-                cargarTotalItems();
-                Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
-            
+            ListaCarrito.Remove(carrito);
+            if (ListaCarrito.Count == 0)
+            {
+                Session["carrito"] = null;
+                ListaCarrito = null;
+               
+                cargarGridView();
+            }
         }
 
+        protected void btnBorrarCarrito_Click(object sender, EventArgs e)
+        {
+            Session["carrito"] = null;
+            cargarGridView();
 
+        }
 
+        protected void bntVer_Click(object sender, EventArgs e)
+        {
+            Button btnVer = (Button)sender;
+            GridViewRow row = (GridViewRow)btnVer.NamingContainer;
+            int rowIndex = row.RowIndex;
+
+            // Obtener el carrito correspondiente en la lista
+            if (ListaCarrito[rowIndex].Articulo.Imagenes[0].UrlImagen == "")
+            {
+                Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
+
+            }
+            else
+            {
+                Image2.ImageUrl = ListaCarrito[rowIndex].Articulo.Imagenes[0].UrlImagen;
+            
+               
+            }
+        }
     }
 }
