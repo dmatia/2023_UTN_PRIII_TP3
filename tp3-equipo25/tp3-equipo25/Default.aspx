@@ -23,7 +23,7 @@
        <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Lupa" OnClick="BtnBusquedaRapida_Click"/>
     </div>
     <div class="col-3" style="justify-content:stretch">
-        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" Width="100%" >  </asp:DropDownList>
+        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" Width="100%" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" >  </asp:DropDownList>
                
     </div>
            

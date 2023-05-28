@@ -36,7 +36,30 @@ namespace tp3_equipo25
             Response.Redirect("Detalle.aspx", false);
         }
 
-        
+        public List<Articulo> OrdenarLista(List<Articulo> listafiltrada, string SeleccionDDL) 
+        {
+
+            List < Articulo > Listaordenada = new List < Articulo >();
+            if (SeleccionDDL == "Nombre ascendente")
+            {
+                
+                return Listaordenada=listafiltrada.OrderBy(x => x.Nombre).ToList();
+            }
+            if (SeleccionDDL == "Nombre descendente")
+            {
+                return Listaordenada = listafiltrada.OrderByDescending(x => x.Nombre).ToList();
+            }
+            if (SeleccionDDL == "Precio ascendente")
+            {
+                return Listaordenada = listafiltrada.OrderBy(x => x.Precio).ToList();
+            }
+            if (SeleccionDDL == "Precio descendente")
+            {
+                return Listaordenada = listafiltrada.OrderByDescending(x => x.Precio).ToList();
+            }
+            return listafiltrada;
+        }
+
         public void CargarDropdowns()
         {
             CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
@@ -141,11 +164,12 @@ namespace tp3_equipo25
 
             if (!Camposnovacios)
             {
+             
                 Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
+               
             }
+            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
             Session.Add("ListafiltradaDefault", Listafiltrada);
-
-            RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
         }
 
@@ -166,11 +190,9 @@ namespace tp3_equipo25
                     Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
                 
             }
-            
+
             Session.Add("ListafiltradaDefault", Listafiltrada);
-
-
-            RepCards.DataSource = Listafiltrada;
+            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
             RepCards.DataBind();
         }
 
@@ -181,6 +203,7 @@ namespace tp3_equipo25
             if (TxtBusquedaRapida.Text.Count() > 0)
             {
                 Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+                
             }
             else
             {
@@ -188,10 +211,31 @@ namespace tp3_equipo25
                 Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
 
             }
+            
+            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
             Session.Add("ListafiltradaDefault", Listafiltrada);
-
-            RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
+        }
+
+          public void DDLOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DDLOrdenar.SelectedIndex != 0)
+            {
+                List<Articulo> Listaactual = new List<Articulo>();
+                if ((List<Articulo>)Session["ListafiltradaDefault"] != null)
+                {
+                    Listaactual = ((List<Articulo>)Session["ListafiltradaDefault"]);
+                  
+                }
+                else
+                {
+                    Listaactual = (List<Articulo>)Session["ListaArticulos"];
+                }
+
+                RepCards.DataSource = OrdenarLista(Listaactual, DDLOrdenar.SelectedItem.ToString());
+                RepCards.DataBind();
+            }
+            
         }
     }
 }
