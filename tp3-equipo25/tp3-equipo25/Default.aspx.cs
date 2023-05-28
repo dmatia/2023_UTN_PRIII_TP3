@@ -58,6 +58,7 @@ namespace tp3_equipo25
             {
                 DdlMarca.Items.Add(aux.Descripcion);
             }
+
             DDLOrdenar.Items.Add("Organizar por");
             DDLOrdenar.Items.Add("Nombre ascendente");
             DDLOrdenar.Items.Add("Nombre descendente");
@@ -142,6 +143,7 @@ namespace tp3_equipo25
             {
                 Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
             }
+            Session.Add("ListafiltradaDefault", Listafiltrada);
 
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
@@ -164,7 +166,10 @@ namespace tp3_equipo25
                     Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
                 
             }
-          
+            
+            Session.Add("ListafiltradaDefault", Listafiltrada);
+
+
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
         }
@@ -183,6 +188,7 @@ namespace tp3_equipo25
                 Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
 
             }
+            Session.Add("ListafiltradaDefault", Listafiltrada);
 
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
