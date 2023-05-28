@@ -30,57 +30,60 @@
            
     
 
-    <% if (ChkBusquedaAvanzada.Checked)
-        { %>
+  <% if (ChkBusquedaAvanzada.Checked) { %>
     <div class="row">
-   <div class="col-lg-3 col-md-6 col-sm-12" style="background-color: #c0c0c0; border-radius:10px;">
-    <div class="d-flex flex-column">
-<div class="row" style="margin-bottom: 20px; margin-top:20px;">
-            <!-- Primera fila: TextBox ocupando todo el ancho -->
-            <div class="col">
-                <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server"></asp:TextBox>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="d-flex flex-column" style="height: 100%;">>
+                <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;">
+                    <!-- Resto del código -->
+                    <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+                        <!-- Primera fila: TextBox ocupando todo el ancho -->
+                        <div class="col">
+                            <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <!-- Segunda fila: TextBox de incluir descripción y botón de búsqueda -->
+                        <div class="col" style="justify-content:flex-start; align-items:center">
+                            <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripción" runat="server" />
+                        </div>
+                        <div class="col-4">
+                            <asp:Button CssClass="form-control btn btn-primary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <!-- Filas adicionales con otros elementos -->
+                        <div class="col">
+                            <asp:Label Text="Precios:" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-6">
+                            <asp:Label Text="Minimo" runat="server"></asp:Label>
+                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomin" runat="server" Text="Minimo"></asp:TextBox>
+                        </div>
+                        <div class="col-6">
+                            <asp:Label Text="Máximo" runat="server"></asp:Label>
+                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" Text="Maximo"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col">
+                            <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <asp:DropDownList ID="DdlCategoria" CssClass="form-control" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
             </div>
+                </div>
         </div>
-<div class="row" style="margin-bottom: 20px;"">
-            <!-- Segunda fila: TextBox de incluir descripción y botón de búsqueda -->
-            <div class="col" style="justify-content:flex-start; align-items:center" >
-                <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripción" runat="server" />
-            </div>
-            <div class="col-4">
-                <asp:Button CssClass="form-control btn btn-primary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
-            </div>
-        </div>
- <div class="row" style="margin-bottom: 5px;"">
-            <!-- Filas adicionales con otros elementos -->
-            <div class="col">
-                <asp:Label Text="Precios:" runat="server"></asp:Label>
-            </div>
-        </div>
-<div class="row" style="margin-bottom: 20px;">
-            <div class="col-6">
-                          <asp:Label Text="Minimo" runat="server"></asp:Label>
-                <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomin" runat="server" Text="Minimo"></asp:TextBox>
-            </div>
-            <div class="col-6">
-                <asp:Label Text="Máximo" runat="server"></asp:Label>
-                <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" Text="Maximo"></asp:TextBox>
-            </div>
-        </div>
-<div class="row" style="margin-bottom: 20px;"">
-            <div class="col">
-                <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server"></asp:DropDownList>
-            </div>
-        </div>
-<div class="row" style="margin-bottom: 10px;">
-            <div class="col">
-                <asp:DropDownList ID="DdlCategoria" CssClass="form-control" runat="server"></asp:DropDownList>
-            </div>
-        </div>
-    </div>
+    
+<% } %>
 
-         </div>
-        
-    <% } %>
 
      <div class="col-lg-<% if (ChkBusquedaAvanzada.Checked)
         { %>9<% }
@@ -124,6 +127,6 @@
               </ div >
                            
                <%}%>  
-</div>
+
 </asp:Content>
 <%--Fin Main--%>
