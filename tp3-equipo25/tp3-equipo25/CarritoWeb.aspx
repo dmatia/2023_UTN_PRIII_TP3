@@ -50,9 +50,8 @@
                     <%--CONTROLES--%>
                     <asp:TemplateField HeaderText="Agregar/Quitar">
                         <ItemTemplate>
-                            <asp:Button runat="server" Text="+"
-                                OnClick="btnAgregar_Click"
-                                CssClass="btn" CommandArgument="Articulo.Id"
+                            <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn"   OnClick="btnAgregar_Click"
+                                CommandArgument="Articulo.Id"
                                 CausesValidation="false" />
 
                             <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn" OnClick="btnQuitar_Click"
