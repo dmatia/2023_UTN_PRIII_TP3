@@ -17,7 +17,7 @@
                     <a class="nav-link active" aria-current="page" href="CarritoWeb.aspx">Carrito</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Nosotros</a>
+                    <a class="nav-link active" aria-current="page" href="Nosotros.aspx">Nosotros</a>
                 </li>
             </ul>
 <%--            <div class="d-flex" role="search">

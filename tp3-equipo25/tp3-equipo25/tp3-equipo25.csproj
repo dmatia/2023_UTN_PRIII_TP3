@@ -117,6 +117,13 @@
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
+    <Compile Include="Nosotros.aspx.cs">
+      <DependentUpon>Nosotros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nosotros.aspx.designer.cs">
+      <DependentUpon>Nosotros.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OrdenCompra.aspx.cs">
       <DependentUpon>OrdenCompra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -141,6 +148,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Nosotros.aspx" />
     <Content Include="OrdenCompra.aspx" />
     <Content Include="web.config" />
     <None Include="web.Debug.config">
