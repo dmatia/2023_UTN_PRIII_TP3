@@ -132,22 +132,24 @@ namespace tp3_equipo25
             Button btnAgregar = (Button)sender;
             GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
             int rowIndex = row.RowIndex;
-
-            // Obtener el carrito correspondiente en la lista
-            Carrito carrito = ListaCarrito[rowIndex];
-
-            // disminuir la cantidad del carrito
-            if (carrito.Cantidad > 0) {
-                carrito.Cantidad--;
-                Session["carrito"] = ListaCarrito;
-                dgvCarrito.DataBind();
-                cargarGridView();
-            }
-            else
+            if (rowIndex != -1 && rowIndex<ListaCarrito.Count)
             {
-                borrarCarrito(carrito);
+                // Obtener el carrito correspondiente en la lista
+                Carrito carrito = ListaCarrito[rowIndex];
+
+                // disminuir la cantidad del carrito
+                if (carrito.Cantidad > 0)
+                {
+                    carrito.Cantidad--;
+                    Session["carrito"] = ListaCarrito;
+                    dgvCarrito.DataBind();
+                    cargarGridView();
+                }
+                else
+                {
+                    borrarCarrito(carrito);
+                }
             }
-            
             // Actualizar el GridView
             
         }
