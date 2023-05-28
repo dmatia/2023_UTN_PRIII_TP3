@@ -67,7 +67,7 @@ namespace tp3_equipo25
 			//Si el artículo no se encuentra en el carrito, se agrega uno nuevo
 			Carrito nuevoArticulo = new Carrito();
 			nuevoArticulo.Articulo = articulo;
-			nuevoArticulo.Cantidad = 1;
+			nuevoArticulo.Cantidad = Convert.ToInt32(tb_cantidad.Text);
 			carrito.Add(nuevoArticulo);
 
 			//Guardamos carrito en session
