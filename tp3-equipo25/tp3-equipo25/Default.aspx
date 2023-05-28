@@ -3,47 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
+
 <%--Main--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+       
+<div class="row">
 
-
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-check form-switch">
-                <div class="row">
-                    <div class="col-9">
-                        <label class="form-check-label" for="ChkBusquedaAvanzada">Búsqueda Avanzada</label>
-                    </div>
-                    <div class="col-3">
-                        <asp:CheckBox ID="ChkBusquedaAvanzada" runat="server" AutoPostBack="true" role="switch" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <% if (!ChkBusquedaAvanzada.Checked) { %>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                    <div class="col-9">
-                    <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
-                        </div>
-                        <div class="col-3">
-                    <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Busqueda Rapida" OnClick="BtnBusquedaRapida_Click"/>
-                        </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <% } %>
+    <div class="col-2">
+        <label class="form-check-label" for="ChkBusquedaAvanzada">Búsqueda Avanzada</label>
+    </div>
+    <div class="col-1">
+        <asp:CheckBox ID="ChkBusquedaAvanzada" runat="server" AutoPostBack="true" role="switch" />
     </div>
 
+      <div class="col-5">
+         <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
+    </div>
+    <div class="col-1">
+       <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Lupa" OnClick="BtnBusquedaRapida_Click"/>
+    </div>
+           
+    
 
-
-
-<div class="row">
     <% if (ChkBusquedaAvanzada.Checked)
         { %>
+    <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="d-flex flex-column">
                <div class="row">
@@ -64,7 +48,7 @@
                     </div>
                     <div class="col-6">
                         <asp:Label Text="Máximo" runat="server"></asp:Label>
-                        <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" OnTextChanged="TxtPreciomax_TextChanged"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" ></asp:TextBox>
                     </div>
                 </div>
                 <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server"></asp:DropDownList>
@@ -72,9 +56,10 @@
             </div>
         </div>
     </div>
+        
     <% } %>
 
-    <div class="col-lg-<% if (ChkBusquedaAvanzada.Checked)
+     <div class="col-lg-<% if (ChkBusquedaAvanzada.Checked)
         { %>9<% }
         else
         { %>12<% } %> col-md-6 col-sm-12">
@@ -109,8 +94,13 @@
             </asp:Repeater>
             <%--Repeater--%>
         </div>
+       
     </div>
+         <% if (ChkBusquedaAvanzada.Checked)
+             { %>
+              </ div >
+                           
+               <%}%>  
 </div>
-
 </asp:Content>
 <%--Fin Main--%>

@@ -23,7 +23,7 @@ namespace tp3_equipo25
                 CargarDropdowns();
 
             }
-
+            Tipodebusqueda();
         }
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
@@ -60,12 +60,18 @@ namespace tp3_equipo25
 
         }
 
-        protected void TxtPreciomax_TextChanged(object sender, EventArgs e)
-        {
+        public bool CheckbuquedaRapida() {
 
+            return ChkBusquedaAvanzada.Checked;
         }
 
+        public void Tipodebusqueda()
+        {
+            TxtBusquedaRapida.Enabled = CheckbuquedaRapida();
+            BtnBusquedaRapida.Enabled = CheckbuquedaRapida();
 
+        }
+       
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
 
@@ -121,18 +127,7 @@ namespace tp3_equipo25
             RepCards.DataBind();
         }
 
-        public bool Busquedarapidavacio()
-        {
-
-            if (TxtBusquedaRapida.Text.Length == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
         protected void TxtBusquedaRapida_TextChanged(object sender, EventArgs e)
         {
 
