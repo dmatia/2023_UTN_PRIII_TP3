@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -19,7 +20,7 @@
                     </div>
                     <p class="text-center fw-semibold fs-3 mt-3">Venta #<%= numeroCompra %></p>
                     <p class="text-success">Envío gratis.</p>
-                    <p class="fw-light">Llega el <%= DateTime.Today.ToString("dddd") %></p>
+                    <p class="fw-light">Llega el <%= DateTime.Today.AddDays(1).ToString("dddd") %></p>
                     <p class="fw-semibold">Total a pagar: <%= precioFinal.ToString("c")%></p>
                 </div>
                 <div class="p-4 d-flex justify-content-center">
@@ -28,29 +29,33 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
 
     <!-- Orden de Compra -->
     <div class="d-flex justify-content-center bg-body shadow-sm rounded p-3">
         <div class="shadow-sm rounded p-3 w-50">
             <h2 class="text-center my-3">Orden de Compra</h2>
-            <p class="text-center fw-semibold fs-3">Venta #<%= numeroCompra %></p>
+            <p class="text-center fw-semibold fs-3 mb-5">Venta #<%= numeroCompra %></p>
             <asp:Repeater ID="repeaterOrdenCompra" runat="server">
                 <ItemTemplate>
-                    <div class="d-flex justify-content-between gap-2 my-5">
-                        <p class="fw-semibold"><%# Eval("Articulo.Nombre") %></p>
-                        <p><%# String.Format("{0:C}", Eval("Articulo.Precio"))%></p>
-                        <p>Cantidad: <%# Eval("Cantidad") %></p>
-                    </div>
+
+                        <div class="row row-cols-3">
+                            <p class="fw-semibold"><%# Eval("Articulo.Nombre") %></p>
+                            <p>Cantidad: <%# Eval("Cantidad") %></p>
+                            <p><%# String.Format("{0:C}", Eval("Articulo.Precio"))%></p>
+                        </div>
                 </ItemTemplate>
             </asp:Repeater>
 
-            <p class="text-success">Envío gratis. Llega <span class="fw-semibold">el <%= DateTime.Today.ToString("dddd") %></span></p>
-            <p class="fs-4">Total a pagar: <span class="fw-semibold"><%= precioFinal.ToString("c")%></span></p>
+            <p class="fs-5 text-end">Total a pagar: <span class="fw-semibold"><%= precioFinal.ToString("c")%></span></p>
+            <p class="text-success my-2">Envío gratis. Llega <span class="fw-semibold">el <%= DateTime.Today.AddDays(1).ToString("dddd") %></span></p>
+            <p class="fs-6">Pago con <span class="fw-semibold"> Tarjeta de Crédito </span></p>
 
             <div class="d-flex justify-content-center">
             <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Finalizar compra </a>
             </div>
         </div>
     </div>
+    <!-- Orden de Compra -->
 </asp:Content>
 
