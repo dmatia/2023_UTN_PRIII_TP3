@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Dominio;
+using System.Runtime.Remoting.Messaging;
 
 namespace tp3_equipo25
 {
@@ -13,55 +14,55 @@ namespace tp3_equipo25
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-			if(!IsPostBack)
-			{
-				ArticuloNegocio articulosNegocio = new ArticuloNegocio();
-				Session.Add("ListaArticulos", articulosNegocio.listar());
-				RepCards.DataSource = Session["ListaArticulos"];
-				RepCards.DataBind();
+            if (!IsPostBack)
+            {
+                ArticuloNegocio articulosNegocio = new ArticuloNegocio();
+                Session.Add("ListaArticulos", articulosNegocio.listar());
+                RepCards.DataSource = Session["ListaArticulos"];
+                RepCards.DataBind();
                 CargarDropdowns();
-         
-			}
 
-			}
+            }
+
+        }
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
         {
-			//Guardamos Articulo en Session
-			int ArticuloId = int.Parse(((Button)sender).CommandArgument);
-			Articulo articulo = ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Id == ArticuloId);
+            //Guardamos Articulo en Session
+            int ArticuloId = int.Parse(((Button)sender).CommandArgument);
+            Articulo articulo = ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Id == ArticuloId);
 
-			Session.Add("DetalleArticulo", articulo);
-			Response.Redirect("Detalle.aspx", false);
-		}
+            Session.Add("DetalleArticulo", articulo);
+            Response.Redirect("Detalle.aspx", false);
+        }
 
-		public void CargarDropdowns()
-		{
-                CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
-                List<IAtributo> Listacategorias = new List<IAtributo>();
-                Listacategorias = CategoriaNegocio.listar();
-                 DdlCategoria.Items.Add("Elige una Categoria");
-                foreach (Categoria aux in Listacategorias)
-                {
-                                    DdlCategoria.Items.Add(aux.Descripcion);
+        public void CargarDropdowns()
+        {
+            CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
+            List<IAtributo> Listacategorias = new List<IAtributo>();
+            Listacategorias = CategoriaNegocio.listar();
+            DdlCategoria.Items.Add("Elige una Categoria");
+            foreach (Categoria aux in Listacategorias)
+            {
+                DdlCategoria.Items.Add(aux.Descripcion);
 
-                }   
+            }
 
-                MarcaNegocio MarcaNegocio = new MarcaNegocio();
-                List<IAtributo> Listamarcas = new List<IAtributo>();
-                 Listamarcas = MarcaNegocio.listar();
+            MarcaNegocio MarcaNegocio = new MarcaNegocio();
+            List<IAtributo> Listamarcas = new List<IAtributo>();
+            Listamarcas = MarcaNegocio.listar();
 
-                   DdlMarca.Items.Add("Marca");
-                foreach (Marca aux in Listamarcas)
-                {
+            DdlMarca.Items.Add("Marca");
+            foreach (Marca aux in Listamarcas)
+            {
                 DdlMarca.Items.Add(aux.Descripcion);
-                }
+            }
 
         }
 
         protected void TxtPreciomax_TextChanged(object sender, EventArgs e)
         {
-          
+
         }
 
 
@@ -70,8 +71,8 @@ namespace tp3_equipo25
 
             List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
 
-            
-            if(DdlCategoria.SelectedIndex > 0 )
+
+            if (DdlCategoria.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
 
@@ -81,7 +82,7 @@ namespace tp3_equipo25
                 Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
 
             }
-            
+
             if (TxtBusqueda.Text.Length > 0)
             {
                 if (ChkCheckDescripcion.Checked)
@@ -101,7 +102,7 @@ namespace tp3_equipo25
                 {
                     Listafiltrada.RemoveAll(x => x.Precio < precioMinimo && x.Precio > precioMaximo);
                 }
-                
+
             }
             else if (TxtPreciomax.Text != string.Empty)
             {
@@ -113,16 +114,45 @@ namespace tp3_equipo25
             {
                 decimal precioMinimo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
-                Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
+                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
 
             }
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
         }
-        
-        
 
-       
+        public bool Busquedarapidavacio()
+        {
+
+            if (TxtBusquedaRapida.Text.Length == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        protected void TxtBusquedaRapida_TextChanged(object sender, EventArgs e)
+        {
+
+            
+            List<Articulo> Listafiltrada = new List<Articulo>();
+           
+           if (TxtBusquedaRapida.Text.Count()>0) {
+                Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x =>  x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+            }
+            else
+            {
+                              
+                    Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+                
+            }
+          
+            RepCards.DataSource = Listafiltrada;
+            RepCards.DataBind();
+        }
+
     }
 }
    

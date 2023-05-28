@@ -6,12 +6,12 @@
 <%--Main--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main" runat="server">
 
-<header>
+
     <div class="row">
         <div class="col-md-3">
             <div class="form-check form-switch">
                 <div class="row">
-                    <div class="col-9 align-self-center">
+                    <div class="col-9">
                         <label class="form-check-label" for="ChkBusquedaAvanzada">Búsqueda Avanzada</label>
                     </div>
                     <div class="col-3">
@@ -24,13 +24,13 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-12">
-                    <asp:Textbox ID="TxtBusquedaRapida" type="text" class="form-control" placeholder="Ingresa una búsqueda rápida" runat="server"/>
+                    <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida y presiona enter" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
                 </div>
             </div>
         </div>
         <% } %>
     </div>
-</header>
+
 
 
 
@@ -39,10 +39,7 @@
         { %>
     <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="d-flex flex-column">
-            <div class="d-inline-flex align-items-center">
-                <asp:Label Text="Búsqueda" runat="server"></asp:Label>
-            </div>
-            <div class="row">
+               <div class="row">
                 <div class="col">
                     <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server"></asp:TextBox>
                 </div>
