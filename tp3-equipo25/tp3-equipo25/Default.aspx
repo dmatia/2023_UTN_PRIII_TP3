@@ -9,12 +9,9 @@
        
 <div class="row">
 
-     <div class="col-2">
-        <label class="form-check-label" for="ChkBusquedaAvanzada">Búsqueda Avanzada</label>
-    </div>
-
-    <div class="col-1" style="justify-content:center; align-self:center">
-        <asp:CheckBox ID="ChkBusquedaAvanzada" runat="server" AutoPostBack="true" role="switch" />
+        <div class="col-3" style="justify-content:center;">
+       <asp:Label ID="LblBusquedaAvanzada" AssociatedControlID="ChkBusquedaAvanzada" runat="server" CssClass="form-check-label" style="align-self:center;" Text="Búsqueda Avanzada" />
+        <asp:CheckBox ID="ChkBusquedaAvanzada" CssClass="form-check-input" runat="server" AutoPostBack="true"/>
     </div>
 
       <div class="col-5">
@@ -27,7 +24,8 @@
         <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" >  </asp:DropDownList>
                
     </div>
-           
+      
+                
     
 
   <% if (ChkBusquedaAvanzada.Checked) { %>
