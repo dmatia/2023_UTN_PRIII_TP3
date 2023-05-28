@@ -42,7 +42,7 @@
                 <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripción" runat="server" />
             </div>
             <div class="col-4">
-                <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="false" />
+                <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
             </div>
         </div>
         <div class="row">

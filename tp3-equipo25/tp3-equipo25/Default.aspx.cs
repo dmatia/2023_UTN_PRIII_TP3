@@ -72,73 +72,76 @@ namespace tp3_equipo25
             BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
          
         }
-       
+
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
-
-            List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
-       
+            List<Articulo> Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
+            bool isFilteringApplied = false;
 
             if (DdlCategoria.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
-             
+                isFilteringApplied = true;
             }
             if (DdlMarca.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
- 
+                isFilteringApplied = true;
             }
 
             if (TxtBusqueda.Text.Length > 0)
             {
-          
                 if (ChkCheckDescripcion.Checked)
                 {
                     Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
-
                 }
-                else {
+                else
+                {
                     Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
                 }
+                isFilteringApplied = true;
             }
 
             if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
             {
-            
                 decimal precioMaximo;
                 decimal precioMinimo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
                 {
-                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo && x.Precio > precioMaximo);
+                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo || x.Precio > precioMaximo);
+                    isFilteringApplied = true;
                 }
-
             }
             else if (TxtPreciomax.Text != string.Empty)
             {
-     
                 decimal precioMaximo;
-                if (decimal.TryParse(TxtPreciomin.Text, out precioMaximo))
+                if (decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
+                {
                     Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
+                    isFilteringApplied = true;
+                }
             }
-            else
+            else if (TxtPreciomin.Text != string.Empty)
             {
-       
                 decimal precioMinimo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
+                {
                     Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
+                    isFilteringApplied = true;
+                }
+            }
 
-            }
-         /*   if (Camposvacios)
+            if (!isFilteringApplied)
             {
-                Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+                Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
             }
-         */
+
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
         }
 
-        
+
+
         protected void TxtBusquedaRapida_TextChanged(object sender, EventArgs e)
         {
 
