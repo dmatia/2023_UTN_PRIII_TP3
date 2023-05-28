@@ -58,6 +58,11 @@ namespace tp3_equipo25
             {
                 DdlMarca.Items.Add(aux.Descripcion);
             }
+            DDLOrdenar.Items.Add("Organizar por");
+            DDLOrdenar.Items.Add("Nombre ascendente");
+            DDLOrdenar.Items.Add("Nombre descendente");
+            DDLOrdenar.Items.Add("Precio ascendente");
+            DDLOrdenar.Items.Add("Precio descendente");
 
         }
 
@@ -70,23 +75,25 @@ namespace tp3_equipo25
         {
             TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
             BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
-         
+            TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();
+            BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();
+            if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty; 
         }
 
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
             List<Articulo> Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
-            bool isFilteringApplied = false;
+            bool Camposnovacios = false;
 
             if (DdlCategoria.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
-                isFilteringApplied = true;
+                Camposnovacios = true;
             }
             if (DdlMarca.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
-                isFilteringApplied = true;
+                Camposnovacios = true;
             }
 
             if (TxtBusqueda.Text.Length > 0)
@@ -99,7 +106,7 @@ namespace tp3_equipo25
                 {
                     Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
                 }
-                isFilteringApplied = true;
+                Camposnovacios = true;
             }
 
             if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
@@ -109,7 +116,7 @@ namespace tp3_equipo25
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
                 {
                     Listafiltrada.RemoveAll(x => x.Precio < precioMinimo || x.Precio > precioMaximo);
-                    isFilteringApplied = true;
+                    Camposnovacios = true;
                 }
             }
             else if (TxtPreciomax.Text != string.Empty)
@@ -118,7 +125,7 @@ namespace tp3_equipo25
                 if (decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
                 {
                     Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
-                    isFilteringApplied = true;
+                    Camposnovacios = true;
                 }
             }
             else if (TxtPreciomin.Text != string.Empty)
@@ -127,11 +134,11 @@ namespace tp3_equipo25
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
                 {
                     Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
-                    isFilteringApplied = true;
+                    Camposnovacios = true;
                 }
             }
 
-            if (!isFilteringApplied)
+            if (!Camposnovacios)
             {
                 Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
             }

@@ -12,7 +12,7 @@
     <div class="col-2">
         <label class="form-check-label" for="ChkBusquedaAvanzada">Búsqueda Avanzada</label>
     </div>
-    <div class="col-1">
+    <div class="col-1" style="justify-content:center; align-self:center">
         <asp:CheckBox ID="ChkBusquedaAvanzada" runat="server" AutoPostBack="true" role="switch" />
     </div>
 
@@ -21,6 +21,10 @@
     </div>
     <div class="col-1">
        <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Lupa" OnClick="BtnBusquedaRapida_Click"/>
+    </div>
+    <div class="col-3" style="justify-content:stretch">
+        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" Width="100%" >  </asp:DropDownList>
+               
     </div>
            
     
