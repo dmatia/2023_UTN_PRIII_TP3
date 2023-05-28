@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using static System.Net.WebRequestMethods;
 using System.ComponentModel.Design;
+using tp3_equipo25.Layouts;
 
 namespace tp3_equipo25
 {
@@ -41,14 +42,14 @@ namespace tp3_equipo25
             // tamaño en columnas de la celda
             totalCarrito.ColumnSpan = dgvCarrito.Columns.Count + 1;
             
-            Decimal total = 0;
+            int total = 0;
             
             // suma al total la cantidad de items por carrito al total
             foreach (Carrito carrito in ListaCarrito)
             {
                 total += (carrito.Cantidad);
             }
-
+			
             //se agrega el total como texto de la celda creada
             totalCarrito.Text = "Tenés " + total + " items en tu carrito";
             // estilos de la fila creada
@@ -59,7 +60,11 @@ namespace tp3_equipo25
 
             // Session agrega la fila al dgv
             this.dgvCarrito.Controls[0].Controls.AddAt(0, gv);
-        }
+
+			//Cambia el contador del navegador
+			Nav.carrito = total.ToString();
+
+		}
 
         protected void cargarTotal()
         {
@@ -119,6 +124,7 @@ namespace tp3_equipo25
             dgvCarrito.DataBind();
             cargarTotal();
             cargarTotalItems();
+			
         }
 
         protected void btnQuitar_Click(object sender, EventArgs e)
@@ -217,5 +223,22 @@ namespace tp3_equipo25
                
             }
         }
-    }
+		
+        protected void btnDetalle_Click(object sender, EventArgs e)
+        {
+            //Obtenermos index del Grid
+			LinkButton btnAgregar = (LinkButton)sender;
+			GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
+			int rowIndex = row.RowIndex;
+
+            //Buscamos Articulo en listado Carrtio
+            List<Carrito> articulos = (List<Carrito>)Session["carrito"];
+			Articulo articulo = articulos[rowIndex].Articulo;
+
+            //Guardamos en session de Detalle y redirigimos a Detalle.aspx
+			Session.Add("DetalleArticulo", articulo);
+			Response.Redirect("Detalle.aspx", false);
+		}
+
+	}
 }

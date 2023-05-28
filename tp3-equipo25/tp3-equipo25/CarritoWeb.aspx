@@ -32,11 +32,19 @@
                     </asp:TemplateField>
 
                     <%-- <asp:BoundField HeaderText="" DataField="Articulo.Imagenes[0].UrlImagen"/>--%>
-                    <asp:BoundField HeaderText="Artículo" DataField="Articulo.Nombre" />
+<%--                    <asp:BoundField HeaderText="Artículo" DataField="Articulo.Nombre" />--%>
+
+                    <asp:TemplateField HeaderText="Articulo">
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Articulo.Nombre") %>'
+                                OnClick="btnDetalle_Click"
+                                CommandArgument="Articulo.Id"
+                                CausesValidation="false"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <%-- PRECIO --%>
                     <asp:BoundField HeaderText="Precio/Un." DataFormatString="{0:C}" DataField="Articulo.Precio" />
-
 
 
                     <%--CONTROLES--%>
@@ -55,6 +63,7 @@
 
                     <%-- CANTIDAD--%>
                     <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+
 
                     <%-- TOTAL /// VER CONFIGURACION carrito.cantidad * articulo.precio--%>
                     <asp:TemplateField HeaderText="Subtotal">
