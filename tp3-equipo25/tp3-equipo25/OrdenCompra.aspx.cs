@@ -40,7 +40,7 @@ namespace tp3_equipo25
 		{
 			foreach (Carrito item in carrito)
 			{
-				precioFinal += item.Articulo.Precio;
+				precioFinal += item.Articulo.Precio * item.Cantidad;
 			}
 		}
 

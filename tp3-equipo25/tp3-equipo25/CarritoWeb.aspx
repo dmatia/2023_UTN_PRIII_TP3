@@ -1,4 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CarritoWeb.aspx.cs" Inherits="tp3_equipo25.CarritoWeb" %>
+﻿<%@  Page EnableEventValidation="false"  Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CarritoWeb.aspx.cs" Inherits="tp3_equipo25.CarritoWeb" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -11,7 +13,9 @@
             <div class="col-6">
                 <h2>Tu carrito</h2>
                 <asp:GridView ID="dgvCarrito" runat="server" CssClass="table mb-3" DataKeyNames=""
-                    AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound">
+                    AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound"
+                    ClientIDMode="AutoID">
+
                     <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" BackColor="WHITE" />
                     <HeaderStyle HorizontalAlign="Center" BackColor="WHITE" />
                     <Columns>
@@ -34,8 +38,16 @@
                         <%--CONTROLES--%>
                         <asp:TemplateField HeaderText="Agregar/Quitar">
                             <ItemTemplate>
-                                <asp:Button ID="btnAgregar" runat="server" Text="+" OnClick="btnAgregar_Click" CssClass="btn" />
-                                <asp:Button ID="btnQuitar" runat="server" Text="-" OnClick="btnQuitar_Click" CssClass="btn" />
+                                <asp:Button runat="server" Text="+" 
+                                    OnClick="btnAgregar_Click" 
+                                    CssClass="btn" CommandArgument="Articulo.Id"
+                                    CausesValidation="false"/>
+
+
+                                <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn" 
+                                    OnClick="btnQuitar_Click" 
+                                    CommandArgument="Articulo.Id"
+                                    CausesValidation="false"/>
                             </ItemTemplate>
                         </asp:TemplateField>
 
