@@ -24,7 +24,7 @@ namespace tp3_equipo25
 
             }
             Tipodebusqueda();
-        }
+        }   
 
         protected void BtnDetalle_Click(object sender, EventArgs e)
         {
@@ -36,6 +36,7 @@ namespace tp3_equipo25
             Response.Redirect("Detalle.aspx", false);
         }
 
+        
         public void CargarDropdowns()
         {
             CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
@@ -60,40 +61,42 @@ namespace tp3_equipo25
 
         }
 
-        public bool CheckbuquedaRapida() {
-
+        bool CheckbusquedaAvanzada()
+        {
             return ChkBusquedaAvanzada.Checked;
         }
 
         public void Tipodebusqueda()
         {
-            TxtBusquedaRapida.Enabled = CheckbuquedaRapida();
-            BtnBusquedaRapida.Enabled = CheckbuquedaRapida();
-
+            TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
+            BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
+         
         }
        
         protected void BtnBusqueda_Click(object sender, EventArgs e)
         {
 
             List<Articulo> Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
-
+       
 
             if (DdlCategoria.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
-
+             
             }
             if (DdlMarca.SelectedIndex > 0)
             {
                 Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
-
+ 
             }
 
             if (TxtBusqueda.Text.Length > 0)
             {
+          
                 if (ChkCheckDescripcion.Checked)
                 {
                     Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
+
                 }
                 else {
                     Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
@@ -102,6 +105,7 @@ namespace tp3_equipo25
 
             if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
             {
+            
                 decimal precioMaximo;
                 decimal precioMinimo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
@@ -112,17 +116,24 @@ namespace tp3_equipo25
             }
             else if (TxtPreciomax.Text != string.Empty)
             {
+     
                 decimal precioMaximo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMaximo))
                     Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
             }
             else
             {
+       
                 decimal precioMinimo;
                 if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
                     Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
 
             }
+         /*   if (Camposvacios)
+            {
+                Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+            }
+         */
             RepCards.DataSource = Listafiltrada;
             RepCards.DataBind();
         }

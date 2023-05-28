@@ -51,15 +51,6 @@ namespace tp3_equipo25
         protected global::System.Web.UI.WebControls.TextBox TxtBusqueda;
 
         /// <summary>
-        /// Control BtnBusqueda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBusqueda;
-
-        /// <summary>
         /// Control ChkCheckDescripcion.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace tp3_equipo25
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox ChkCheckDescripcion;
+
+        /// <summary>
+        /// Control BtnBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnBusqueda;
 
         /// <summary>
         /// Control TxtPreciomin.
