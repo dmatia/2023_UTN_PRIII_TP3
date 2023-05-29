@@ -10,8 +10,17 @@
     src: url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 }
 
-.Carrito {
-    font-family: 'Bebas-Neue';
+.nav-item:hover{
+    font-weight: bold;
+}
+
+
+
+.CarritoWeb_titulo {
+    font-weight: bold;
+    font-size: 3rem;
+    text-decoration: underline;
+    text-underline-position: from-font;
 }
 
 .sinCarrito {
@@ -52,8 +61,13 @@
     }
 }
 
+.CarritoWeb_dtb_detalle:hover{
+    font-weight: bold;
+    cursor: pointer;
+}
 
-.sinCarrito div{
+
+.sinCarrito div {
     text-align: center;
 }
 
@@ -67,6 +81,12 @@
 
 .sinCarritoBoton:hover{
     font-size: 3rem;
+}
+
+
+.contenedor2 img{
+    border-radius: 15px;
+    background-color: #fff;
 }
 
 footer{
