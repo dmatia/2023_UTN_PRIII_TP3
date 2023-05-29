@@ -29,7 +29,7 @@ namespace tp3_equipo25
                 ResetearImagen2();
             }
         }
- 
+
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -56,8 +56,6 @@ namespace tp3_equipo25
 
         public void cargarGridView()
         {
-
-
             ListaCarrito = (List<Carrito>)Session["carrito"];
             dgvCarrito.DataSource = ListaCarrito;
             dgvCarrito.DataBind();
@@ -67,7 +65,6 @@ namespace tp3_equipo25
                 cargarTotalItems();
 
             }
-
         }
 
         protected void cargarTotalItems()
@@ -127,30 +124,38 @@ namespace tp3_equipo25
             GridViewRow fila = (GridViewRow)Accion.NamingContainer;
             int filaIndice = fila.RowIndex;
             Carrito carrito = ListaCarrito[filaIndice];
-     
-            if (Accion.CommandName == "Agregar")
+
+            switch (Accion.CommandName)
             {
-                Agregar(carrito, filaIndice);
+                case "Agregar":
+                    Agregar(carrito, filaIndice);
+                    break;
+
+                case "Quitar":
+                    Quitar(carrito, filaIndice);
+                    break;
+
+                case "Ver":
+                    Ver(carrito, filaIndice);
+                    break;
+
+                case "Borrar":
+                    borrarCarritoDeLista(carrito);
+                    break;
+
+                case "Detalle":
+                    Detalle(filaIndice);
+                    break;
+
+                default:
+                    break;
             }
-            if (Accion.CommandName == "Quitar")
-            {
-                Quitar(carrito, filaIndice);
-            }
-            if (Accion.CommandName == "Ver")
-            {
-                Ver(carrito, filaIndice);
-            }
-            if (Accion.CommandName == "Borrar")
-            {
-                borrarCarritoDeLista(carrito);
-            }
-            if (Accion.CommandName == "Detalle")
-            {
-                Detalle(filaIndice);
-            }
+
+
         }
 
-        protected void Agregar(Carrito carrito, int filaIndice) {
+        protected void Agregar(Carrito carrito, int filaIndice)
+        {
             // Aumento la cantidad y actualizo la lista local y la de sesión
             carrito.Cantidad++;
             Session["carrito"] = ListaCarrito;
@@ -199,8 +204,6 @@ namespace tp3_equipo25
             Response.Redirect("Detalle.aspx", false);
         }
 
-
-
         protected void ResetearImagen2()
         {
             Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
@@ -223,93 +226,5 @@ namespace tp3_equipo25
             Session["carrito"] = null;
             cargarGridView();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //////// cod viejo
-        /// //protected void btnAgregar_Click(object sender, EventArgs e)
-        //{
-        //    Button btnAgregar = (Button)sender;
-        //    GridViewRow fila = (GridViewRow)btnAgregar.NamingContainer;
-        //    int filaIndice = fila.RowIndex;
-
-        //    // busco el carrito en la lista por el index de la lista
-        //    Carrito carrito = ListaCarrito[filaIndice];
-
-        //    // Aumentar cant
-        //    carrito.Cantidad++;
-
-        //    // actualizo el gridview 
-        //    Session["carrito"] = ListaCarrito;
-        //    dgvCarrito.DataBind();
-        //    cargarTotal();
-        //    cargarTotalItems();
-
-        //}
-
-        //protected void btnQuitar_Click(object sender, EventArgs e)
-        //{
-        //    Button btnAgregar = (Button)sender;
-        //    GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
-        //    int rowIndex = row.RowIndex;
-        //    if (rowIndex != -1 && rowIndex<ListaCarrito.Count)
-        //    {
-        //        // Obtener el carrito correspondiente en la lista
-        //        Carrito carrito = ListaCarrito[rowIndex];
-
-        //        // disminuir la cantidad del carrito
-        //        if (carrito.Cantidad > 0)
-        //        {
-        //            carrito.Cantidad--;
-        //            Session["carrito"] = ListaCarrito;
-        //            dgvCarrito.DataBind();
-        //            cargarGridView();
-        //        }
-        //        else
-        //        {
-        //            borrarCarritoDeLista(carrito);
-        //        }
-        //    }
-        //    // Actualizar el GridView
-
-        //}
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
 }
