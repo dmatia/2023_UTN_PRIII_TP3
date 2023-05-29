@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using static System.Net.WebRequestMethods;
 using System.ComponentModel.Design;
 using tp3_equipo25.Layouts;
+using System.Configuration;
 
 namespace tp3_equipo25
 {
@@ -19,19 +20,52 @@ namespace tp3_equipo25
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((Session["carrito"] != null))
+            if (Session["carrito"] != null)
             {
                 cargarGridView();
             }
             if (!IsPostBack)
             {
-                Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
-
+                ResetearImagen2();
             }
         }
 
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
 
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //valores de fila
+                string quantityStr = DataBinder.Eval(e.Row.DataItem, "Cantidad").ToString();
+                string priceStr = DataBinder.Eval(e.Row.DataItem, "Articulo.Precio").ToString();
 
+                // valores a tipos numéricos
+                int cantidad = int.Parse(quantityStr);
+                decimal precio = decimal.Parse(priceStr);
+
+                // Calcular el subtotal
+                decimal subtotal = cantidad * precio;
+
+                // acá busco la columna de subtotales
+                Label lblSubtotal = (Label)e.Row.FindControl("lblSubtotal");
+
+                // se agrega el subtotal calculado como texto de la celda
+                lblSubtotal.Text = subtotal.ToString("C");
+            }
+        }
+
+        public void cargarGridView()
+        {
+            ListaCarrito = (List<Carrito>)Session["carrito"];
+            dgvCarrito.DataSource = ListaCarrito;
+            dgvCarrito.DataBind();
+            if (ListaCarrito != null)
+            {
+                cargarTotal();
+                cargarTotalItems();
+
+            }
+        }
 
         protected void cargarTotalItems()
         {
@@ -41,30 +75,30 @@ namespace tp3_equipo25
             TableCell totalCarrito = new TableCell();
             // tamaño en columnas de la celda
             totalCarrito.ColumnSpan = dgvCarrito.Columns.Count + 1;
-            
+
             int total = 0;
-            
+
             // suma al total la cantidad de items por carrito al total
             foreach (Carrito carrito in ListaCarrito)
             {
                 total += (carrito.Cantidad);
             }
-			
+
             //se agrega el total como texto de la celda creada
             totalCarrito.Text = "Tenés " + total + " items en tu carrito";
             // estilos de la fila creada
             totalCarrito.Attributes.Add("style", "background-color:#7FB3D5; text-align: left");
-            
+
             // se agrega la celda a la fila
             gv.Cells.Add(totalCarrito);
 
             // Session agrega la fila al dgv
             this.dgvCarrito.Controls[0].Controls.AddAt(0, gv);
 
-			//Cambia el contador del navegador
-			Nav.carrito = total.ToString();
+            //Cambia el contador del navegador
+            Nav.carrito = total.ToString();
 
-		}
+        }
 
         protected void cargarTotal()
         {
@@ -83,164 +117,114 @@ namespace tp3_equipo25
             this.dgvCarrito.Controls[0].Controls.AddAt(dgvCarrito.Rows.Count + 1, gv);
         }
 
-        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void btnAcción(object sender, EventArgs e)
         {
-          
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                //valores de fila
-                string quantityStr = DataBinder.Eval(e.Row.DataItem, "Cantidad").ToString();
-                string priceStr = DataBinder.Eval(e.Row.DataItem, "Articulo.Precio").ToString();
-
-                // valores a tipos numéricos
-                int cantidad = int.Parse(quantityStr);
-                decimal precio = decimal.Parse(priceStr);
-
-                // Calcular el subtotal
-                decimal subtotal = cantidad * precio;
-
-                // acá busco la columna de subtotales
-                Label lblSubtotal = (Label)e.Row.FindControl("lblSubtotal");
-
-                // se agrega el subtotal calculado como texto de la celda
-                lblSubtotal.Text = subtotal.ToString("C"); 
-            }
-        }
-
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            Button btnAgregar = (Button)sender;
-            GridViewRow fila = (GridViewRow)btnAgregar.NamingContainer;
+            // Me traigo el sender y la fila para saber el indice de la lisra que busco, luego veo qué comando me manda  a llamar
+            Button Accion = (Button)sender;
+            GridViewRow fila = (GridViewRow)Accion.NamingContainer;
             int filaIndice = fila.RowIndex;
-
-            // busco el carrito en la lista por el index de la lista
             Carrito carrito = ListaCarrito[filaIndice];
 
-            // Aumentar cant
+            switch (Accion.CommandName)
+            {
+                case "Agregar":
+                    Agregar(carrito, filaIndice);
+                    break;
+
+                case "Quitar":
+                    Quitar(carrito, filaIndice);
+                    break;
+
+                case "Ver":
+                    Ver(carrito, filaIndice);
+                    break;
+
+                case "Borrar":
+                    borrarCarritoDeLista(carrito);
+                    break;
+
+                case "Detalle":
+                    Detalle(filaIndice);
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
+
+        protected void Agregar(Carrito carrito, int filaIndice)
+        {
+            // Aumento la cantidad y actualizo la lista local y la de sesión
             carrito.Cantidad++;
-
-            // actualizo el gridview 
-            Session["carrito"] = ListaCarrito;
-            dgvCarrito.DataBind();
-            cargarTotal();
-            cargarTotalItems();
-			
-        }
-
-        protected void btnQuitar_Click(object sender, EventArgs e)
-        {
-            Button btnAgregar = (Button)sender;
-            GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
-            int rowIndex = row.RowIndex;
-            if (rowIndex != -1 && rowIndex<ListaCarrito.Count)
-            {
-                // Obtener el carrito correspondiente en la lista
-                Carrito carrito = ListaCarrito[rowIndex];
-
-                // disminuir la cantidad del carrito
-                if (carrito.Cantidad > 0)
-                {
-                    carrito.Cantidad--;
-                    Session["carrito"] = ListaCarrito;
-                    dgvCarrito.DataBind();
-                    cargarGridView();
-                }
-                else
-                {
-                    borrarCarrito(carrito);
-                }
-            }
-            // Actualizar el GridView
-            
-        }
-
-        public void cargarGridView()
-        {
-
-
-            ListaCarrito = (List<Carrito>)Session["carrito"];
-            dgvCarrito.DataSource = ListaCarrito;                  
-            dgvCarrito.DataBind();
-            if (ListaCarrito != null)
-            {
-                cargarTotal();
-                cargarTotalItems();
-              
-            }
-
-        }
-
-        protected void bntBorrar_Click(object sender, EventArgs e)
-        {
-            Button btnAgregar = (Button)sender;
-            GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
-            int rowIndex = row.RowIndex;
-
-            // Obtener el carrito correspondiente en la lista
-            Carrito carrito = ListaCarrito[rowIndex];
-
-            borrarCarrito(carrito);
-
-            // Actualizar el GridView
             Session["carrito"] = ListaCarrito;
             dgvCarrito.DataBind();
             cargarGridView();
         }
 
-        protected void borrarCarrito(Carrito carrito)
+        protected void Quitar(Carrito carrito, int filaIndice)
+        {
+            if (filaIndice != -1 && filaIndice < ListaCarrito.Count)
+            {
+                // Disminuyo cantidad
+                carrito.Cantidad--;
+                // Si el carrito queda vacío, lo borro la lista de carritos y reseteo la imagen2. Si no queda vacío, lo actualizo en lista y en sesión 
+                if (carrito.Cantidad == 0)
+                {
+                    borrarCarritoDeLista(carrito);
+                    ResetearImagen2();
+                }
+                else
+                {
+                    Session["carrito"] = ListaCarrito;
+                    dgvCarrito.DataBind();
+                    cargarGridView();
+                }
+            }
+        }
+
+        protected void Ver(Carrito carrito, int filaIndice)
+        {
+            if (filaIndice == -1 || ListaCarrito[filaIndice].Articulo.Imagenes[0].UrlImagen == "")
+            {
+                ResetearImagen2();
+            }
+            else
+            {
+                Image2.ImageUrl = ListaCarrito[filaIndice].Articulo.Imagenes[0].UrlImagen;
+            }
+        }
+
+        protected void Detalle(int filaIndice)
+        {
+            List<Carrito> articulos = (List<Carrito>)Session["carrito"];
+            Articulo articulo = articulos[filaIndice].Articulo;
+            Session.Add("DetalleArticulo", articulo);
+            Response.Redirect("Detalle.aspx", false);
+        }
+
+        protected void ResetearImagen2()
+        {
+            Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
+        }
+
+        protected void borrarCarritoDeLista(Carrito carrito)
         {
             ListaCarrito.Remove(carrito);
             if (ListaCarrito.Count == 0)
             {
                 Session["carrito"] = null;
                 ListaCarrito = null;
-               
-                cargarGridView();
             }
+            cargarGridView();
+
         }
 
         protected void btnBorrarCarrito_Click(object sender, EventArgs e)
         {
             Session["carrito"] = null;
             cargarGridView();
-
         }
-
-        protected void bntVer_Click(object sender, EventArgs e)
-        {
-            Button btnVer = (Button)sender;
-            GridViewRow row = (GridViewRow)btnVer.NamingContainer;
-            int rowIndex = row.RowIndex;
-
-            // Obtener el carrito correspondiente en la lista
-            if (ListaCarrito[rowIndex].Articulo.Imagenes[0].UrlImagen == "")
-            {
-                Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
-
-            }
-            else
-            {
-                Image2.ImageUrl = ListaCarrito[rowIndex].Articulo.Imagenes[0].UrlImagen;
-            
-               
-            }
-        }
-		
-        protected void btnDetalle_Click(object sender, EventArgs e)
-        {
-            //Obtenermos index del Grid
-			LinkButton btnAgregar = (LinkButton)sender;
-			GridViewRow row = (GridViewRow)btnAgregar.NamingContainer;
-			int rowIndex = row.RowIndex;
-
-            //Buscamos Articulo en listado Carrtio
-            List<Carrito> articulos = (List<Carrito>)Session["carrito"];
-			Articulo articulo = articulos[rowIndex].Articulo;
-
-            //Guardamos en session de Detalle y redirigimos a Detalle.aspx
-			Session.Add("DetalleArticulo", articulo);
-			Response.Redirect("Detalle.aspx", false);
-		}
-
-	}
+    }
 }

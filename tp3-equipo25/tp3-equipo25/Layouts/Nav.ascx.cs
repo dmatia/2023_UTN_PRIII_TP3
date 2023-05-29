@@ -15,7 +15,10 @@ namespace tp3_equipo25.Layouts
 		
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			updateCarrito();
+			if(!IsPostBack)
+			{
+				updateCarrito();
+			}
 		}
 
 		private void updateCarrito()
@@ -29,6 +32,27 @@ namespace tp3_equipo25.Layouts
 			}
 
 			carrito = cantidad.ToString();
+		}
+
+		protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
+		{
+			List<Articulo> Listafiltrada = new List<Articulo>();
+
+			if (lbSearch.Text.Count() > 0)
+			{
+				Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(lbSearch.Text.ToUpper()) || x.Nombre.ToUpper().Contains(lbSearch.Text.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(lbSearch.Text.ToUpper()) || x.Categoria.Descripcion.ToUpper().Contains(lbSearch.Text.ToUpper()));
+
+			}
+			else
+			{
+
+				Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+
+			}
+
+			lbSearch.Text = "";
+			Session.Add("ListafiltradaDefault", Listafiltrada);
+			Response.Redirect("default.aspx");
 		}
 	}
 }

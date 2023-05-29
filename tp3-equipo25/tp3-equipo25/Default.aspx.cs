@@ -10,233 +10,248 @@ using System.Runtime.Remoting.Messaging;
 
 namespace tp3_equipo25
 {
-    public partial class Default : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                ArticuloNegocio articulosNegocio = new ArticuloNegocio();
-                Session.Add("ListaArticulos", articulosNegocio.listar());
-                RepCards.DataSource = Session["ListaArticulos"];
-                RepCards.DataBind();
-                CargarDropdowns();
+	public partial class Default : System.Web.UI.Page
+	{
+		private List<Articulo> Listafiltrada;
 
-            }
-            Tipodebusqueda();
-        }   
+		protected void Page_Load(object sender, EventArgs e)
+		{
+			if (!IsPostBack)
+			{
+				ArticuloNegocio articulosNegocio = new ArticuloNegocio();
+				Session.Add("ListaArticulos", articulosNegocio.listar());
 
-        protected void BtnDetalle_Click(object sender, EventArgs e)
-        {
-            //Guardamos Articulo en Session
-            int ArticuloId = int.Parse(((Button)sender).CommandArgument);
-            Articulo articulo = ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Id == ArticuloId);
+				if (Session["ListafiltradaDefault"] == null)
+				{
+					RepCards.DataSource = Session["ListaArticulos"];
+					RepCards.DataBind();
+				}
+				else
+				{
+					Listafiltrada = (List<Articulo>)Session["ListafiltradaDefault"];
+					RepCards.DataSource = Listafiltrada;
+					RepCards.DataBind();
+					Session["ListafiltradaDefault"] = null;
+				}
+				
+				CargarDropdowns();
 
-            Session.Add("DetalleArticulo", articulo);
-            Response.Redirect("Detalle.aspx", false);
-        }
+			}
+			
+			Tipodebusqueda();
+		}
 
-        public List<Articulo> OrdenarLista(List<Articulo> listafiltrada, string SeleccionDDL) 
-        {
+		protected void BtnDetalle_Click(object sender, EventArgs e)
+		{
+			//Guardamos Articulo en Session
+			int ArticuloId = int.Parse(((Button)sender).CommandArgument);
+			Articulo articulo = ((List<Articulo>)Session["ListaArticulos"]).Find(x => x.Id == ArticuloId);
 
-            List < Articulo > Listaordenada = new List < Articulo >();
-            if (SeleccionDDL == "Nombre ascendente")
-            {
-                
-                return Listaordenada=listafiltrada.OrderBy(x => x.Nombre).ToList();
-            }
-            if (SeleccionDDL == "Nombre descendente")
-            {
-                return Listaordenada = listafiltrada.OrderByDescending(x => x.Nombre).ToList();
-            }
-            if (SeleccionDDL == "Precio ascendente")
-            {
-                return Listaordenada = listafiltrada.OrderBy(x => x.Precio).ToList();
-            }
-            if (SeleccionDDL == "Precio descendente")
-            {
-                return Listaordenada = listafiltrada.OrderByDescending(x => x.Precio).ToList();
-            }
-            return listafiltrada;
-        }
+			Session.Add("DetalleArticulo", articulo);
+			Response.Redirect("Detalle.aspx", false);
+		}
 
-        public void CargarDropdowns()
-        {
-            CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
-            List<IAtributo> Listacategorias = new List<IAtributo>();
-            Listacategorias = CategoriaNegocio.listar();
-            DdlCategoria.Items.Add("Elige una Categoria");
-            foreach (Categoria aux in Listacategorias)
-            {
-                DdlCategoria.Items.Add(aux.Descripcion);
+		public List<Articulo> OrdenarLista(List<Articulo> listafiltrada, string SeleccionDDL)
+		{
 
-            }
+			List<Articulo> Listaordenada = new List<Articulo>();
+			if (SeleccionDDL == "Nombre ascendente")
+			{
 
-            MarcaNegocio MarcaNegocio = new MarcaNegocio();
-            List<IAtributo> Listamarcas = new List<IAtributo>();
-            Listamarcas = MarcaNegocio.listar();
+				return Listaordenada = listafiltrada.OrderBy(x => x.Nombre).ToList();
+			}
+			if (SeleccionDDL == "Nombre descendente")
+			{
+				return Listaordenada = listafiltrada.OrderByDescending(x => x.Nombre).ToList();
+			}
+			if (SeleccionDDL == "Precio ascendente")
+			{
+				return Listaordenada = listafiltrada.OrderBy(x => x.Precio).ToList();
+			}
+			if (SeleccionDDL == "Precio descendente")
+			{
+				return Listaordenada = listafiltrada.OrderByDescending(x => x.Precio).ToList();
+			}
+			return listafiltrada;
+		}
 
-            DdlMarca.Items.Add("Elige una Marca");
-            foreach (Marca aux in Listamarcas)
-            {
-                DdlMarca.Items.Add(aux.Descripcion);
-            }
+		public void CargarDropdowns()
+		{
+			CategoriaNegocio CategoriaNegocio = new CategoriaNegocio();
+			List<IAtributo> Listacategorias = new List<IAtributo>();
+			Listacategorias = CategoriaNegocio.listar();
+			DdlCategoria.Items.Add("Elige una Categoria");
+			foreach (Categoria aux in Listacategorias)
+			{
+				DdlCategoria.Items.Add(aux.Descripcion);
 
-            DDLOrdenar.Items.Add("Organizar por");
-            DDLOrdenar.Items.Add("Nombre ascendente");
-            DDLOrdenar.Items.Add("Nombre descendente");
-            DDLOrdenar.Items.Add("Precio ascendente");
-            DDLOrdenar.Items.Add("Precio descendente");
+			}
 
-        }
+			MarcaNegocio MarcaNegocio = new MarcaNegocio();
+			List<IAtributo> Listamarcas = new List<IAtributo>();
+			Listamarcas = MarcaNegocio.listar();
 
-        bool CheckbusquedaAvanzada()
-        {
-            return ChkBusquedaAvanzada.Checked;
-        }
+			DdlMarca.Items.Add("Elige una Marca");
+			foreach (Marca aux in Listamarcas)
+			{
+				DdlMarca.Items.Add(aux.Descripcion);
+			}
 
-        public void Tipodebusqueda()
-        {
-            TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
-            BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
-            TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();
-            BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();
-            if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty; 
-        }
+			DDLOrdenar.Items.Add("Organizar por");
+			DDLOrdenar.Items.Add("Nombre ascendente");
+			DDLOrdenar.Items.Add("Nombre descendente");
+			DDLOrdenar.Items.Add("Precio ascendente");
+			DDLOrdenar.Items.Add("Precio descendente");
 
-        protected void BtnBusqueda_Click(object sender, EventArgs e)
-        {
-            List<Articulo> Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
-            bool Camposnovacios = false;
+		}
 
-            if (DdlCategoria.SelectedIndex > 0)
-            {
-                Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
-                Camposnovacios = true;
-            }
-            if (DdlMarca.SelectedIndex > 0)
-            {
-                Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
-                Camposnovacios = true;
-            }
+		bool CheckbusquedaAvanzada()
+		{
+			return ChkBusquedaAvanzada.Checked;
+		}
 
-            if (TxtBusqueda.Text.Length > 0)
-            {
-                if (ChkCheckDescripcion.Checked)
-                {
-                    Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
-                }
-                else
-                {
-                    Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
-                }
-                Camposnovacios = true;
-            }
+		public void Tipodebusqueda()
+		{
+			TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
+			BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
+			TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();
+			BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();
+			if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty;
+		}
 
-            if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
-            {
-                decimal precioMaximo;
-                decimal precioMinimo;
-                if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
-                {
-                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo || x.Precio > precioMaximo);
-                    Camposnovacios = true;
-                }
-            }
-            else if (TxtPreciomax.Text != string.Empty)
-            {
-                decimal precioMaximo;
-                if (decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
-                {
-                    Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
-                    Camposnovacios = true;
-                }
-            }
-            else if (TxtPreciomin.Text != string.Empty)
-            {
-                decimal precioMinimo;
-                if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
-                {
-                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
-                    Camposnovacios = true;
-                }
-            }
+		protected void BtnBusqueda_Click(object sender, EventArgs e)
+		{
+			List<Articulo> Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
+			bool Camposnovacios = false;
 
-            if (!Camposnovacios)
-            {
-             
-                Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
-               
-            }
-            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
-            Session.Add("ListafiltradaDefault", Listafiltrada);
-            RepCards.DataBind();
-        }
+			if (DdlCategoria.SelectedIndex > 0)
+			{
+				Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
+				Camposnovacios = true;
+			}
+			if (DdlMarca.SelectedIndex > 0)
+			{
+				Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
+				Camposnovacios = true;
+			}
+
+			if (TxtBusqueda.Text.Length > 0)
+			{
+				if (ChkCheckDescripcion.Checked)
+				{
+					Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
+				}
+				else
+				{
+					Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
+				}
+				Camposnovacios = true;
+			}
+
+			if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
+			{
+				decimal precioMaximo;
+				decimal precioMinimo;
+				if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
+				{
+					Listafiltrada.RemoveAll(x => x.Precio < precioMinimo || x.Precio > precioMaximo);
+					Camposnovacios = true;
+				}
+			}
+			else if (TxtPreciomax.Text != string.Empty)
+			{
+				decimal precioMaximo;
+				if (decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
+				{
+					Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
+					Camposnovacios = true;
+				}
+			}
+			else if (TxtPreciomin.Text != string.Empty)
+			{
+				decimal precioMinimo;
+				if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
+				{
+					Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
+					Camposnovacios = true;
+				}
+			}
+
+			if (!Camposnovacios)
+			{
+
+				Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
+
+			}
+			RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
+			Session.Add("ListafiltradaDefault", Listafiltrada);
+			RepCards.DataBind();
+		}
 
 
 
-        protected void TxtBusquedaRapida_TextChanged(object sender, EventArgs e)
-        {
+		protected void TxtBusquedaRapida_TextChanged(object sender, EventArgs e)
+		{
 
-            
-            List<Articulo> Listafiltrada = new List<Articulo>();
-           
-           if (TxtBusquedaRapida.Text.Count()>0) {
-                Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x =>  x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
-            }
-            else
-            {
-                              
-                    Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
-                
-            }
 
-            Session.Add("ListafiltradaDefault", Listafiltrada);
-            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
-            RepCards.DataBind();
-        }
+			List<Articulo> Listafiltrada = new List<Articulo>();
 
-        protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
-        {
-            List<Articulo> Listafiltrada = new List<Articulo>();
+			if (TxtBusquedaRapida.Text.Count() > 0)
+			{
+				Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+			}
+			else
+			{
 
-            if (TxtBusquedaRapida.Text.Count() > 0)
-            {
-                Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
-                
-            }
-            else
-            {
+				Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
 
-                Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+			}
 
-            }
-            
-            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
-            Session.Add("ListafiltradaDefault", Listafiltrada);
-            RepCards.DataBind();
-        }
+			Session.Add("ListafiltradaDefault", Listafiltrada);
+			RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
+			RepCards.DataBind();
+		}
 
-          public void DDLOrdenar_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (DDLOrdenar.SelectedIndex != 0)
-            {
-                List<Articulo> Listaactual = new List<Articulo>();
-                if ((List<Articulo>)Session["ListafiltradaDefault"] != null)
-                {
-                    Listaactual = ((List<Articulo>)Session["ListafiltradaDefault"]);
-                  
-                }
-                else
-                {
-                    Listaactual = (List<Articulo>)Session["ListaArticulos"];
-                }
+		protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
+		{
+			// Listafiltrada = new List<Articulo>();
 
-                RepCards.DataSource = OrdenarLista(Listaactual, DDLOrdenar.SelectedItem.ToString());
-                RepCards.DataBind();
-            }
-            
-        }
-    }
+			if (TxtBusquedaRapida.Text.Count() > 0)
+			{
+				Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+
+			}
+			else
+			{
+
+				Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+
+			}
+
+			RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
+			Session.Add("ListafiltradaDefault", Listafiltrada);
+			RepCards.DataBind();
+		}
+
+		public void DDLOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (DDLOrdenar.SelectedIndex != 0)
+			{
+				List<Articulo> Listaactual = new List<Articulo>();
+				if ((List<Articulo>)Session["ListafiltradaDefault"] != null)
+				{
+					Listaactual = ((List<Articulo>)Session["ListafiltradaDefault"]);
+
+				}
+				else
+				{
+					Listaactual = (List<Articulo>)Session["ListaArticulos"];
+				}
+
+				RepCards.DataSource = OrdenarLista(Listaactual, DDLOrdenar.SelectedItem.ToString());
+				RepCards.DataBind();
+			}
+
+		}
+	}
 }
-   
