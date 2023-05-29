@@ -11,7 +11,7 @@
 }
 
 .Carrito {
-    font-family: 'Bebas-Neue', sans-serif;
+    font-family: 'Bebas-Neue';
 }
 
 .sinCarrito {
@@ -31,11 +31,27 @@
     text-decoration: none;
 }
 
-.sinCarritoTitulo{
+.sinCarritoTitulo {
     font-size: 5rem;
     align-self: end;
     color: #000;
+    font-weight: bolder;
+    text-shadow: -3px 3px 0px #fff;
 }
+
+@keyframes animacion {
+    0%{
+        transform: rotate(-2deg)
+    }
+
+    50% {
+        transform: rotate(2deg)
+    }
+    100% {
+        transform: rotate(-2deg)
+    }
+}
+
 
 .sinCarrito div{
     text-align: center;
@@ -43,14 +59,14 @@
 
 .sinCarritoBoton {
     font-size: 2.5rem;
-    padding: 0 .5em .2em .5em;
-    background: #777;
-    border: 2px solid #fff;
-    border-radius: 15px;
+    animation: animacion 5s infinite;
+    animation-timing-function: ease-in-out;
+    border: 5px solid #517aff;
+    transition: .3s;
 }
 
 .sinCarritoBoton:hover{
-    background: #b06f6f;
+    font-size: 3rem;
 }
 
 footer{
