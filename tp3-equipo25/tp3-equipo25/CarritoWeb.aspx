@@ -35,7 +35,7 @@
 
                     <asp:TemplateField HeaderText="Articulo">
                         <ItemTemplate>
-                            <asp:LinkButton runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Articulo.Nombre") %>' OnClick="btnDetalle_Click" CommandArgument="Articulo.Id" CausesValidation="false" />
+                            <asp:Button runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Articulo.Nombre") %>' CssClass="btn" OnClick="btnAcción"  CommandName="Detalle" CommandArgument="Articulo.Id" CausesValidation="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -46,8 +46,8 @@
                     <%-- Controles para agregar/quitar unidades --%>
                     <asp:TemplateField HeaderText="Agregar/Quitar">
                         <ItemTemplate>
-                            <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn" OnClick="btnAgregar_Click" CommandArgument="Articulo.Id" CausesValidation="false" />
-                            <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn" OnClick="btnQuitar_Click" CommandArgument="Articulo.Id" CausesValidation="false" />
+                            <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn" OnClick="btnAcción"  CommandName="Agregar" CommandArgument="Articulo.Id" CausesValidation="false" />
+                            <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn" OnClick="btnAcción" CommandName="Quitar" CommandArgument="Articulo.Id" CausesValidation="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -65,14 +65,14 @@
                     <%-- Eliminar artículo del carrito --%>
                     <asp:TemplateField HeaderText="Eliminar">
                         <ItemTemplate>
-                            <asp:Button ID="bntBorrar" runat="server" Text="🗑" CssClass="btn" OnClick="bntBorrar_Click" CommandArgument="Articulo.Id" />
+                            <asp:Button ID="bntBorrar" runat="server" Text="🗑" CssClass="btn"  OnClick="btnAcción"  CommandName="Borrar" CommandArgument="Articulo.Id" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <%-- Seleccionar artículo para ver en grande --%>
                     <asp:TemplateField HeaderText="">
                         <ItemTemplate>
-                            <asp:Button ID="bntVer" runat="server" Text="👁" CssClass="btn" OnClick="bntVer_Click" CommandArgument="Articulo.Id" />
+                            <asp:Button ID="bntVer" runat="server" Text="👁" CssClass="btn" OnClick="btnAcción"  CommandName="Ver" CommandArgument="Articulo.Id" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -100,7 +100,6 @@
 
 
         <%--   Contenedor derecho, contiene un visor de imagenes --%>
-
         <asp:ScriptManager ID="ScripManager1" runat="server"></asp:ScriptManager>
         <div class="p-2 flex-fill bd-highlight" style="width: 50vw">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
