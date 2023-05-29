@@ -20,10 +20,13 @@
                     <a class="nav-link active" aria-current="page" href="Nosotros.aspx">Nosotros</a>
                 </li>
             </ul>
-<%--            <div class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </div>--%>
+            <% if (HttpContext.Current.Request.Url.AbsolutePath.ToLower() != "/default.aspx" )
+                { %>
+            <div class="d-flex me-3" role="search">
+                <asp:TextBox runat="server" ID="lbSearch" class="form-control me-2" type="text" placeholder="Buscar por producto, marcas y categoria" aria-label="Search" />
+                <asp:Button runat="server" cssClass="btn btn-outline-primary" OnClick="BtnBusquedaRapida_Click" Text="Buscar"/>
+            </div>
+            <%} %>
             <asp:LinkButton runat="server" class="nav-link text-bg-secondary p-2 rounded-2" href="CarritoWeb.aspx">
                     <i class="fa-solid fa-cart-shopping mx-1"></i>
                     <span class="mx-1 badge bg-transparent rounded-pill"><%: carrito %></span>
