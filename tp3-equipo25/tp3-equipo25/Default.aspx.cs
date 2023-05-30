@@ -138,10 +138,10 @@ namespace tp3_equipo25
 
         public void Tipodebusqueda()
 		{
-			TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
-			BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
-            TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
-            BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
+			TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
+			BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();	
+            TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();	
+            BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();
             if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty;
 		}
 
@@ -224,7 +224,7 @@ namespace tp3_equipo25
 
 			if (TxtBusquedaRapida.Text.Count() > 0)
 			{
-				Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+				Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Marca.Descripcion.ToUpper().Equals(TxtBusquedaRapida.Text.ToUpper()) || x.Categoria.Descripcion.ToUpper().Equals(TxtBusquedaRapida.Text.ToUpper()));
 			}
 			else
 			{

@@ -11,7 +11,7 @@
 
         <div class="col-3" style="justify-content:center;">
         
-       <asp:Button ID="BtnBusquedaAvanzada" runat="server" style="align-self:center; width:99%; margin-bottom:-30px; position:relative; z-index: 1;" Cssclass="btn btn-secondary btm-lg" Text="Búsqueda Avanzada" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"/>
+       <asp:Button ID="BtnBusquedaAvanzada" runat="server" style="width:99%; position:relative; z-index: 1;" Cssclass="btn btn-secondary btm-lg" Text="Búsqueda Avanzada" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"/>
        
             </div>
   
@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="d-flex flex-column" style="height: 100%;">
-                <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;padding-top:30px;position:relative; z-index: 0;">
+                <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;padding-top:40px; margin-top:-25px;position:relative; z-index: 0;">
                     <!-- Resto del código -->
                     <div class="row" style="margin-bottom: 20px;">
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
