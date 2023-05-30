@@ -10,16 +10,20 @@
 <div class="row">
 
         <div class="col-3" style="justify-content:center;">
-       <asp:Label ID="LblBusquedaAvanzada" AssociatedControlID="ChkBusquedaAvanzada" runat="server" CssClass="form-check-label" style="align-self:center;" Text="Búsqueda Avanzada" />
-        <asp:CheckBox ID="ChkBusquedaAvanzada" CssClass="form-check-input" runat="server" AutoPostBack="true"/>
-    </div>
-
+        
+       <asp:Button ID="BtnBusquedaAvanzada" runat="server" style="width:99%; position:relative; z-index: 1;" Cssclass="btn btn-secondary btm-lg" Text="Búsqueda Avanzada" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"/>
+       
+            </div>
+  
       <div class="col-5">
+
          <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
+          
     </div>
     <div class="col-1">
-       <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Lupa" OnClick="BtnBusquedaRapida_Click"/>
+           <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Buscar Ya!" OnClick="BtnBusquedaRapida_Click"/>
     </div>
+        
     <div class="col-3" style="justify-content:stretch">
         <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" >  </asp:DropDownList>
                
@@ -28,16 +32,19 @@
                 
     
 
-  <% if (ChkBusquedaAvanzada.Checked) { %>
+  <% if (CheckbusquedaAvanzada()) { %>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="d-flex flex-column" style="height: 100%;">
-                <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;">
+                <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;padding-top:40px; margin-top:-25px;position:relative; z-index: 0;">
                     <!-- Resto del código -->
                     <div class="row" style="margin-bottom: 20px;">
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
                         <div class="col">
+                          <asp:Panel runat="server" DefaultButton="BtnBusqueda">
                             <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server"></asp:TextBox>
+                           </asp:Panel>
+                      
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
@@ -46,7 +53,8 @@
                             <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripción" runat="server" />
                         </div>
                         <div class="col-4">
-                            <asp:Button CssClass="form-control btn btn-primary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
+                        
+                            <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
@@ -83,11 +91,11 @@
 <% } %>
 
 
-     <div class="col-lg-<% if (ChkBusquedaAvanzada.Checked)
+     <div class="col-lg-<% if (CheckbusquedaAvanzada())
         { %>9<% }
         else
         { %>12<% } %> col-md-6 col-sm-12">
-        <div class="row row-cols-1 row-cols-md-<% if (ChkBusquedaAvanzada.Checked)
+        <div class="row row-cols-1 row-cols-md-<% if (CheckbusquedaAvanzada())
             { %>3<% }
             else
             { %>4<% } %>">
@@ -120,7 +128,7 @@
         </div>
        
     </div>
-         <% if (ChkBusquedaAvanzada.Checked)
+         <% if (CheckbusquedaAvanzada())
              { %>
               </ div >
                            
