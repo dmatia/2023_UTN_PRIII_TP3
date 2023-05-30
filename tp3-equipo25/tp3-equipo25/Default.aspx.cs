@@ -13,12 +13,15 @@ namespace tp3_equipo25
 	public partial class Default : System.Web.UI.Page
 	{
 		private List<Articulo> Listafiltrada;
-
-		protected void Page_Load(object sender, EventArgs e)
+       
+        protected void Page_Load(object sender, EventArgs e)
 		{
-			if (!IsPostBack)
+            TxtBusqueda.Attributes.Add("onkeydown", "if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {document.getElementById('BtnBusqueda').click();return false;}} else {return true}; "); // PARA QUE EL TEXTBOX DE BUSQUEDA AVANZADA TOME POR DEFAULT EL BOTON CORRESPONDIENTE AL HACER ENTER
+            if (!IsPostBack)
 			{
-				ArticuloNegocio articulosNegocio = new ArticuloNegocio();
+                bool botonBusquedaAvanzada=false;
+                Session.Add("BusquedaAvanzada", botonBusquedaAvanzada);
+                ArticuloNegocio articulosNegocio = new ArticuloNegocio();
 				Session.Add("ListaArticulos", articulosNegocio.listar());
 
 				if (Session["ListafiltradaDefault"] == null)
@@ -32,13 +35,14 @@ namespace tp3_equipo25
 					RepCards.DataSource = Listafiltrada;
 					RepCards.DataBind();
 					Session["ListafiltradaDefault"] = null;
+
 				}
-				
-				CargarDropdowns();
+				              
+                CargarDropdowns();
 
 			}
-			
-			Tipodebusqueda();
+		
+          
 		}
 
 		protected void BtnDetalle_Click(object sender, EventArgs e)
@@ -57,7 +61,6 @@ namespace tp3_equipo25
 			List<Articulo> Listaordenada = new List<Articulo>();
 			if (SeleccionDDL == "Nombre ascendente")
 			{
-
 				return Listaordenada = listafiltrada.OrderBy(x => x.Nombre).ToList();
 			}
 			if (SeleccionDDL == "Nombre descendente")
@@ -105,18 +108,41 @@ namespace tp3_equipo25
 
 		}
 
-		bool CheckbusquedaAvanzada()
+		public bool CheckbusquedaAvanzada()
 		{
-			return ChkBusquedaAvanzada.Checked;
+			return (bool)Session["BusquedaAvanzada"];
 		}
 
-		public void Tipodebusqueda()
+       public void BtnBusquedaAvanzada_Click(object sender, EventArgs e)
+        {
+
+            if ((bool)Session["BusquedaAvanzada"])
+            {
+                bool aux = false;
+                Session.Add("BusquedaAvanzada", aux);
+                Tipodebusqueda();
+            }
+            else
+            {
+                bool aux = true;
+                Session.Add("BusquedaAvanzada", aux);
+                Tipodebusqueda();
+            }
+           
+
+
+        }
+
+
+
+
+        public void Tipodebusqueda()
 		{
-			TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
-			BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
-			TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();
-			BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();
-			if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty;
+			TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
+			BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
+            TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
+            BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();// ARRANCA EN FALSE
+            if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty;
 		}
 
 		protected void BtnBusqueda_Click(object sender, EventArgs e)
@@ -253,5 +279,7 @@ namespace tp3_equipo25
 			}
 
 		}
-	}
+
+       
+    }
 }

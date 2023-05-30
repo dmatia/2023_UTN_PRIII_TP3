@@ -15,22 +15,13 @@ namespace tp3_equipo25
     {
 
         /// <summary>
-        /// Control LblBusquedaAvanzada.
+        /// Control BtnBusquedaAvanzada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblBusquedaAvanzada;
-
-        /// <summary>
-        /// Control ChkBusquedaAvanzada.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChkBusquedaAvanzada;
+        protected global::System.Web.UI.WebControls.Button BtnBusquedaAvanzada;
 
         /// <summary>
         /// Control TxtBusquedaRapida.
