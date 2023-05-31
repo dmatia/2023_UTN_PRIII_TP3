@@ -51,15 +51,22 @@
 
 
                     <%-- Controles para agregar/quitar unidades --%>
-                    <asp:TemplateField HeaderText="Agregar/Quitar">
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn" OnClick="btnAcción" CommandName="Agregar" CommandArgument="Articulo.Id" CausesValidation="false" />
+                             </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <%-- Cantidad de unidades por artículo--%>
+                    <asp:BoundField DataField="Cantidad" />
+
+                    <%-- Controles para agregar/quitar unidades --%>
+                    <asp:TemplateField>
+                        <ItemTemplate>
                             <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn" OnClick="btnAcción" CommandName="Quitar" CommandArgument="Articulo.Id" CausesValidation="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <%-- Cantidad de unidades por artículo--%>
-                    <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
 
 
                     <%-- Subtotal por artículo --%>
@@ -70,14 +77,14 @@
                     </asp:TemplateField>
 
                     <%-- Eliminar artículo del carrito --%>
-                    <asp:TemplateField HeaderText="Eliminar">
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:Button ID="bntBorrar" runat="server" Text="🗑" CssClass="btn" OnClick="btnAcción" CommandName="Borrar" CommandArgument="Articulo.Id" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
                     <%-- Seleccionar artículo para ver en grande --%>
-                    <asp:TemplateField HeaderText="">
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:Button ID="bntVer" runat="server" Text="👁" CssClass="btn" OnClick="btnAcción" CommandName="Ver" CommandArgument="Articulo.Id" />
                         </ItemTemplate>
