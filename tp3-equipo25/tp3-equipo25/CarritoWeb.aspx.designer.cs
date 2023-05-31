@@ -15,6 +15,15 @@ namespace tp3_equipo25
     {
 
         /// <summary>
+        /// DDLOrdenar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DDLOrdenar;
+
+        /// <summary>
         /// dgvCarrito control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace tp3_equipo25
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvCarrito;
+
+        /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
 
         /// <summary>
         /// btnBorrarCarrito control.

@@ -22,11 +22,13 @@ namespace tp3_equipo25
         {
             if (Session["carrito"] != null)
             {
-                cargarGridView();
+                CargarGridView();
+                
             }
             if (!IsPostBack)
             {
                 ResetearImagen2();
+                CargarDropdowns();
             }
         }
 
@@ -54,20 +56,20 @@ namespace tp3_equipo25
             }
         }
 
-        public void cargarGridView()
+        public void CargarGridView()
         {
             ListaCarrito = (List<Carrito>)Session["carrito"];
             dgvCarrito.DataSource = ListaCarrito;
             dgvCarrito.DataBind();
             if (ListaCarrito != null)
             {
-                cargarTotal();
-                cargarTotalItems();
+                CargarTotal();
+                CargarTotalItems();
 
             }
         }
 
-        protected void cargarTotalItems()
+        protected void CargarTotalItems()
         {
             // crea una nueva fila
             GridViewRow gv = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Normal);
@@ -100,7 +102,7 @@ namespace tp3_equipo25
 
         }
 
-        protected void cargarTotal()
+        protected void CargarTotal()
         {
             GridViewRow gv = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Normal);
             TableCell totalCarrito = new TableCell();
@@ -140,7 +142,7 @@ namespace tp3_equipo25
                     break;
 
                 case "Borrar":
-                    borrarCarritoDeLista(carrito);
+                    BorrarCarritoDeLista(carrito);
                     break;
 
                 case "Detalle":
@@ -160,7 +162,7 @@ namespace tp3_equipo25
             carrito.Cantidad++;
             Session["carrito"] = ListaCarrito;
             dgvCarrito.DataBind();
-            cargarGridView();
+            CargarGridView();
         }
 
         protected void Quitar(Carrito carrito, int filaIndice)
@@ -172,14 +174,14 @@ namespace tp3_equipo25
                 // Si el carrito queda vacío, lo borro la lista de carritos y reseteo la imagen2. Si no queda vacío, lo actualizo en lista y en sesión 
                 if (carrito.Cantidad == 0)
                 {
-                    borrarCarritoDeLista(carrito);
+                    BorrarCarritoDeLista(carrito);
                     ResetearImagen2();
                 }
                 else
                 {
                     Session["carrito"] = ListaCarrito;
                     dgvCarrito.DataBind();
-                    cargarGridView();
+                    CargarGridView();
                 }
             }
         }
@@ -209,7 +211,7 @@ namespace tp3_equipo25
             Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
         }
 
-        protected void borrarCarritoDeLista(Carrito carrito)
+        protected void BorrarCarritoDeLista(Carrito carrito)
         {
             ListaCarrito.Remove(carrito);
             if (ListaCarrito.Count == 0)
@@ -217,14 +219,48 @@ namespace tp3_equipo25
                 Session["carrito"] = null;
                 ListaCarrito = null;
             }
-            cargarGridView();
+            CargarGridView();
 
         }
 
         protected void btnBorrarCarrito_Click(object sender, EventArgs e)
         {
             Session["carrito"] = null;
-            cargarGridView();
+            CargarGridView();
+        }
+
+        public void CargarDropdowns()
+        {
+            DDLOrdenar.Items.Add("Organizar por");
+            DDLOrdenar.Items.Add("Cantidad ascendente");
+            DDLOrdenar.Items.Add("Cantidad descendente");
+            DDLOrdenar.Items.Add("Precio ascendente");
+            DDLOrdenar.Items.Add("Precio descendente");
+
+        }
+
+        public void DDLOrdenar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DDLOrdenar.SelectedIndex != 0)
+            { 
+                if (DDLOrdenar.SelectedIndex == 1)
+                    ListaCarrito =  ListaCarrito.OrderBy(x => x.Cantidad).ToList();
+                if (DDLOrdenar.SelectedIndex == 2)
+                    ListaCarrito = ListaCarrito.OrderByDescending(x => x.Cantidad).ToList();
+                if (DDLOrdenar.SelectedIndex == 3)
+                    ListaCarrito = ListaCarrito.OrderBy(x => x.Articulo.Precio).ToList();
+                if (DDLOrdenar.SelectedIndex == 4)
+                    ListaCarrito = ListaCarrito.OrderByDescending(x => x.Articulo.Precio).ToList();
+                Session["carrito"] = ListaCarrito;
+                dgvCarrito.DataBind();
+                CargarGridView();
+            }
+
+        }
+
+        protected void btnAplicar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
