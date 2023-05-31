@@ -11,13 +11,13 @@ using static System.Net.WebRequestMethods;
 using System.ComponentModel.Design;
 using tp3_equipo25.Layouts;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace tp3_equipo25
 {
     public partial class CarritoWeb : System.Web.UI.Page
     {
         public List<Carrito> ListaCarrito { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["carrito"] != null)
@@ -27,6 +27,8 @@ namespace tp3_equipo25
             }
             if (!IsPostBack)
             {
+                bool Usado = false;
+                Session.Add("Usado", Usado);
                 ResetearImagen2();
                 CargarDropdowns();
             }
@@ -258,9 +260,39 @@ namespace tp3_equipo25
 
         }
 
-        protected void btnAplicar_Click(object sender, EventArgs e)
-        {
+       protected void btnAplicar_Click(object sender, EventArgs e)
+            {
+                if ((bool)Session["Usado"] == false)
+                {
+                    if (txbxCupon.Text.ToUpper() == "KLOSTER")
+                    {
+                    AplicarCupon();
+                        Session["Usado"] = true;
+                        txbxCupon.Text = "Descuento aplicado!";
+                        txbxCupon.Enabled = false;
+                        btnCupon.Enabled = false;
 
+                    }
+                    else
+                    {
+                        txbxCupon.Text = "Cupón Inválido. Ingresá el código nuevamente";
+                    }
+                }
+                else
+                {
+                    txbxCupon.Text = "Sólo podés usar tu cupón una vez";
+                }
+            }
+
+            protected void AplicarCupon()
+            {
+                foreach (var carrito in ListaCarrito)
+                {
+                    carrito.Articulo.Precio -= Decimal.Multiply(carrito.Articulo.Precio, (decimal)0.10);
+                }
+
+                CargarGridView();
+            }
         }
-    }
+    
 }

@@ -89,8 +89,8 @@
             </div>
 
             <div class="cuponContenedor">
-                    <asp:TextBox runat="server" ID="TextBox1" CssClass="cuponIzq btnCarrito" type="text" placeholder="¿Tenés un cupón? ¡Ingresalo acá!" aria-label="Search" />
-                    <asp:Button runat="server" CssClass="cuponDer" OnClick="btnAplicar_Click" Text="Aplicar" />
+                    <asp:TextBox runat="server" ID="txbxCupon" CssClass="cuponIzq btnCarrito" type="text" placeholder="¿Tenés un cupón? ¡Ingresalo acá!" aria-label="Search" />
+                    <asp:Button runat="server" ID="btnCupon" CssClass="cuponDer" OnClick="btnAplicar_Click" Text="Aplicar" />
                 </div>
 
             <%-- Caja de botones bajo la GridView --%>
