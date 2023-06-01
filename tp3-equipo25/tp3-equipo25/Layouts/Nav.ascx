@@ -27,7 +27,7 @@
                 { %>
             <div class="d-flex me-3 mb-2 mb-lg-0" role="search">
                 <asp:TextBox runat="server" ID="lbSearch" CssClass="form-control me-2" Width="400px" type="text" placeholder="Buscar por producto, marcas, categoria..." aria-label="Search" />
-                <asp:Button runat="server" CssClass="btn btn-outline-primary" OnClick="BtnBusquedaRapida_Click" Text="Buscar" />
+                <asp:Button runat="server" CssClass="btn btn-primary btn-flat p-2" OnClick="BtnBusquedaRapida_Click" Text="Buscar" />
             </div>
             <%} %>
 

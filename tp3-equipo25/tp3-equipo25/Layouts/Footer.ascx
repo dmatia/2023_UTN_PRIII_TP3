@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Footer.ascx.cs" Inherits="tp3_equipo25.Layouts.Footer" %>
 
   <!-- Footer -->
-<div class="blockcode mt-3">
+<div class="blockcode mt-3" style="box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);>
   <footer class="page-footer shadow">
     <div
       class="d-flex flex-wrap justify-content-between align-items-center mx-auto py-4 container"
