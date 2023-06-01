@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);">
     <div class="container container-fluid">
-        <a class="navbar-brand" href="Default.aspx">Store</a>
+        <a class="navbar-brand d-flex align-items-center" href="Default.aspx"><i class="fa-solid fa-store fs-3 me-2 pe-2 border-2 border-end border-dark"></i><span><span class="fs-4 me-1">Grupo</span><span class="fs-4 fw-bold" >25</span></span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
