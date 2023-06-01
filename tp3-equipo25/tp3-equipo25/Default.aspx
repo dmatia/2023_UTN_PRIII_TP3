@@ -107,9 +107,9 @@
                 <ItemTemplate>
                     <div class="col-6 mt-4">
                         <%--Card--%>
-                        <div class="card" style="width: 18rem;padding:10px;">
+                        <div class="card" style="width: 18rem; height:100%; padding:10px;">
 
-                               <div style=" display:flex; height:200px; justify-content: center; align-items:center;">      
+                               <div style="display:flex; justify-content: center; align-items:center;height:100%; ">      
                             <img src='<%#Eval("Imagenes[0].UrlImagen")%>' cssclass="card-img-top img-fluid content-object-cover" style="border-radius: 10px; width: 200px;" alt="imagen" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
                             
                                </div>
