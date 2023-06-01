@@ -12,12 +12,12 @@
         <div class="col-3">
         
        
-       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="display:flex; justify-content:center;align-items:center; height:101%; width:99%; position:relative; z-index: 1;" Cssclass="btn btn-outline-primary" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i>&nbsp;Búsqueda Avanzada</asp:LinkButton>
+       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="display:flex; justify-content:center;align-items:center; height:101%; width:99%; position:relative; z-index: 1; margin-bottom:20px;" Cssclass="btn btn-outline-primary" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i>&nbsp;Búsqueda Avanzada</asp:LinkButton>
             </div>
   
       <div class="col-5">
 
-         <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control form-control-lg" placeholder="Ingresa lo que estas buscando" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
+         <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control form-control-lg" placeholder="Ingresa lo que estas buscando" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true" style="height:101%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
        
     </div>
     <div class="col-1">
@@ -36,8 +36,9 @@
   <% if (CheckbusquedaAvanzada()) { %>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="d-flex flex-column" style="height: 100%;">
-                <div style="background-color: #c2d6df; border-radius: 10px;padding: 20px;position:relative; z-index: 0;">
+            <div class="d-flex flex-column" style="height: 100%;margin-left:4px">
+                <div style="background-color: #c2d6df; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;padding: 20px;padding-top:29px;position:relative; z-index: 0;">
+                      
                     <!-- Resto del código -->
                     <div class="row" style="margin-bottom: 20px;">
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
