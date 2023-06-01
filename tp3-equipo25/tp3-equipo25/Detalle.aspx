@@ -13,39 +13,34 @@
         <div class="row row-cols-md-3 row-cols-1 w-75">
 
             <%--Carousel--%>
-            <div id="carouselExampleIndicators row row-cols-3" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
 
-                    <%@ Import Namespace="Dominio" %>
-                    <% foreach (Imagen img in articulo.Imagenes)
+                    <% foreach (Dominio.Imagen img in articulo.Imagenes)
                         {%>
                     <div class="carousel-item active rounded border p-1">
                         <img class="d-block w-100 rounded" src="<%= img.UrlImagen%>">
                     </div>
                     <%} %>
+
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <%--Carousel--%>
+        <%--Carousel--%>
 
 
             <%-- Detalle --%>
-            <div class=" ">
+            <div>
                 <div class="d-flex text-secondary fw-light flex-wrap">
                     <p class="me-1">Nuevo | </p>
-                    <p class="me-1"><%= articulo.Categoria%></p>
+                    <p class="me-1"> <%= articulo.Categoria%> </p>
                     <p class="me-1">> </p>
                     <p><%= articulo.Marca%></p>
                 </div>
@@ -86,7 +81,7 @@
 
                     <p class="fs-5 fw-semibold">Medios de Pago</p>
 
-                    <h6´class="fw-light">Pago Electrónico</h6´class="fw-light">
+                    <h6 class="fw-light">Pago Electrónico</h6>
                     <div class="d-flex gap-1 fs-2 text-muted">
                         <i class="fa-brands fa-cc-stripe"></i>
                         <i class="fa-brands fa-cc-paypal"></i>
@@ -95,7 +90,7 @@
                     </div>
 
                     <h6 class="fw-light">Tarjetas de Crédito</h6>
-                    <div class ="d-flex gap-1 fs-2 text-muted">
+                    <div class="d-flex gap-1 fs-2 text-muted">
                         <i class="fa-brands fa-cc-mastercard"></i>
                         <i class="fa-brands fa-cc-visa"></i>
                         <i class="fa-brands fa-cc-jcb"></i>
@@ -126,21 +121,21 @@
             <asp:Repeater ID="repeaterArticulosRelacionados" runat="server">
                 <ItemTemplate>
                     <%-- Cards --%>
-                    <div class="card rounded shadow-sm" style="width: 15rem; height:contain">
+                    <div class="card rounded shadow-sm" style="width: 15rem; height: contain">
                         <div class="w-100 h-50">
                             <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover w-100 h-100">
                         </div>
-                        <div class="card-body" style="height:100px">
+                        <div class="card-body" style="height: 100px">
                             <p class="fs-4 fw-light"><%# String.Format("{0:C}", Eval("Precio"))%></p>
                             <h5 class="card-title"><%# Eval("Nombre") %></h5>
                             <p class="card-text"><%#  Eval("Descripcion") %></p>
                             <asp:Button Text="Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
                         </div>
                     </div>
-                <%-- Cards --%>
+                    <%-- Cards --%>
                 </ItemTemplate>
             </asp:Repeater>
-            </div>
         </div>
+    </div>
 </asp:Content>
 <%--Fin Main--%>
