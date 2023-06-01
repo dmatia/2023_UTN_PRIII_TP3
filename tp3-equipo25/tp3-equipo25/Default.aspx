@@ -26,7 +26,7 @@
     </div>
         
     <div class="col-3" style="justify-content:stretch">
-        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" style="width:101%; height:101%;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" >  </asp:DropDownList>
+        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" style="width:101%; height:100%;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" >  </asp:DropDownList>
                
     </div>
 
