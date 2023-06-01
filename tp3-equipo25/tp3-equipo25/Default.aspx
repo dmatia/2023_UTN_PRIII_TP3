@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="d-flex flex-column" style="height: 100%;margin-left:4px">
-                <div style="background-color: #c2d6df; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;padding: 20px;padding-top:29px;position:relative; z-index: 0;">
+                <div style="background-color: #c2d6df; border-radius:10px; padding: 20px; margin-top:22px;position:relative; z-index: 0;">
                       
                     <!-- Resto del código -->
                     <div class="row" style="margin-bottom: 20px;">
