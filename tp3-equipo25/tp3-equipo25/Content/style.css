@@ -146,15 +146,6 @@ footer{
 
 
 
-.TxtBusqueda {
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(128, 0, 0, 0.3); /* Sombra con color burdeos */
-    padding: 8px;
-    border-color: #ccc; /* Color de borde predeterminado */
-}
-
-
-
 .form-check-label {
     align-self: flex-start;
     margin-top: 5px;

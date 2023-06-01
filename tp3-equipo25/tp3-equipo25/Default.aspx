@@ -9,27 +9,27 @@
        
 <div class="row">
 
-        <div class="col-3" style="justify-content:center;">
+        <div class="col-3">
         
        
-       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="width:99%; position:relative; z-index: 1;" Cssclass="btn btn-secondary btm-lg" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i> Búsqueda Avanzada</asp:LinkButton>
+       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="display:flex; justify-content:center;align-items:center; height:101%; width:99%; position:relative; z-index: 1;" Cssclass="btn btn-primary" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i>&nbsp;Búsqueda Avanzada</asp:LinkButton>
             </div>
   
       <div class="col-5">
 
-         <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control" placeholder="Ingresa una búsqueda rápida" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true"></asp:TextBox>
-          
+         <asp:TextBox ID="TxtBusquedaRapida" type="text" CssClass="form-control form-control-lg" placeholder="Ingresa lo que estas buscando" runat="server" OnTextChanged="TxtBusquedaRapida_TextChanged" AutoPostBack="true" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
+       
     </div>
     <div class="col-1">
-
-        <asp:LinkButton  ID="BtnBusquedaRapida" CssClass="btn btn-primary" runat="server"  OnClick="BtnBusquedaRapida_Click" style="display:flex; justify-content:center;"> <i class="fa-solid fa-magnifying-glass"></i> </asp:LinkButton>
+         
+        <asp:LinkButton  ID="BtnBusquedaRapida" CssClass="btn btn-primary btm-lg"  runat="server"  OnClick="BtnBusquedaRapida_Click" style=" display:flex; justify-content:center; align-items:center; height:101%"> <i class="fa-solid fa-magnifying-glass"></i> </asp:LinkButton>
     </div>
         
     <div class="col-3" style="justify-content:stretch">
-        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" >  </asp:DropDownList>
+        <asp:DropDownList ID="DDLOrdenar" CssClass="form-control"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" style="width:101%; height:101%;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" >  </asp:DropDownList>
                
     </div>
-      
+
                 
     
 
@@ -37,13 +37,13 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="d-flex flex-column" style="height: 100%;">
-                <div style="background-color: #c0c0c0; border-radius: 10px;padding: 20px;padding-top:40px; margin-top:-25px;position:relative; z-index: 0;">
+                <div style="background-color: #accad2; border-radius: 10px;padding: 20px;position:relative; z-index: 0;">
                     <!-- Resto del código -->
                     <div class="row" style="margin-bottom: 20px;">
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
                         <div class="col">
                           <asp:Panel runat="server" DefaultButton="BtnBusqueda">
-                            <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" runat="server"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" placeholder="Ingresa tu busqueda..." style="height:101%" runat="server"></asp:TextBox>
                            </asp:Panel>
                       
                         </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-4">
                         
-                            <asp:Button CssClass="form-control btn btn-secondary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
+                            <asp:Button CssClass="form-control btn btn-primary btn-sm" ID="BtnBusqueda" runat="server" Text="Buscar" OnClick="BtnBusqueda_Click" Autopostback="true" />
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 5px;">

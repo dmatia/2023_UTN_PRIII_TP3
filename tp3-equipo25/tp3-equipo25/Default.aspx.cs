@@ -57,21 +57,24 @@ namespace tp3_equipo25
 
 		public List<Articulo> OrdenarLista(List<Articulo> listafiltrada, string SeleccionDDL)
 		{
-
-			List<Articulo> Listaordenada = new List<Articulo>();
-			if (SeleccionDDL == "Nombre ascendente")
+            DDLOrdenar.Items.Add("");
+            DDLOrdenar.Items.Add("");
+            DDLOrdenar.Items.Add("");
+            DDLOrdenar.Items.Add("");
+            List<Articulo> Listaordenada = new List<Articulo>();
+			if (SeleccionDDL == "Nombre < A - Z >")
 			{
 				return Listaordenada = listafiltrada.OrderBy(x => x.Nombre).ToList();
 			}
-			if (SeleccionDDL == "Nombre descendente")
+			if (SeleccionDDL == "Nombre < Z - A >")
 			{
 				return Listaordenada = listafiltrada.OrderByDescending(x => x.Nombre).ToList();
 			}
-			if (SeleccionDDL == "Precio ascendente")
+			if (SeleccionDDL == "Mayor Precio")
 			{
 				return Listaordenada = listafiltrada.OrderBy(x => x.Precio).ToList();
 			}
-			if (SeleccionDDL == "Precio descendente")
+			if (SeleccionDDL == "Menor Precio")
 			{
 				return Listaordenada = listafiltrada.OrderByDescending(x => x.Precio).ToList();
 			}
@@ -101,10 +104,10 @@ namespace tp3_equipo25
 			}
 
 			DDLOrdenar.Items.Add("Organizar por");
-			DDLOrdenar.Items.Add("Nombre ascendente");
-			DDLOrdenar.Items.Add("Nombre descendente");
-			DDLOrdenar.Items.Add("Precio ascendente");
-			DDLOrdenar.Items.Add("Precio descendente");
+			DDLOrdenar.Items.Add("Nombre < A - Z >");
+			DDLOrdenar.Items.Add("Nombre < Z - A >");
+			DDLOrdenar.Items.Add("Mayor Precio");
+			DDLOrdenar.Items.Add("Menor Precio");
 
 		}
 
@@ -114,86 +117,90 @@ namespace tp3_equipo25
 		}
 
 
+		public void BusquedaAvanzada()
+		{
+            List<Articulo> Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
+            bool Camposnovacios = false;
 
+            if (DdlCategoria.SelectedIndex > 0)
+            {
+                Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
+                Camposnovacios = true;
+            }
+            if (DdlMarca.SelectedIndex > 0)
+            {
+                Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
+                Camposnovacios = true;
+            }
+
+            if (TxtBusqueda.Text.Length > 0)
+            {
+                if (ChkCheckDescripcion.Checked)
+                {
+                    Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
+                }
+                else
+                {
+                    Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
+                }
+                Camposnovacios = true;
+            }
+
+            if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
+            {
+                decimal precioMaximo;
+                decimal precioMinimo;
+                if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
+                {
+                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo || x.Precio > precioMaximo);
+                    Camposnovacios = true;
+                }
+            }
+            else if (TxtPreciomax.Text != string.Empty)
+            {
+                decimal precioMaximo;
+                if (decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
+                {
+                    Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
+                    Camposnovacios = true;
+                }
+            }
+            else if (TxtPreciomin.Text != string.Empty)
+            {
+                decimal precioMinimo;
+                if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
+                {
+                    Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
+                    Camposnovacios = true;
+                }
+            }
+
+            if (!Camposnovacios)
+            {
+
+                Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
+
+            }
+            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
+            Session.Add("ListafiltradaDefault", Listafiltrada);
+            RepCards.DataBind();
+
+
+        }
 
 
         public void Tipodebusqueda()
 		{
 			TxtBusquedaRapida.Enabled = !CheckbusquedaAvanzada();
-			BtnBusquedaRapida.Enabled = !CheckbusquedaAvanzada();	
-            TxtBusquedaRapida.Visible = !CheckbusquedaAvanzada();	
-            BtnBusquedaRapida.Visible = !CheckbusquedaAvanzada();
-            if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty;
+		    if (CheckbusquedaAvanzada()) TxtBusquedaRapida.Attributes["placeholder"] = string.Empty;
 		}
 
 		protected void BtnBusqueda_Click(object sender, EventArgs e)
 		{
-			List<Articulo> Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
-			bool Camposnovacios = false;
+			BusquedaAvanzada();
+      
 
-			if (DdlCategoria.SelectedIndex > 0)
-			{
-				Listafiltrada.RemoveAll(x => !x.Categoria.Descripcion.ToUpper().Contains(DdlCategoria.SelectedItem.ToString().ToUpper()));
-				Camposnovacios = true;
-			}
-			if (DdlMarca.SelectedIndex > 0)
-			{
-				Listafiltrada.RemoveAll(x => !x.Marca.Descripcion.ToUpper().Contains(DdlMarca.SelectedItem.ToString().ToUpper()));
-				Camposnovacios = true;
-			}
-
-			if (TxtBusqueda.Text.Length > 0)
-			{
-				if (ChkCheckDescripcion.Checked)
-				{
-					Listafiltrada.RemoveAll(x => !(x.Descripcion.ToUpper().Contains(TxtBusqueda.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper())));
-				}
-				else
-				{
-					Listafiltrada.RemoveAll(x => !x.Nombre.ToUpper().Contains(TxtBusqueda.Text.ToUpper()));
-				}
-				Camposnovacios = true;
-			}
-
-			if (TxtPreciomin.Text != string.Empty && TxtPreciomax.Text != string.Empty)
-			{
-				decimal precioMaximo;
-				decimal precioMinimo;
-				if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo) && decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
-				{
-					Listafiltrada.RemoveAll(x => x.Precio < precioMinimo || x.Precio > precioMaximo);
-					Camposnovacios = true;
-				}
-			}
-			else if (TxtPreciomax.Text != string.Empty)
-			{
-				decimal precioMaximo;
-				if (decimal.TryParse(TxtPreciomax.Text, out precioMaximo))
-				{
-					Listafiltrada.RemoveAll(x => x.Precio > precioMaximo);
-					Camposnovacios = true;
-				}
-			}
-			else if (TxtPreciomin.Text != string.Empty)
-			{
-				decimal precioMinimo;
-				if (decimal.TryParse(TxtPreciomin.Text, out precioMinimo))
-				{
-					Listafiltrada.RemoveAll(x => x.Precio < precioMinimo);
-					Camposnovacios = true;
-				}
-			}
-
-			if (!Camposnovacios)
-			{
-
-				Listafiltrada = new List<Articulo>((List<Articulo>)Session["ListaArticulos"]);
-
-			}
-			RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
-			Session.Add("ListafiltradaDefault", Listafiltrada);
-			RepCards.DataBind();
-		}
+        }
 
 
 
@@ -260,8 +267,14 @@ namespace tp3_equipo25
 
         protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
         {
-            // Listafiltrada = new List<Articulo>();
+			// Listafiltrada = new List<Articulo>();
 
+			if (CheckbusquedaAvanzada())
+			{
+				BusquedaAvanzada();
+
+			}
+			else { 
             if (TxtBusquedaRapida.Text.Count() > 0)
             {
                 Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
@@ -277,6 +290,7 @@ namespace tp3_equipo25
             RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
             Session.Add("ListafiltradaDefault", Listafiltrada);
             RepCards.DataBind();
+            }
         }
     }
 }
