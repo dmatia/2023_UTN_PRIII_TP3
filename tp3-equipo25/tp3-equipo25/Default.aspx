@@ -12,7 +12,7 @@
         <div class="col-3">
         
        
-       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="display:flex; justify-content:center;align-items:center; height:101%; width:99%; position:relative; z-index: 1;" Cssclass="btn btn-primary" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i>&nbsp;Búsqueda Avanzada</asp:LinkButton>
+       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="display:flex; justify-content:center;align-items:center; height:101%; width:99%; position:relative; z-index: 1;" Cssclass="btn btn-outline-primary" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i>&nbsp;Búsqueda Avanzada</asp:LinkButton>
             </div>
   
       <div class="col-5">
@@ -43,7 +43,7 @@
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
                         <div class="col">
                           <asp:Panel runat="server" DefaultButton="BtnBusqueda">
-                            <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" placeholder="Ingresa tu busqueda..." style="height:101%" runat="server"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control TxtBusqueda" ID="TxtBusqueda" placeholder="Ingresa tu busqueda..." style="height:101%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" runat="server" ></asp:TextBox>
                            </asp:Panel>
                       
                         </div>
