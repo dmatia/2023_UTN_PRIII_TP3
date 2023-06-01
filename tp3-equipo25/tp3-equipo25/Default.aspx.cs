@@ -113,25 +113,6 @@ namespace tp3_equipo25
 			return (bool)Session["BusquedaAvanzada"];
 		}
 
-       public void BtnBusquedaAvanzada_Click(object sender, EventArgs e)
-        {
-
-            if ((bool)Session["BusquedaAvanzada"])
-            {
-                bool aux = false;
-                Session.Add("BusquedaAvanzada", aux);
-                Tipodebusqueda();
-            }
-            else
-            {
-                bool aux = true;
-                Session.Add("BusquedaAvanzada", aux);
-                Tipodebusqueda();
-            }
-           
-
-
-        }
 
 
 
@@ -238,27 +219,7 @@ namespace tp3_equipo25
 			RepCards.DataBind();
 		}
 
-		protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
-		{
-			// Listafiltrada = new List<Articulo>();
-
-			if (TxtBusquedaRapida.Text.Count() > 0)
-			{
-				Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
-
-			}
-			else
-			{
-
-				Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
-
-			}
-
-			RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
-			Session.Add("ListafiltradaDefault", Listafiltrada);
-			RepCards.DataBind();
-		}
-
+	
 		public void DDLOrdenar_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (DDLOrdenar.SelectedIndex != 0)
@@ -280,6 +241,42 @@ namespace tp3_equipo25
 
 		}
 
-       
+             public void BtnBusquedaAvanzada_Click(object sender, EventArgs e)
+        {
+            if ((bool)Session["BusquedaAvanzada"])
+            {
+                bool aux = false;
+                Session.Add("BusquedaAvanzada", aux);
+                Tipodebusqueda();
+            }
+            else
+            {
+                bool aux = true;
+                Session.Add("BusquedaAvanzada", aux);
+                Tipodebusqueda();
+            }
+
+        }
+
+        protected void BtnBusquedaRapida_Click(object sender, EventArgs e)
+        {
+            // Listafiltrada = new List<Articulo>();
+
+            if (TxtBusquedaRapida.Text.Count() > 0)
+            {
+                Listafiltrada = ((List<Articulo>)Session["ListaArticulos"]).FindAll(x => x.Descripcion.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()) || x.Nombre.ToUpper().Contains(TxtBusquedaRapida.Text.ToUpper()));
+
+            }
+            else
+            {
+
+                Listafiltrada = (List<Articulo>)Session["ListaArticulos"];
+
+            }
+
+            RepCards.DataSource = OrdenarLista(Listafiltrada, DDLOrdenar.SelectedItem.ToString());
+            Session.Add("ListafiltradaDefault", Listafiltrada);
+            RepCards.DataBind();
+        }
     }
 }

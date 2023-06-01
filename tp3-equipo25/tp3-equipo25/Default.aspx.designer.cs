@@ -21,7 +21,7 @@ namespace tp3_equipo25
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBusquedaAvanzada;
+        protected global::System.Web.UI.WebControls.LinkButton BtnBusquedaAvanzada;
 
         /// <summary>
         /// Control TxtBusquedaRapida.
@@ -39,7 +39,7 @@ namespace tp3_equipo25
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBusquedaRapida;
+        protected global::System.Web.UI.WebControls.LinkButton BtnBusquedaRapida;
 
         /// <summary>
         /// Control DDLOrdenar.

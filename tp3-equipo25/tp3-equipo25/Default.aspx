@@ -11,8 +11,8 @@
 
         <div class="col-3" style="justify-content:center;">
         
-       <asp:Button ID="BtnBusquedaAvanzada" runat="server" style="width:99%; position:relative; z-index: 1;" Cssclass="btn btn-secondary btm-lg" Text="Búsqueda Avanzada" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"/>
        
+       <asp:LinkButton ID="BtnBusquedaAvanzada" runat="server" style="width:99%; position:relative; z-index: 1;" Cssclass="btn btn-secondary btm-lg" AutoPostback="true" OnClick="BtnBusquedaAvanzada_Click"><i class="fa-solid fa-sliders"></i> Búsqueda Avanzada</asp:LinkButton>
             </div>
   
       <div class="col-5">
@@ -21,7 +21,8 @@
           
     </div>
     <div class="col-1">
-           <asp:Button ID="BtnBusquedaRapida" CssClass="form-control" runat="server" Text="Buscar Ya!" OnClick="BtnBusquedaRapida_Click"/>
+
+        <asp:LinkButton  ID="BtnBusquedaRapida" CssClass="btn btn-primary" runat="server"  OnClick="BtnBusquedaRapida_Click" style="display:flex; justify-content:center;"> <i class="fa-solid fa-magnifying-glass"></i> </asp:LinkButton>
     </div>
         
     <div class="col-3" style="justify-content:stretch">
@@ -104,8 +105,12 @@
                 <ItemTemplate>
                     <div class="col-6 mt-4">
                         <%--Card--%>
-                        <div class="card" style="width: 18rem;padding:10px">
-                            <img src="<%#Eval("Imagenes[0].UrlImagen")%>" cssclass="card-img-top img-fluid content-object-cover" style="width: 200px; align-self:center; border-radius: 10px;" alt="imagen" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
+                        <div class="card" style="width: 18rem;padding:10px;">
+
+                               <div style=" display:flex; height:200px; justify-content: center; align-items:center;">      
+                            <img src='<%#Eval("Imagenes[0].UrlImagen")%>' cssclass="card-img-top img-fluid content-object-cover" style="border-radius: 10px; width: 200px;" alt="imagen" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'">
+                            
+                               </div>
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Nombre")%></h5>
                                 <h5 class="card-title"><%# String.Format(new System.Globalization.CultureInfo("es-AR"), "{0:C}", Eval("Precio")) %></h5>
