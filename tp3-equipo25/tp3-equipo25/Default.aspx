@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="d-flex flex-column" style="height: 100%;">
-                <div style="background-color: #accad2; border-radius: 10px;padding: 20px;position:relative; z-index: 0;">
+                <div style="background-color: #c2d6df; border-radius: 10px;padding: 20px;position:relative; z-index: 0;">
                     <!-- Resto del código -->
                     <div class="row" style="margin-bottom: 20px;">
                         <!-- Primera fila: TextBox ocupando todo el ancho -->
@@ -49,6 +49,7 @@
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
+                        
                         <!-- Segunda fila: TextBox de incluir descripción y botón de búsqueda -->
                         <div class="col" style="justify-content:flex-start; align-items:center">
                             <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text="Incluir descripción" runat="server" />
@@ -67,22 +68,22 @@
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col-6">
                             <asp:Label Text="Minimo" runat="server"></asp:Label>
-                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomin" runat="server" Text="Minimo"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomin" runat="server" Text="Minimo" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
                         </div>
                         <div class="col-6">
                             <asp:Label Text="Máximo" runat="server"></asp:Label>
-                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" Text="Maximo"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" Text="Maximo" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col">
-                            <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" ></asp:DropDownList>
                         </div>
                     </div>
                 
                 <div class="row">
                     <div class="col">
-                        <asp:DropDownList ID="DdlCategoria" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="DdlCategoria" CssClass="form-control" runat="server" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:DropDownList>
                     </div>
                 </div>
             </div>

@@ -141,16 +141,10 @@ footer{
 
 .card:hover {
     transform: scale(1.01);
-    box-shadow: 0 0 70px -10px rgba(192, 192, 192, 0.7);
+    box-shadow: 0 0 70px 10px rgba(192, 192, 192, 0.7);
 }
 
 
-
-.form-check-label {
-    align-self: flex-start;
-    margin-top: 5px;
-    box-shadow: 0 0 70px -10px rgba(192, 192, 192, 0.7);
-}
 
 .form-check-input {
     margin-top: 7px;
