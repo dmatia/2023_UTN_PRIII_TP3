@@ -19,8 +19,8 @@
 
                         <% foreach (Dominio.Imagen img in articulo.Imagenes)
                             {%>
-                        <div class="carousel-item active rounded border p-1">
-                            <img class="d-block w-100 rounded" src="<%= img.UrlImagen%>">
+                        <div class="carousel-item active rounded border p-1 mh-100" style="height: 300px">
+                            <img class="d-block w-100 h-100 object-fit-cover rounded" src="<%= img.UrlImagen%>" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
                         </div>
                         <%} %>
                     </div>
@@ -126,8 +126,8 @@
                 <ItemTemplate>
                     <%-- Cards Relacionados --%>
                     <div>
-                        <div class="card rounded shadow-sm" style="width: 15rem; height: auto">
-                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover h-25 p-0">
+                        <div class="card rounded shadow-sm" style="width: 15rem; height: 350px">
+                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover h-50 p-0" style="height: 200px;" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
                             <div class="card-body">
                                 <p class="fs-4 fw-light"><%# String.Format("{0:C}", Eval("Precio"))%></p>
                                 <h5 class="card-title"><%# Eval("Nombre") %></h5>
