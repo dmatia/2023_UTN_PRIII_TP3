@@ -76,12 +76,14 @@
                     </div>
                     <div class="row" style="margin-bottom: 20px;">
                         <div class="col">
+                            <asp:Label Text="Marca:" runat="server"></asp:Label>
                             <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" ></asp:DropDownList>
                         </div>
                     </div>
                 
                 <div class="row">
                     <div class="col">
+                        <asp:Label Text="Categoria:" runat="server"></asp:Label>
                         <asp:DropDownList ID="DdlCategoria" CssClass="form-control" runat="server" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:DropDownList>
                     </div>
                 </div>
@@ -103,7 +105,7 @@
             <%--Repeater--%>
             <asp:Repeater ID="RepCards" runat="server">
                 <ItemTemplate>
-                <div class="col-md-<% if (CheckbusquedaAvanzada()) { %>4<% } else { %>12><% } %> mt-4">
+                <div class="col-md-<% if (CheckbusquedaAvanzada()) { %>3<% } else { %>12><% } %> mt-4">
 
                         <%--Card--%>
                         <div class="card" style="width: 18rem; height:100%; padding:10px;">
