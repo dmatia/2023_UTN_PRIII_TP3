@@ -105,7 +105,7 @@
             <%--Repeater--%>
             <asp:Repeater ID="RepCards" runat="server">
                 <ItemTemplate>
-                <div class="col-md-<% if (CheckbusquedaAvanzada()) { %>3<% } else { %>12><% } %> mt-4">
+                <div class="col-md-<% if (CheckbusquedaAvanzada()) { %>4<% } else { %>12><% } %> mt-4">
 
                         <%--Card--%>
                         <div class="card" style="width: 18rem; height:100%; padding:10px;">
