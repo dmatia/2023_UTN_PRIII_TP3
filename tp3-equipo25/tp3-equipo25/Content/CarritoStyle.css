@@ -1,0 +1,32 @@
+﻿
+@media only screen and (max-width: 900px) {
+    * {
+        font-size: 1rem;
+    }
+
+    .contenedorMobile {
+        width: 90vw;
+    }
+
+    .CarritoWeb_dtb_detalle {
+        width: auto;
+    }
+
+    .contenedor2 {
+        display: none;
+    }
+
+    .table-responsive {
+        width: 100%;
+    }
+
+    .dgvMobile {
+        max-width: 100%;
+        width: auto;
+    }
+
+        .dgvMobile th,
+        .dgvMobile td {
+            white-space: nowrap;
+        }
+}

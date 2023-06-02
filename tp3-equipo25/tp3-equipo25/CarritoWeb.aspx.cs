@@ -119,7 +119,7 @@ namespace tp3_equipo25
             }
 
             totalCarrito.Text = "TOTAL: " + string.Format("{0:C}", Convert.ToDecimal(total));
-            totalCarrito.Attributes.Add("style", "font-family: 'Bebas-Neue', sans-serif; text-align: right; background-color:#7FB3D5; font-weight: bold; font-size: 1.2rem");
+            totalCarrito.Attributes.Add("style", "font-family: 'Bebas-Neue', sans-serif; text-align: right; background-color:#7FB3D5; font-weight: bold;");
             gv.Cells.Add(totalCarrito);
             this.dgvCarrito.Controls[0].Controls.AddAt(dgvCarrito.Rows.Count + 1, gv);
         }

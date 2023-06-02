@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CarritoWeb.aspx" />
+    <Content Include="Content\CarritoStyle.css" />
     <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Detalle.aspx" />
