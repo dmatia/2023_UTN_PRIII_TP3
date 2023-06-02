@@ -12,12 +12,14 @@ using System.ComponentModel.Design;
 using tp3_equipo25.Layouts;
 using System.Configuration;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace tp3_equipo25
 {
     public partial class CarritoWeb : System.Web.UI.Page
     {
         public List<Carrito> ListaCarrito { get; set; }
+        bool Usado;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["carrito"] != null)
@@ -27,11 +29,12 @@ namespace tp3_equipo25
             }
             if (!IsPostBack)
             {
-                bool Usado = false;
-                Session.Add("Usado", Usado);
                 ResetearImagen2();
                 CargarDropdowns();
             }
+            Cuponera();
+
+            
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -229,6 +232,7 @@ namespace tp3_equipo25
         {
             Session["carrito"] = null;
             CargarGridView();
+            Session["Usado"] = null;
         }
 
         public void CargarDropdowns()
@@ -262,25 +266,20 @@ namespace tp3_equipo25
 
        protected void btnAplicar_Click(object sender, EventArgs e)
             {
-                if ((bool)Session["Usado"] == false)
+                if (Usado == false)
                 {
                     if (txbxCupon.Text.ToUpper() == "KLOSTER")
                     {
                     AplicarCupon();
-                        Session["Usado"] = true;
-                        txbxCupon.Text = "Descuento aplicado!";
-                        txbxCupon.Enabled = false;
-                        btnCupon.Enabled = false;
-
-                    }
+                    Usado = true;
+                    Session.Add("Usado", Usado);
+                    Cuponera();
+                    txbxCupon.Text = "Descuento aplicado!";
+                }
                     else
                     {
-                        txbxCupon.Text = "Cupón Inválido. Ingresá el código nuevamente";
+                        txbxCupon.Text = "Cupón Inválido. Ingresá el código nuevamente.";
                     }
-                }
-                else
-                {
-                    txbxCupon.Text = "Sólo podés usar tu cupón una vez";
                 }
             }
 
@@ -293,6 +292,20 @@ namespace tp3_equipo25
 
                 CargarGridView();
             }
+
+        protected void Cuponera()
+        {
+            if (Session["Usado"] == null)
+                Usado = false;
+            else if ((bool)Session["Usado"] == true)
+            {
+                txbxCupon.Text = "Tu carrito tiene un descuento aplicado ;)";
+                txbxCupon.Enabled = false;
+                btnCupon.Enabled = false;
+                btnCupon.BackColor = Color.Gray;
+            }
+        }
+
         }
     
 }

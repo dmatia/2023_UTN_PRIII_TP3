@@ -25,8 +25,8 @@
             <div class="contenedorGV">
 
             <asp:GridView ID="dgvCarrito" runat="server" CssClass="table" DataKeyNames=""
-                AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound" ClientIDMode="AutoID">
-                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle"  cssClass="celda"/>
+                AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound" ClientIDMode="AutoID" >
+                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" cssClass="celda"/>
                 <HeaderStyle HorizontalAlign="Center" BackColor="WHITE" cssClass="celda" />
 
                 <Columns>
@@ -103,8 +103,8 @@
             <%-- Caja de botones bajo la GridView --%>
             <div class="botonera">
                     <asp:Button ID="btnBorrarCarrito" runat="server" CssClass="btn btn-danger btnCarrito" Text="🗑" OnClick="btnBorrarCarrito_Click" />
-                    <a href="Default.aspx" class="btn btn-primary btn-lg btnCarrito ">GUARDAR</a>
-                    <a href="OrdenCompra.aspx" class="btn btn-primary btn-lg">HACER CHECK OUT</a>
+                    <a href="Default.aspx" class="btn btn-primary btnCarrito ">Guardar</a>
+                    <a href="OrdenCompra.aspx" class="btn btn-primary">Check out</a>
             </div>
 
         </div>
