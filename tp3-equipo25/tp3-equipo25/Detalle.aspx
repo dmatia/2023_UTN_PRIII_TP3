@@ -33,7 +33,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        <%--Carousel--%>
+        <%-- Fin Carousel--%>
 
 
             <%-- Detalle --%>
@@ -54,7 +54,7 @@
                 <p class="fw-semibold small mt-3">Lo que tenés que saber de este producto</p>
                 <p class="fs-6 text-muted"><%= articulo.Descripcion%></p>
             </div>
-            <%-- Detalle --%>
+            <%-- Fin Detalle --%>
 
             <%-- Button --%>
             <div>
@@ -100,9 +100,10 @@
 
                 </div>
             </div>
-            <%-- Button --%>
+            <%-- Fin Button --%>
         </div>
 
+         <%-- No hay articulos --%>
         <%}
             else
             {%>
@@ -111,31 +112,34 @@
 
         <%}%>
     </div>
+     <%-- Fin No hay articulos --%>
 
+    <!-- Articulos Relacionados -->
     <div class="my-3">
         <h5 class="text-muted">También te puede interesar</h5>
     </div>
 
-    <div class="bg-body shadow-sm hover-shadow p-3 rounded ">
-        <div class="d-flex flex-row gap-3">
+    <div class="bg-body shadow-sm hover-shadow p-3 rounded w-100" style="height: auto">
+        <div class=" d-flex gap-3 flex-sm-row flex-column justify-content-center justify-content-lg-start w-100">
             <asp:Repeater ID="repeaterArticulosRelacionados" runat="server">
                 <ItemTemplate>
-                    <%-- Cards --%>
-                    <div class="card rounded shadow-sm" style="width: 15rem; height: contain">
-                        <div class="w-100 h-50">
-                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover w-100 h-100">
+                    <%-- Cards Relacionados --%>
+                    <div class="card rounded shadow-sm" style="width: 15rem; height:auto">
+                        <div class="">
+                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class=" w-100">
                         </div>
-                        <div class="card-body" style="height: 100px">
+                        <div class="card-body">
                             <p class="fs-4 fw-light"><%# String.Format("{0:C}", Eval("Precio"))%></p>
                             <h5 class="card-title"><%# Eval("Nombre") %></h5>
                             <p class="card-text"><%#  Eval("Descripcion") %></p>
                             <asp:Button Text="Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
                         </div>
                     </div>
-                    <%-- Cards --%>
+                    <%-- Cards Relacionados --%>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
     </div>
+    <!-- Fin Articulos Relacionados -->
 </asp:Content>
 <%--Fin Main--%>
