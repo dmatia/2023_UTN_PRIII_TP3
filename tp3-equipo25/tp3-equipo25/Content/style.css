@@ -24,17 +24,23 @@
     border-radius: 10px;
     border: none;
 }
+
+
+
+
 .cuponDer {
-    padding: .5rem;
-    border-radius: 10px;
-    border: none;
-    background-color: #ff7d00;
     color: #fff;
-    transition: .5s;
+    background-color: #ff7d00;
+    border-radius: 5px;
+    border: none;
 }
-.cuponDer:hover{
-    font-weight: bold;
-}
+
+    .cuponDer:hover {
+        background-color: #ed7400;
+    }
+
+
+
 
 .botonera {
     display: flex;
