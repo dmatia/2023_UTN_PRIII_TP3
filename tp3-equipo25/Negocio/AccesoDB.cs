@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Net.Sockets;
+using System.Web.Configuration;
 
 namespace Negocio
 {
@@ -10,14 +12,18 @@ namespace Negocio
 		private SqlDataReader reader;
 
 		// Datos de la Base
-		 string serverName = "localhost\\";
-		//string serverName = "localhost\\SQLLAB";
-		//string serverName = "localhost\\SQLEXPRESS";
+		// string serverName = "localhost\\";
+		// string serverName = "localhost\\SQLLAB";
+		string serverName = "localhost\\SQLEXPRESS";
 		string dataBase = "CATALOGO_P3_DB";
 
-		public AccesoDB()
+		//Datos de la Base - SOMEE
+		//string connectionString = WebConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
+
+public AccesoDB()
 		{
 			connection = new SqlConnection($"server={serverName}; database={dataBase}; integrated security=true; TrustServerCertificate=True");
+			//connection = new SqlConnection(connectionString);
 			command = new SqlCommand();
 		}
 
