@@ -96,8 +96,10 @@ namespace tp3_equipo25
 			int index = modoEnvio.SelectedIndex;
 			string opcion = modoEnvio.SelectedItem.Text;
 
-			if(index == 0)
+			if (index == 0)
 				lbModoEnvio.Text = opcion + ". Llega el " + DateTime.Today.AddDays(1).ToString("dddd", new System.Globalization.CultureInfo("es-MX"));
+			else
+				lbModoEnvio.Text = opcion;
 
 		}
 	}
