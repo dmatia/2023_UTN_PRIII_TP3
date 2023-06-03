@@ -10,37 +10,38 @@
         <% if (articulo != null)
             {%>
 
-        <div class="row row-cols-md-3 row-cols-1 w-75">
+        <div class="row row-cols-lg-3 row-cols-1 w-75">
 
             <%--Carousel--%>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+            <div>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
 
-                    <% foreach (Dominio.Imagen img in articulo.Imagenes)
-                        {%>
-                    <div class="carousel-item active rounded border p-1">
-                        <img class="d-block w-100 rounded" src="<%= img.UrlImagen%>">
+                        <% foreach (Dominio.Imagen img in articulo.Imagenes)
+                            {%>
+                        <div class="carousel-item active rounded border p-1 mh-100" style="height: 300px">
+                            <img class="d-block w-100 h-100 object-fit-cover rounded" src="<%= img.UrlImagen%>" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+                        </div>
+                        <%} %>
                     </div>
-                    <%} %>
-
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
-        <%--Carousel--%>
+            <%-- Fin Carousel--%>
 
 
             <%-- Detalle --%>
-            <div>
+            <div class="mt-4 mt-lg-0">
                 <div class="d-flex text-secondary fw-light flex-wrap">
                     <p class="me-1">Nuevo | </p>
-                    <p class="me-1"> <%= articulo.Categoria%> </p>
+                    <p class="me-1"><%= articulo.Categoria%> </p>
                     <p class="me-1">> </p>
                     <p><%= articulo.Marca%></p>
                 </div>
@@ -54,15 +55,14 @@
                 <p class="fw-semibold small mt-3">Lo que tenés que saber de este producto</p>
                 <p class="fs-6 text-muted"><%= articulo.Descripcion%></p>
             </div>
-            <%-- Detalle --%>
+            <%-- Fin Detalle --%>
 
-            <%-- Button --%>
             <div>
 
                 <div class="border border-muted rounded p-3 row">
 
-                    <div class="row fs-6">
-                        <p class="small text text-success"><i class="fa-solid fa-truck me-2"></i>Llega gratis <span class="fw-semibold">el <%= dia.ToString("dddd") %></span></p>
+                    <div class=" fs-6">
+                        <p class="small text text-success"><i class="fa-solid fa-truck me-2"></i>Llega gratis <span class="fw-semibold">el <%= dia.ToString("dddd", new System.Globalization.CultureInfo("es-MX")) %></span></p>
                         <p class="fs-6 fw-semibold">Stock disponible</p>
                         <p class="small fw-light">Tienda oficial <a href="Nosotros.aspx" class="text-decoration-none">Grupo 25</a></p>
                         <div class="input-group input-group-sm mb-3">
@@ -72,25 +72,25 @@
                         </div>
                     </div>
                     <div class="d-grid">
-                        <asp:Button runat="server" CssClass="btn btn-primary btn-block fs-6 text-uppercase" OnClick="AgregarCarrito" Text="Agregar al carrito" />
+                        <asp:Button runat="server" CssClass="btn btn-primary btn-sm btn-block fs-6 text-uppercase" OnClick="AgregarCarrito" Text="Agregar al carrito" />
                     </div>
 
                 </div>
 
-                <div class="border border-muted rounded p-3 mt-3 row gap-2">
+                <div class="border border-muted rounded p-3 mt-3 row">
 
-                    <p class="fs-5 fw-semibold">Medios de Pago</p>
+                    <p class="fs-5 fw-semibold my-3">Medios de Pago</p>
 
-                    <h6 class="fw-light">Pago Electrónico</h6>
-                    <div class="d-flex gap-1 fs-2 text-muted">
+                    <h6 class="fw-light mt-3">Pago Electrónico</h6>
+                    <div class="d-flex gap-1 fs-2 text-muted flex-wrap">
                         <i class="fa-brands fa-cc-stripe"></i>
                         <i class="fa-brands fa-cc-paypal"></i>
                         <i class="fa-brands fa-cc-apple-pay"></i>
                         <i class="fa-brands fa-cc-amazon-pay"></i>
                     </div>
 
-                    <h6 class="fw-light">Tarjetas de Crédito</h6>
-                    <div class="d-flex gap-1 fs-2 text-muted">
+                    <h6 class="fw-light mt-3">Tarjetas de Crédito</h6>
+                    <div class="d-flex gap-1 fs-2 text-muted flex-wrap">
                         <i class="fa-brands fa-cc-mastercard"></i>
                         <i class="fa-brands fa-cc-visa"></i>
                         <i class="fa-brands fa-cc-jcb"></i>
@@ -100,9 +100,10 @@
 
                 </div>
             </div>
-            <%-- Button --%>
+            <%-- Fin Button --%>
         </div>
 
+        <%-- No hay articulos --%>
         <%}
             else
             {%>
@@ -111,31 +112,34 @@
 
         <%}%>
     </div>
+    <%-- Fin No hay articulos --%>
 
+    <!-- Articulos Relacionados -->
     <div class="my-3">
         <h5 class="text-muted">También te puede interesar</h5>
     </div>
 
-    <div class="bg-body shadow-sm hover-shadow p-3 rounded ">
-        <div class="d-flex flex-row gap-3">
+    <div class="bg-body shadow-sm hover-shadow p-3 rounded w-100" style="height: auto">
+        <div class=" d-flex gap-3 flex-sm-row flex-column justify-content-center justify-content-lg-start w-100">
             <asp:Repeater ID="repeaterArticulosRelacionados" runat="server">
                 <ItemTemplate>
-                    <%-- Cards --%>
-                    <div class="card rounded shadow-sm" style="width: 15rem; height: contain">
-                        <div class="w-100 h-50">
-                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover w-100 h-100">
-                        </div>
-                        <div class="card-body" style="height: 100px">
-                            <p class="fs-4 fw-light"><%# String.Format("{0:C}", Eval("Precio"))%></p>
-                            <h5 class="card-title"><%# Eval("Nombre") %></h5>
-                            <p class="card-text"><%#  Eval("Descripcion") %></p>
-                            <asp:Button Text="Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                    <%-- Cards Relacionados --%>
+                    <div>
+                        <div class="card rounded shadow-sm" style="width: 15rem; height: 350px">
+                            <img src="<%# Eval("Imagenes[0].UrlImagen") %>" class="object-fit-cover h-50 p-0" style="height: 200px;" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png'">
+                            <div class="card-body">
+                                <p class="fs-4 fw-light"><%# String.Format("{0:C}", Eval("Precio"))%></p>
+                                <h5 class="card-title"><%# Eval("Nombre") %></h5>
+                                <p class="card-text"><%#  Eval("Descripcion") %></p>
+                                <asp:Button Text="Detalle" CssClass="btn btn-primary" runat="server" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
+                            </div>
                         </div>
                     </div>
-                    <%-- Cards --%>
+                    <%-- Cards Relacionados --%>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
     </div>
+    <!-- Fin Articulos Relacionados -->
 </asp:Content>
 <%--Fin Main--%>
