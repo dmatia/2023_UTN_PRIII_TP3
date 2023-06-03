@@ -35,11 +35,11 @@
 
   <% if (CheckbusquedaAvanzada()) { %>
     <div class="row">
-      <div class="col-3" style="display:flex;">
+      <div class="col-lg-3" style="display:flex;">
             <div class="d-flex flex-column">
                 <div style="background-color: #c2d6df; border-radius:10px; padding: 20px;margin-top:22px;">
                  
-                    <div class="row" style="margin-bottom: 20px;">
+                    <div class="row" style="margin-bottom: 10px;">
                  
                         <div class="col">
                           <asp:Panel runat="server" DefaultButton="BtnBusqueda">
@@ -48,7 +48,7 @@
                       
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 20px;">
+                    <div class="row" style="margin-bottom: 10px;">
            
                         <div class="col-8" style="display:flex; justify-content:flex-start; align-items:center; padding:0px;">
                             <asp:CheckBox ID="ChkCheckDescripcion" CssClass="form-check" Text=" Incluir descripción" runat="server"/>
@@ -64,7 +64,7 @@
                             <asp:Label Text="Precios:" runat="server"></asp:Label>
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 20px;">
+                    <div class="row" style="margin-bottom: 10px;">
                             <div class="col-md-6">
                             <asp:Label Text="Minimo" runat="server"></asp:Label>
                             <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomin" runat="server" Text="Minimo" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
@@ -74,7 +74,7 @@
                             <asp:TextBox CssClass="form-control" type="number" ID="TxtPreciomax" runat="server" Text="Maximo" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="row" style="margin-bottom: 20px;">
+                    <div class="row" style="margin-bottom: 10px;">
                         <div class="col">
                             <asp:Label Text="Marca:" runat="server"></asp:Label>
                             <asp:DropDownList ID="DdlMarca" CssClass="form-control" runat="server" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);" ></asp:DropDownList>
@@ -97,15 +97,12 @@
      <div class="col-lg-<% if (CheckbusquedaAvanzada())
         { %>9<% }
         else
-        { %>12<% } %> col-md-6 col-sm-12">
-        <div class="row row-cols-1 row-cols-md-<% if (CheckbusquedaAvanzada())
-            { %>3<% }
-            else
-            { %>4<% } %>">
+        { %>12<% } %> col-md-6 col-sm-9">
+        <div class="row ">
             <%--Repeater--%>
             <asp:Repeater ID="RepCards" runat="server">
                 <ItemTemplate>
-                <div class="col-md-<% if (CheckbusquedaAvanzada()) { %>4<% } else { %>12><% } %> mt-4">
+                <div class="col mt-4 d-flex" style="justify-content:space-evenly;">
 
                         <%--Card--%>
                         <div class="card" style="width: 18rem; height:100%; padding:10px;">
