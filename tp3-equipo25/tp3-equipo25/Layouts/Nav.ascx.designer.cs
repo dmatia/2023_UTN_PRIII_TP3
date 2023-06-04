@@ -11,16 +11,25 @@ namespace tp3_equipo25.Layouts
 {
 
 
-	public partial class Nav
-	{
+    public partial class Nav
+    {
 
-		/// <summary>
-		/// lbSearch control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox lbSearch;
-	}
+        /// <summary>
+        /// lbSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lbSearch;
+
+        /// <summary>
+        /// UpdatePanelCarrito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelCarrito;
+    }
 }

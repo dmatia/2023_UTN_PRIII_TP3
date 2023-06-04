@@ -3,136 +3,133 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <%--Media querys--%>
+    <%--Media querys--%>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="Content/CarritoStyle.css" rel="stylesheet" />
 </asp:Content>
+
 <asp:Content ID="Carrito" ContentPlaceHolderID="Main" runat="server">
     <% if (ListaCarrito != null)
         {%>
-
-
-
     <div class="d-flex bd-highlight CarritoContenedor1">
-
-        <%-- Contenedor Izquierdo, contiene GridView y botones--%>
-        <div class="p-2 flex-fill bd-highlight contenedorMobile">
-            <%-- Titulo --%>
-            <h2 class="CarritoWeb_titulo">Tu carrito</h2>
-
-            <div>
-                <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged"></asp:DropDownList>
-            </div>
+        
+    <div class="p-2 flex-fill bd-highlight contenedorMobile">
+        <%--TITULO--%>
+        <h2 class="CarritoWeb_titulo">Tu carrito</h2>
+       
+        <%--GRIDVIEW--%>
+        <div class="contenedorGV table-responsive">
 
 
-            <div class="contenedorGV table-responsive">
+             <%--DROP DOWN LIST--%>
 
-            <asp:GridView ID="dgvCarrito" runat="server" CssClass="table dgvMobile" DataKeyNames=""
-                AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound" ClientIDMode="AutoID" RowStyle-Wrap="true" css>
-                 <HeaderStyle HorizontalAlign="Center" BackColor="WHITE" cssClass="celda" />
-                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" cssClass="celda"/>
+        <asp:UpdatePanel ID="updatePanel" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
 
-
-                <Columns>
-
-                    <%--Imagen en columna--%>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("Articulo.Imagenes[0].UrlImagen")%>' Width="50px" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <%--Nombre artículo con link al detalle--%>
-
-                    <asp:TemplateField HeaderText="Articulo">
-                        <ItemTemplate>
-                            <asp:Button runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Articulo.Nombre") %>' CssClass="btn CarritoWeb_dtb_detalle celda" OnClick="btnAcción" CommandName="Detalle" CommandArgument="Articulo.Id" CausesValidation="false" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <%-- Precio Unitario --%>
-                    <asp:BoundField HeaderText="Precio/Un." DataFormatString="{0:C}" DataField="Articulo.Precio" />
-
-
-                    <%-- Controles para agregar/quitar unidades --%>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn celda" OnClick="btnAcción" CommandName="Agregar" CommandArgument="Articulo.Id" CausesValidation="false" />
-                             </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <%-- Cantidad de unidades por artículo--%>
-                    <asp:BoundField DataField="Cantidad" />
-
-                    <%-- Controles para agregar/quitar unidades --%>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn celda" OnClick="btnAcción" CommandName="Quitar" CommandArgument="Articulo.Id" CausesValidation="false" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-
-
-                    <%-- Subtotal por artículo --%>
-                    <asp:TemplateField HeaderText="Subtotal">
-                        <ItemTemplate>
-                            <asp:Label ID="lblSubtotal" runat="server" Width="100px"></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <%-- Eliminar artículo del carrito --%>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:Button ID="bntBorrar" runat="server" Text="🗑" CssClass="btn" OnClick="btnAcción" CommandName="Borrar" CommandArgument="Articulo.Id" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <%-- Seleccionar artículo para ver en grande --%>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:Button ID="bntVer" runat="server" Text="👁" CssClass="btn" OnClick="btnAcción" CommandName="Ver" CommandArgument="Articulo.Id" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                </Columns>
-
-            </asp:GridView>
-            </div>
-
-            <div class="cuponContenedor">
-                    <asp:TextBox runat="server" ID="txbxCupon" CssClass="cuponIzq btnCarrito" type="text" placeholder="¿Tenés un cupón? ¡Ingresalo acá!" aria-label="Search" />
-                    <asp:Button runat="server" ID="btnCupon" CssClass="cuponDer" OnClick="btnAplicar_Click" Text="Aplicar" />
-                </div>
-
-            <%-- Caja de botones bajo la GridView --%>
-            <div class="botonera">
-                    <asp:Button ID="btnBorrarCarrito" runat="server" CssClass="btn btn-danger btnCarrito" Text="🗑" OnClick="btnBorrarCarrito_Click" />
-                    <a href="Default.aspx" class="btn btn-primary btnCarrito ">Guardar</a>
-                    <a href="OrdenCompra.aspx" class="btn btn-primary">Check out</a>
-            </div>
-
+                 <div>
+            <asp:DropDownList ID="DDLOrdenar" CssClass="form-control" runat="server" OnSelectedIndexChanged="DDLOrdenar_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
         </div>
 
+                <asp:GridView ID="dgvCarrito" runat="server" AutoGenerateColumns="false" OnRowDataBound="dgvCarrito_RowDataBound" CssClass="table">
+                   <HeaderStyle HorizontalAlign="Center" BackColor="#a5d5e0" cssClass="celda" />
+                <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" cssClass="celda"/>
+                    <Columns>
 
 
 
-        <%--   Contenedor derecho, contiene un visor de imagenes --%>
+                        <%--IMAGEN--%>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Image runat="server"
+                                    ImageUrl='<%#Eval("Articulo.Imagenes[0].UrlImagen") %>'
+                                    onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'"
+                                    Style="width: 50px" 
+                                    CommandName="Ver"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%--NOMBRE--%>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button runat="server" Text='<%#Eval("Articulo.Nombre") %>' 
+                                    OnClick="btnAcción" CommandName="Detalle" CssClass="btn CarritoWeb_dtb_detalle celda border-0" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%-- PRECIO--%>
+                        <asp:BoundField HeaderText="Precio/Un." DataFormatString="{0:C}" DataField="Articulo.Precio" />
+
+                        <%--BOTON AGREGAR--%>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="btnAgregar" runat="server" Text="+" 
+                                    OnClick="btnAcción" CommandName="Agregar" CommandArgument='<%# Container.DataItemIndex %>' class="btn border-0" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%--CANTIDAD--%>
+                        <asp:BoundField DataField="Cantidad" />
+
+                        <%--BOTON  QUITAR--%>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="btnQuitar" runat="server" Text="-" 
+                                    OnClick="btnAcción" CommandName="Quitar" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn border-0"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%-- SUBTOTAL --%>
+                        <asp:TemplateField HeaderText="Subtotal">
+                            <ItemTemplate>
+                                <asp:Label ID="lblSubtotal" runat="server" Width="100px"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%--ELIMINAR DEL CARRITO--%>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="btnEliminar" runat="server" Text="🗑" 
+                                     OnClick="btnAcción" CommandName="Borrar" CommandArgument='<%# Container.DataItemIndex %>' class="btn border-0"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%-- VER --%>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Button ID="btnVer" runat="server" Text="👁"
+                                    OnClick="btnAcción" CommandName="Ver"  CommandArgument='<%# Container.DataItemIndex %>' class="btn border-0"/>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                   
+
+                    </Columns>
+                </asp:GridView>
+
+            </ContentTemplate>
+        </asp:UpdatePanel>
+       </div>
+       <%-- CUPÓN --%>
+        <div class="cuponContenedor">
+            <asp:TextBox runat="server" ID="txbxCupon" CssClass="cuponIzq btnCarrito" type="text" placeholder="¿Tenés un cupón? ¡Ingresalo acá!" aria-label="Search" />
+            <asp:Button runat="server" ID="btnCupon" CssClass="cuponDer"  OnClick="btnAplicar_Click" Text="Aplicar" />
+        </div>
+        <%-- BOTONES --%>
+        <div class="botonera">
+            <asp:Button ID="btnBorrarCarrito" runat="server" CssClass="btn btn-danger btnCarrito" 
+                Text="🗑" OnClick="btnBorrarCarrito_Click"/>
+            <a href="Default.aspx" class="btn btn-primary btnCarrito ">Guardar</a>
+            <a href="OrdenCompra.aspx" class="btn btn-primary">Check out</a>
+        </div>
+    </div>
 
         <div class="contenedor2">
-                    <asp:ScriptManager ID="ScripManager1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("ListaCarrito.Articulo.Imagenes[0].UrlImagen")%>' onerror="this.src='https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp'" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
     </div>
-
-
-
-
-
     <%}
         else
         {%>

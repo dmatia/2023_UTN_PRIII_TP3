@@ -31,12 +31,18 @@
             </div>
             <%} %>
 
+            <asp:ScriptManager runat="server"></asp:ScriptManager>
+
+            <asp:UpdatePanel ID="UpdatePanelCarrito" runat="server" UpdateMode="Always">
+                <ContentTemplate>
             <asp:LinkButton runat="server" class="nav-link " href="CarritoWeb.aspx">
                 <div class="text-bg-secondary p-2 rounded-2">
                     <i class="fa-solid fa-cart-shopping mx-1"></i>
                     <span class="mx-1 badge bg-transparent rounded-pill"><%: carrito %></span>
                     </div>
             </asp:LinkButton>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
         </div>
     </div>
