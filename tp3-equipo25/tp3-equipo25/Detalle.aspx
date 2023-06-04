@@ -10,7 +10,7 @@
         <% if (articulo != null)
             {%>
 
-        <div class="row row-cols-md-3 row-cols-1 w-75">
+        <div class="row row-cols-lg-3 row-cols-1 w-75">
 
             <%--Carousel--%>
             <div>
@@ -38,7 +38,7 @@
 
 
             <%-- Detalle --%>
-            <div>
+            <div class="mt-4 mt-lg-0">
                 <div class="d-flex text-secondary fw-light flex-wrap">
                     <p class="me-1">Nuevo | </p>
                     <p class="me-1"><%= articulo.Categoria%> </p>
@@ -57,13 +57,12 @@
             </div>
             <%-- Fin Detalle --%>
 
-            <%-- Button --%>
             <div>
 
                 <div class="border border-muted rounded p-3 row">
 
-                    <div class="row fs-6">
-                        <p class="small text text-success"><i class="fa-solid fa-truck me-2"></i>Llega gratis <span class="fw-semibold">el <%= dia.ToString("dddd") %></span></p>
+                    <div class=" fs-6">
+                        <p class="small text text-success"><i class="fa-solid fa-truck me-2"></i>Llega gratis <span class="fw-semibold">el <%= dia.ToString("dddd", new System.Globalization.CultureInfo("es-MX")) %></span></p>
                         <p class="fs-6 fw-semibold">Stock disponible</p>
                         <p class="small fw-light">Tienda oficial <a href="Nosotros.aspx" class="text-decoration-none">Grupo 25</a></p>
                         <div class="input-group input-group-sm mb-3">
@@ -73,25 +72,25 @@
                         </div>
                     </div>
                     <div class="d-grid">
-                        <asp:Button runat="server" CssClass="btn btn-primary btn-block fs-6 text-uppercase" OnClick="AgregarCarrito" Text="Agregar al carrito" />
+                        <asp:Button runat="server" CssClass="btn btn-primary btn-sm btn-block fs-6 text-uppercase" OnClick="AgregarCarrito" Text="Agregar al carrito" />
                     </div>
 
                 </div>
 
-                <div class="border border-muted rounded p-3 mt-3 row gap-2">
+                <div class="border border-muted rounded p-3 mt-3 row">
 
-                    <p class="fs-5 fw-semibold">Medios de Pago</p>
+                    <p class="fs-5 fw-semibold my-3">Medios de Pago</p>
 
-                    <h6 class="fw-light">Pago Electrónico</h6>
-                    <div class="d-flex gap-1 fs-2 text-muted">
+                    <h6 class="fw-light mt-3">Pago Electrónico</h6>
+                    <div class="d-flex gap-1 fs-2 text-muted flex-wrap">
                         <i class="fa-brands fa-cc-stripe"></i>
                         <i class="fa-brands fa-cc-paypal"></i>
                         <i class="fa-brands fa-cc-apple-pay"></i>
                         <i class="fa-brands fa-cc-amazon-pay"></i>
                     </div>
 
-                    <h6 class="fw-light">Tarjetas de Crédito</h6>
-                    <div class="d-flex gap-1 fs-2 text-muted">
+                    <h6 class="fw-light mt-3">Tarjetas de Crédito</h6>
+                    <div class="d-flex gap-1 fs-2 text-muted flex-wrap">
                         <i class="fa-brands fa-cc-mastercard"></i>
                         <i class="fa-brands fa-cc-visa"></i>
                         <i class="fa-brands fa-cc-jcb"></i>

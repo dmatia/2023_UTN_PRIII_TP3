@@ -15,6 +15,33 @@ namespace tp3_equipo25
 	{
 
 		/// <summary>
+		/// SM_Detalle control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.ScriptManager SM_Detalle;
+
+		/// <summary>
+		/// lbModoEnvio control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lbModoEnvio;
+
+		/// <summary>
+		/// lbModoPago control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lbModoPago;
+
+		/// <summary>
 		/// repeaterOrdenCompra control.
 		/// </summary>
 		/// <remarks>
@@ -22,5 +49,23 @@ namespace tp3_equipo25
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Repeater repeaterOrdenCompra;
+
+		/// <summary>
+		/// modoPago control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList modoPago;
+
+		/// <summary>
+		/// modoEnvio control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList modoEnvio;
 	}
 }

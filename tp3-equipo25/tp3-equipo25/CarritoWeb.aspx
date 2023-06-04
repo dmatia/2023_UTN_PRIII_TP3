@@ -3,6 +3,9 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <%--Media querys--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/CarritoStyle.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Carrito" ContentPlaceHolderID="Main" runat="server">
     <% if (ListaCarrito != null)
@@ -13,7 +16,7 @@
     <div class="d-flex bd-highlight CarritoContenedor1">
 
         <%-- Contenedor Izquierdo, contiene GridView y botones--%>
-        <div class="p-2 flex-fill bd-highlight">
+        <div class="p-2 flex-fill bd-highlight contenedorMobile">
             <%-- Titulo --%>
             <h2 class="CarritoWeb_titulo">Tu carrito</h2>
 
@@ -22,19 +25,20 @@
             </div>
 
 
-            <div class="contenedorGV">
+            <div class="contenedorGV table-responsive">
 
-            <asp:GridView ID="dgvCarrito" runat="server" CssClass="table" DataKeyNames=""
-                AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound" ClientIDMode="AutoID" >
+            <asp:GridView ID="dgvCarrito" runat="server" CssClass="table dgvMobile" DataKeyNames=""
+                AutoGenerateColumns="false" AllowPaging="true" OnRowDataBound="GridView1_RowDataBound" ClientIDMode="AutoID" RowStyle-Wrap="true" css>
+                 <HeaderStyle HorizontalAlign="Center" BackColor="WHITE" cssClass="celda" />
                 <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" cssClass="celda"/>
-                <HeaderStyle HorizontalAlign="Center" BackColor="WHITE" cssClass="celda" />
+
 
                 <Columns>
 
                     <%--Imagen en columna--%>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("Articulo.Imagenes[0].UrlImagen")%>' onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'" Style="height: 50px" />
+                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("Articulo.Imagenes[0].UrlImagen")%>' Width="50px" onerror="this.src='https://www.freeiconspng.com/uploads/no-image-icon-23.jpg'" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -42,7 +46,7 @@
 
                     <asp:TemplateField HeaderText="Articulo">
                         <ItemTemplate>
-                            <asp:Button runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Articulo.Nombre") %>' CssClass="btn CarritoWeb_dtb_detalle" OnClick="btnAcción" CommandName="Detalle" CommandArgument="Articulo.Id" CausesValidation="false" />
+                            <asp:Button runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Articulo.Nombre") %>' CssClass="btn CarritoWeb_dtb_detalle celda" OnClick="btnAcción" CommandName="Detalle" CommandArgument="Articulo.Id" CausesValidation="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -53,7 +57,7 @@
                     <%-- Controles para agregar/quitar unidades --%>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn" OnClick="btnAcción" CommandName="Agregar" CommandArgument="Articulo.Id" CausesValidation="false" />
+                            <asp:Button ID="btnAgregar" runat="server" Text="+" CssClass="btn celda" OnClick="btnAcción" CommandName="Agregar" CommandArgument="Articulo.Id" CausesValidation="false" />
                              </ItemTemplate>
                     </asp:TemplateField>
 
@@ -63,7 +67,7 @@
                     <%-- Controles para agregar/quitar unidades --%>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn" OnClick="btnAcción" CommandName="Quitar" CommandArgument="Articulo.Id" CausesValidation="false" />
+                            <asp:Button ID="btnQuitar" runat="server" Text="-" CssClass="btn celda" OnClick="btnAcción" CommandName="Quitar" CommandArgument="Articulo.Id" CausesValidation="false" />
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -72,7 +76,7 @@
                     <%-- Subtotal por artículo --%>
                     <asp:TemplateField HeaderText="Subtotal">
                         <ItemTemplate>
-                            <asp:Label ID="lblSubtotal" runat="server"></asp:Label>
+                            <asp:Label ID="lblSubtotal" runat="server" Width="100px"></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -113,11 +117,12 @@
 
 
         <%--   Contenedor derecho, contiene un visor de imagenes --%>
-        <asp:ScriptManager ID="ScripManager1" runat="server"></asp:ScriptManager>
-        <div class="p-2 flex-fill bd-highlight contenedor2" style="width: 50vw">
+
+        <div class="contenedor2">
+                    <asp:ScriptManager ID="ScripManager1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("ListaCarrito.Articulo.Imagenes[0].UrlImagen")%>' onerror="this.src='https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp'" Style="width: 100%;" />
+                    <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("ListaCarrito.Articulo.Imagenes[0].UrlImagen")%>' onerror="this.src='https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp'" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
