@@ -72,12 +72,12 @@ namespace tp3_equipo25
 			}
 			if (SeleccionDDL == "Mayor Precio")
 			{
-				return Listaordenada = listafiltrada.OrderBy(x => x.Precio).ToList();
-			}
+                return Listaordenada = listafiltrada.OrderByDescending(x => x.Precio).ToList();
+            }
 			if (SeleccionDDL == "Menor Precio")
-			{
-				return Listaordenada = listafiltrada.OrderByDescending(x => x.Precio).ToList();
-			}
+			{				
+                return Listaordenada = listafiltrada.OrderBy(x => x.Precio).ToList();
+            }
 			return listafiltrada;
 		}
 
