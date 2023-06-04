@@ -123,7 +123,7 @@
                                         <% } %>
                                     </div>
                                     <div class="card-body">
-                                        <div class="d-grid gap-2" <%--Boton Detalle con Command Argument--%>
+                                        <div class="d-grid gap-2"><%--Boton Detalle con Command Argument--%>
                                             <asp:Button Text="Ver Detalle" runat="server" Cssclass="btn btn-primary btm-lg" ID="BtnDetalle" CommandArgument='<%#Eval("Id")%>' CommandName="ArticuloId" OnClick="BtnDetalle_Click" />
                                         </div>
                                     </div>
