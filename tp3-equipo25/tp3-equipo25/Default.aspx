@@ -106,7 +106,7 @@
                     <%--Repeater--%>
                     <asp:Repeater ID="RepCards" runat="server">
                         <itemtemplate>
-                            <div class="col mt-4 d-flex" style="justify-content: space-evenly;">
+                            <div class="col mt-4 d-flex" style="justify-content: flex-start; ">
                                 <%--Card--%>
                                 <div class="card" style="width: 18rem; height: 100%; padding: 10px;">
                                               <%--Imagen centrada--%>
