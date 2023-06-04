@@ -134,100 +134,6 @@ namespace tp3_equipo25
 
         }
 
-        protected void btnVer_Click(object sender, EventArgs e)
-        {
-            Button btnVer = (Button)sender;
-            int rowIndex = int.Parse(btnVer.CommandArgument);
-            Image2.ImageUrl = ListaCarrito[rowIndex].Articulo.Imagenes[0].UrlImagen;
-        }
-
-
-
-        protected void btnAplicar_Click(object sender, EventArgs e)
-        {
-            if (Usado == false)
-            {
-                if (txbxCupon.Text.ToUpper() == "KLOSTER")
-                {
-                    AplicarCupon();
-                    Usado = true;
-                    Session.Add("Usado", Usado);
-                    Cuponera();
-                    txbxCupon.Text = "Descuento aplicado!";
-                }
-                else
-                {
-                    txbxCupon.Text = "Cupón Inválido. Ingresá el código nuevamente.";
-                }
-            }
-        }
-
-        protected void AplicarCupon()
-        {
-            foreach (var carrito in ListaCarrito)
-            {
-                carrito.Articulo.Precio -= Decimal.Multiply(carrito.Articulo.Precio, (decimal)0.10);
-            }
-
-            ActualizarDgv();
-        }
-
-        protected void Cuponera()
-        {
-            if (Session["Usado"] == null)
-                Usado = false;
-            else if ((bool)Session["Usado"] == true)
-            {
-                txbxCupon.Text = "Tu carrito tiene un descuento aplicado ;)";
-                txbxCupon.Enabled = false;
-                btnCupon.Enabled = false;
-                btnCupon.BackColor = Color.Gray;
-            }
-        }
-
-
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            Button btnEliminar = (Button)sender;
-            int rowIndex = int.Parse(btnEliminar.CommandArgument);
-            Carrito carrito = ListaCarrito[rowIndex];
-            BorrarCarritoDeLista(carrito);
-        }
-
-        protected void BorrarCarritoDeLista(Carrito carrito)
-        {
-            ListaCarrito.Remove(carrito);
-            if (ListaCarrito.Count == 0)
-            {
-                BorrarCarrito();
-            }
-            else
-            {
-                ResetearImagen2();
-                ActualizarDgv();
-            }
-           
-
-        }
-
-        protected void BorrarCarrito()
-        {
-            ListaCarrito = null;
-            Session["carrito"] = null;
-            Session["Usado"] = null;
-            Response.Redirect(Request.RawUrl);
-        }
-
-        protected void btnBorrarCarrito_Click(object sender, EventArgs e)
-        {
-            BorrarCarrito();
-        }
-
-
-        protected void ResetearImagen2()
-        {
-            Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
-        }
 
 
         protected void btnAcción(object sender, EventArgs e)
@@ -327,6 +233,89 @@ namespace tp3_equipo25
             Session.Add("DetalleArticulo", articulo);
             Response.Redirect("Detalle.aspx", false);
         }
+
+
+        protected void BorrarCarritoDeLista(Carrito carrito)
+        {
+            ListaCarrito.Remove(carrito);
+            if (ListaCarrito.Count == 0)
+            {
+                BorrarCarrito();
+            }
+            else
+            {
+                ResetearImagen2();
+                ActualizarDgv();
+            }
+
+
+        }
+
+        protected void BorrarCarrito()
+        {
+            ListaCarrito = null;
+            Session["carrito"] = null;
+            Session["Usado"] = null;
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void btnBorrarCarrito_Click(object sender, EventArgs e)
+        {
+            BorrarCarrito();
+        }
+
+
+        protected void ResetearImagen2()
+        {
+            Image2.ImageUrl = "https://d3ugyf2ht6aenh.cloudfront.net/stores/872/502/products/carro-compras-111-51d754b8f31ee398d316701805488150-640-0.webp";
+        }
+
+
+
+
+        protected void btnAplicar_Click(object sender, EventArgs e)
+        {
+            if (Usado == false)
+            {
+                if (txbxCupon.Text.ToUpper() == "GENTESSS")
+                {
+                    AplicarCupon();
+                    Usado = true;
+                    Session.Add("Usado", Usado);
+                    Cuponera();
+                    txbxCupon.Text = "Descuento aplicado!";
+                }
+                else
+                {
+                    txbxCupon.Text = "Cupón Inválido. Ingresá el código nuevamente.";
+                }
+            }
+        }
+
+        protected void AplicarCupon()
+        {
+            foreach (var carrito in ListaCarrito)
+            {
+                carrito.Articulo.Precio -= Decimal.Multiply(carrito.Articulo.Precio, (decimal)0.10);
+            }
+
+            ActualizarDgv();
+        }
+
+        protected void Cuponera()
+        {
+            if (Session["Usado"] == null)
+                Usado = false;
+            else if ((bool)Session["Usado"] == true)
+            {
+                txbxCupon.Text = "Tu carrito tiene un descuento aplicado ;)";
+                txbxCupon.Enabled = false;
+                btnCupon.Enabled = false;
+                btnCupon.BackColor = Color.Gray;
+            }
+        }
+
+
     }
 
 }
