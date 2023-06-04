@@ -1,8 +1,8 @@
-# Trabajo Pr·ctico N∞ 3
-## **Universidad TecnolÛgica Nacional**
+# Trabajo Pr√°ctico N¬∞ 3
+## **Universidad Tecnol√≥gica Nacional**
 ### Facultad Regional Pacheco
-### Tecnicatura Universitaria en ProgramaciÛn
-### ProgramaciÛn III
+### Tecnicatura Universitaria en Programaci√≥n
+### Programaci√≥n III
 ### 2023
 
 ----
@@ -31,33 +31,33 @@
 ### **Carrito de compras**
 
 #### **Objetivo:**
-Partiendo de la arquitectura armada en el TP de Cat·logo de Productos, construir una aplicaciÛn web que permita navegar una lista de productos e ir agregando los productos deseados a un carrito de compras. 
+Partiendo de la arquitectura armada en el TP de Cat√°logo de Productos, construir una aplicaci√≥n web que permita navegar una lista de productos e ir agregando los productos deseados a un carrito de compras. 
 
-La pantalla home o index, ser· el listado de productos en el cual se deber· contar con una opciÛn de filtrado. El diseÒo visual de la p·gina es libre, sin embargo se recomienda bootstrap para el diseÒo general y cards para cada producto (sÌmil mercado libre, ebay, etc).
+La pantalla home o index, ser√° el listado de productos en el cual se deber√° contar con una opci√≥n de filtrado. El dise√±o visual de la p√°gina es libre, sin embargo se recomienda bootstrap para el dise√±o general y cards para cada producto (s√≠mil mercado libre, ebay, etc).
 
-Se deber· contar con una pantalla de detalle de producto en la cual se podr· ver todos los datos del mismo y todas sus im·genes en caso de tener m·s de una. El formato para mostrar las im·genes es libre.
+Se deber√° contar con una pantalla de detalle de producto en la cual se podr√° ver todos los datos del mismo y todas sus im√°genes en caso de tener m√°s de una. El formato para mostrar las im√°genes es libre.
 
-A medida que se agregan items al carrito se deberÌa poder visualizar la cantidad de productos agregados en todo momento en una barra superior; tambiÈn contar con un botÛn para navegar al carrito en el cual se podr· ver el listado de productos agregados con el precio total a pagar y donde tambiÈn se deberÌa poder eliminar productos.
+A medida que se agregan items al carrito se deber√≠a poder visualizar la cantidad de productos agregados en todo momento en una barra superior; tambi√©n contar con un bot√≥n para navegar al carrito en el cual se podr√° ver el listado de productos agregados con el precio total a pagar y donde tambi√©n se deber√≠a poder eliminar productos.
 
-Para los productos ya cuentan con las clases correspondientes. Para el carrito de compras, deber·n crear lo necesario. La informaciÛn del carrito de compras NO se almacena en la base de datos, dicha informaciÛn deber· mantenerse actualizada en la sesiÛn del servidor.
+Para los productos ya cuentan con las clases correspondientes. Para el carrito de compras, deber√°n crear lo necesario. La informaci√≥n del carrito de compras NO se almacena en la base de datos, dicha informaci√≥n deber√° mantenerse actualizada en la sesi√≥n del servidor.
 
 #### **Consideraciones:**
  - No hay que realizar conexiones nuevas a bases de datos.
  - Pueden mejorar las conexiones existentes agregando la clase Acceso a Datos.
  - Crear el nuevo set de clases necesario para el armado del carrito.
- - Crear un nuevo repositorio y tener en cuenta la distribuciÛn de tareas y el manejo con los commits
+ - Crear un nuevo repositorio y tener en cuenta la distribuci√≥n de tareas y el manejo con los commits
 
 ---
 
 #### **Despliegue:**
 
-El proyecto se encuentra en deplegado en SOMEE. Puede acceder a la aplicaciÛn desde el siguiente link: 
+El proyecto se encuentra en deplegado en SOMEE. Puede acceder a la aplicaci√≥n desde el siguiente link: 
 
 [Grupo25-Carrito](http://grupo25.somee.com/)
 
 ---
 
-#### **P·ginas:**
+#### **P√°ginas:**
 ```csharp
 http://localhost:Default.aspx/
 http://localhost:Detalle.aspx/
@@ -66,7 +66,7 @@ http://localhost:OrdenCompra.aspx/
 http://localhost:Nosotros.aspx/
 ```
 
-#### **SoluciÛn**
+#### **Soluci√≥n**
 ```csharp
 tp3-equipo25.sln
 ```
@@ -190,3 +190,5 @@ GO
 ![Screenshot](https://i.imgur.com/HEW8a13.png)
 
 ![Screenshot](https://i.imgur.com/DWFUN5h.png)
+
+#### **Cup√≥n descuento: "GENTESSS"**
